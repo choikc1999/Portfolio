@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "protfolio_blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choikc1999/Portfolio.git"
+  },
+  "author": "choikc1999",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/choikc1999/Portfolio/issues"
+  },
+  "homepage": "https://github.com/choikc1999/Portfolio#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1"
+  }
+}
