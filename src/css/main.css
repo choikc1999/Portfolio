@@ -1,0 +1,70 @@
+#main_contents {
+    width: 100%;
+}
+
+/* contaner_1 시작 */
+#main_contents .contaner_1 {
+    display: flex;
+    width: 100%;
+    height: 500px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+#main_contents .contaner_1 h2 {
+    font-size: 32px;
+    color: #076355;
+    padding: 0 0 8px 20px;
+    border-bottom: 2px solid #076355;
+}
+
+#main_contents .contaner_1 .intro {
+    flex: 4;
+    height: 100%;
+}
+
+#main_contents .contaner_1 .notice {
+    width: 60%;
+    flex: 6;
+    height: 100%;
+    padding-left: 20px;
+}
+/* contaner_1 종료 */
+
+/* contaner_2 시작 */
+#main_contents .contaner_2 {
+    width: 100%;
+    height: 300px;
+}
+
+#main_contents .contaner_2 .portfolio {
+    border: 1px solid #000;
+    width: 100%;
+    height: 100%;
+}
+
+#main_contents .contaner_2 .portfolio ul {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    height: 100%;
+    justify-content: space-around;
+}
+
+#main_contents .contaner_2 .portfolio ul li {
+    border: 1px solid #000;
+    flex: auto;
+    height: 100%;
+    margin-left: 10px;
+}
+#main_contents .contaner_2 .portfolio ul li:first-child {
+    margin-left: 0;
+}
+
+#main_contents .contaner_2 h2 {
+    font-size: 32px;
+    color: #076355;
+    padding: 0 0 8px 20px;
+}
