@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/join.css">
+</head>
+<body>
+    <div class="body">
+            <h1>
+                Welcome to my Blog<br>
+                <span>We will guide you on how to sign up.</span>
+            </h1>
+            <form id="registrationForm" method="signup" autocomplete="off">
+                <div class="input_id input">
+                    <label>
+                        <span class="lb_h lb_h1">ID</span>
+                        <input type="text" name="id" id="id" class="input1"/>
+                    </label>
+                    <span id="idError" class="error"></span>
+                </div>
+                <div class="input_pwd input">
+                    <label>
+                        <span class="lb_h lb_h2">Password</span>
+                        <input type="password" name="password" id="password" class="input2"/>
+                    </label>
+                    <span id="passwordError" class="error"></span>
+                </div>
+                <div class="input_name input">
+                    <label>
+                        <span class="lb_h lb_h3">Name</span>
+                        <input type="text" name="name" id="name" class="input3"/>
+                    </label>
+                    <span id="nameError" class="error"></span>
+                </div>
+                <div class="input_email input">
+                    <label>
+                        <span class="lb_h lb_h4">Email</span>
+                        <input type="text" name="email" id="email" class="input4"/>
+                    </label>
+                    <div id="emailDropdown"></div>
+                    <span id="emailError" class="error"></span>
+                </div>
+                <div class="input_phone input">
+                    <label>
+                        <span class="lb_h lb_h5">Phone number</span>
+                        <input type="tel" name="phoneNumber" id="phoneNumber" class="input5"/>
+                    </label>
+                    <span id="phoneNumberError" class="error"></span>
+                </div>            
+                <button type="submit" class="btn_signup btn">Sign up</button>
+                <button type="button" class="btn_back btn" onclick="location.href='./index.html'">Back</button>
+            </form>
+        </div>
+</body>
+</html>
