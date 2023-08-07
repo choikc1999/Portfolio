@@ -13,6 +13,13 @@ app.use(express.static(path.join(__dirname, "src")));
 // 안전하게 경로를 설정하기 위해 join,resolve라는 매서드를 활용하는게 좋음
 // __는 자바스크립트에서 기본적으로 정의된 변수에 붙는것이며 위 해석은 src라는 폴더를 절대경로로 사용하겠다는 뜻이다.
 
+// set the view engine
+// ejs를 사용할 수 있게 해주는 구문
+app.set("view engine ", "ejs");
+app.set("view", path.join(__dirname), "views");
+// __dirname = 절대 경로를 알려주는 변수
+// __는 기본적으로 정의된 변수에 붙음
+
 //Routes
 app.get("/", userController.index);
 app.post("/user", userController.post_user);
@@ -27,6 +34,6 @@ app.delete("/user", userController.delete_user);
 app.post("/user/check_duplicate_id", userController.checkDuplicateId); // 아이디 중복검사 하는 경로 설정
 
 const PORT = 4080;
-app.listen(PROT, () => {
+app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });

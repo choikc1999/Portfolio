@@ -2,7 +2,7 @@ const User = require("../model/User");
 
 // join id checking
 exports.index = (req, res) => {
-    res.render("login");
+    res.render("login");    
 }
 
 exports.checkDuplicateId = (req, res) => {
