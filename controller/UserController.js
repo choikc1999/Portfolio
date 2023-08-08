@@ -50,3 +50,22 @@ exports.post_user = (req, res) => {
         return res.status(200).json({ id: result.id });
     });
 };
+
+exports.login = (req, res) => {
+    res.render("login");
+}
+
+//login 시도
+exports.post_login = (req, res) => {
+    User.select( req.body.id, req.body.password, function (result) {
+        if (result == null) {
+            return res.send({result: result, flag: false});
+        } else{
+            if (req.body.password != result.password) {
+                return res.send({result: result, flag: false});
+            }else {
+                return res.send({result: result, flag: true});
+            }
+        }
+    });
+}

@@ -11,7 +11,7 @@
 <body>
     <div class="login_form">
         <h1 class="logo"></h1>
-        <form autocomplete="off">
+        <form autocomplete="off" id="login">
             <div>
                 <input type="text" id="id" class="id" placeholder="ID">
             </div>
@@ -19,8 +19,9 @@
                 <input type="password" id="password" class="pwd" placeholder="Password">
             </div>
             <button type="button" class="join" onclick="location.href='./join.html'">SIGN UP !</button>
-            <button type="button" class="login">SIGN IN !</button>
+            <button type="button" class="login" onclick="loginUser();">SIGN IN !</button>
         </form>
     </div>
+    <script src="./js/login.js"></script>
 </body>
 </html>
