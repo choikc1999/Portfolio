@@ -1,3 +1,14 @@
+function showError(elementId, errorMessage, isError) {
+    var errorElement = $("#" + elementId);
+
+    if (isError) {
+        errorElement.html(errorMessage).show();
+    } else {
+        errorElement.hide();
+    }
+}
+
+
 function loginUser() {
     var form = $("#login"); // 로그인 폼 가져오기
 
@@ -13,10 +24,16 @@ function loginUser() {
             console.log("Response data:", response);
 
             if (!response.flag) {
-                // 메시지 띄우기
-                alert("로그인 실패");
+                if (response.result) {
+                    // 비밀번호가 틀렸을 경우 메시지 띄우기
+                    showError("errorElement", "비밀번호가 잘못되었습니다.", true);
+                } else {
+                    // 아이디가 틀렸을 경우 메시지 띄우기
+                    showError("errorElement", "아이디가 잘못되었습니다.", true);
+                }
             } else {
-                alert("로그인 성공");
+                // 로그인 성공 페이지이동
+                window.location.href = "http://localhost:4080/main.html";
             }
         },
         error: function(error) {

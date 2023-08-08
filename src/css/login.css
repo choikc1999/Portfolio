@@ -61,6 +61,7 @@
     border-radius: 20px 0 0 20px;
     border-right: 0;
     background: #17695d;
+    margin-bottom: 20px;
 }
 
 .login_form .join:hover {
@@ -70,8 +71,14 @@
 .login_form .login {
     border-radius: 0 20px 20px 0;
     background: #0d3932;
+    margin-bottom: 20px;
 }
 
 .login_form .login:hover {
     background: #17695d;
+}
+
+#errorbox {
+    font-weight: bold;
+    color: #f00;
 }
