@@ -285,9 +285,12 @@ $("#registrationForm").submit(function(e){
         data: userData,
         success: function (response) {
             console.log(response);
+            window.location.href = "http://localhost:4080/index.html";
+            alert("회원가입성공! 로그인페이지로 이동합니다.");
         },
         error: function (error) {
             console.log("Error: ", error);
+            alert("회원가입에 실패하셨습니다. 다시 확인해주세요.");
         },
     }); 
 }); // 유효성 검사 종료
