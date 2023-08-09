@@ -1,5 +1,6 @@
 const path = require("path");
 const User = require("../model/User"); // User 모델을 가져오는 부분
+const bcrypt = require('bcrypt');
 
 // join id checking
 exports.index = (req, res) => {
@@ -35,19 +36,30 @@ exports.check_duplicate_id = (req, res) => {
     });
 };
 
-// user information save
+// user information save (비밀번호암호화작업)
 exports.post_user = (req, res) => {
     const userData = req.body;
 
-    User.insert(userData, function (err, result) {
-        if (err === "Duplicate ID") {
-            return res.status(400).json({ error: "Duplicate ID. Please choose a different ID." });
-        } else if (err) {
-            console.error("UserController - Error inserting user data", err);
-            return res.status(500).json({ error: "Error saving user data to the database" });
+    bcrypt.hash(userData.password.slice(0, 20), 10, (err, hashedPassword) => {
+        if (err) {
+            console.error('Error hashing password', err);
+            return res.status(500).json({ error: 'Error hashing password' });
         }
-        
-        return res.status(200).json({ id: result.id });
+
+        userData.password = hashedPassword;
+
+        User.insert(userData, function (err, result) {
+            if (err === "Duplicate ID") {
+                return res.status(400).json({ error: "Duplicate ID. Please choose a different ID." });
+            } else if (err) {
+                console.error("UserController - Error inserting user data", err);
+                return res.status(500).json({ error: "Error saving user data to the database" });
+            }
+
+            // 클라이언트에 회원가입 성공 메시지를 전달하고 로그인 페이지로 이동
+            const message = "회원가입에 성공했습니다. 로그인 페이지로 이동합니다.";
+            res.status(200).json({ message: message, redirectTo: "/login" });
+        });
     });
 };
 
@@ -57,20 +69,31 @@ exports.login = (req, res) => {
 };
 
 // login 시도
+// login 시도
 exports.post_login = (req, res) => {
-    User.select(req.body.id, req.body.password, function (result) {
-        if (result == null) {
+    const { id, password } = req.body;
+
+    User.select(id, password, function (result) {
+        if (!result || !result.password) {
             return res.send({ result: result, flag: false });
-        } else if (req.body.password !== result.password) {
-            return res.send({ result: result, flag: false });
-        } else {
-            // 로그인에 성공한 경우 세션에 사용자 정보 저장
-            req.session.user = {
-                id: result.id,
-                name: result.name
-            };
-            return res.send({ result: result, flag: true });
-        }        
+        }
+
+        bcrypt.compare(password, result.password, (err, passwordMatch) => {
+            if (err) {
+                console.error('Error comparing passwords', err);
+                return res.status(500).json({ error: 'Error comparing passwords' });
+            }
+
+            if (passwordMatch) {
+                req.session.user = {
+                    id: result.id,
+                    name: result.name
+                };
+                return res.send({ result: result, flag: true });
+            } else {
+                return res.send({ result: result, flag: false });
+            }
+        });
     });
 };
 

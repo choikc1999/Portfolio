@@ -1,5 +1,5 @@
-$("#id").on("focusout", function (){
-    // 아이디 유효성 검사
+// 아이디 유효성 검사
+$("#id").on("focusout", function () {
     const id = $(this).val();
     const idRegex = /^[a-z0-9]{6,10}$/;
     if (id && !id.match(idRegex)) {
@@ -8,7 +8,7 @@ $("#id").on("focusout", function (){
         showError("idError", "", false);
 
         if (id) {
-            $.ajax({ // 아이디중복검사
+            $.ajax({
                 url: "/user/check_duplicate_id",
                 method: "POST",
                 data: { id: id },
@@ -16,7 +16,7 @@ $("#id").on("focusout", function (){
                     if (data.isDuplicate) {
                         showError("idError", "이미 사용 중인 아이디입니다", true);
                     } else {
-                        showError("idError","",false);
+                        showError("idError", "", false);
                     }
                 },
                 error: function (xhr, textStatus, errorThrown) {
@@ -239,7 +239,32 @@ $("#registrationForm").submit(function(e){
                 showError("idError", "이미 사용 중인 아이디입니다", true);
             } else {
                 showError("idError", "사용 가능한 아이디입니다.", false);
-                $("#registrationForm")[0].submit();
+
+                // 아이디 중복 확인이 성공하면 회원가입 요청을 보내기
+                const userData = {
+                    id: id,
+                    password: password,
+                    name: name,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                };
+                $.ajax({
+                    url: "user", // 회원가입 요청을 보낼 URL
+                    type: "POST", // POST 메서드 사용
+                    data: userData, // 사용자 데이터 전송
+                    success: function (response) {
+                        if (response.message) {
+                            alert(response.message);
+                        }
+                        if (response.redirectTo) {
+                            window.location.href = response.redirectTo;
+                        }
+                    },
+                    error: function (error) {
+                        console.log("Error: ", error);
+                        alert("회원가입에 실패하셨습니다. 다시 확인해주세요.");
+                    },
+                });
             }
         },
         error: function (xhr, textStatus, errorThrown) {
@@ -272,29 +297,32 @@ $("#registrationForm").submit(function(e){
         return;
     }
     // 유효성 검사 통과 시 user 객체 생성
-    const userData = {
-        id: id,
-        password: password,
-        name: name,
-        email: email,
-        phoneNumber: phoneNumber,
-    };
+    // const userData = {
+    //     id: id,
+    //     password: password,
+    //     name: name,
+    //     email: email,
+    //     phoneNumber: phoneNumber,
+    // };
     // user data send
     // ajax는 원래 모듈로 사용해야하는데 jquery에 포함되어있어서 바로 사용가능. 
-    $.ajax({
-        url: "user",
-        type: "POST",
-        data: userData,
-        success: function (response) {
-            console.log(response);
-            window.location.href = "/login";
-            alert("회원가입성공! 로그인페이지로 이동합니다.");
-        },
-        error: function (error) {
-            console.log("Error: ", error);
-            alert("회원가입에 실패하셨습니다. 다시 확인해주세요.");
-        },
-    }); 
+    // $.ajax({
+    //     url: "user",
+    //     type: "POST",
+    //     data: userData,
+    //     success: function (response) {
+    //         if (response.message) {
+    //             alert(response.message);
+    //         }
+    //         if (response.redirectTo) {
+    //             window.location.href = response.redirectTo;
+    //         }
+    //     },
+    //     error: function (error) {
+    //         console.log("Error: ", error);
+    //         alert("회원가입에 실패하셨습니다. 다시 확인해주세요.");
+    //     },
+    // }); 
 }); // 유효성 검사 종료
 
 // css

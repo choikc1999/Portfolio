@@ -26,10 +26,10 @@ function loginUser() {
             if (!response.flag) {
                 if (response.result) {
                     // 비밀번호가 틀렸을 경우 메시지 띄우기
-                    showError("errorElement", "비밀번호가 잘못되었습니다.", true);
+                    showError("errorElement", "비밀번호를 확인해주세요.", true);
                 } else {
                     // 아이디가 틀렸을 경우 메시지 띄우기
-                    showError("errorElement", "아이디가 잘못되었습니다.", true);
+                    showError("errorElement", "아이디를 확인해주세요.", true);
                 }
             } else {
                 // 로그인 성공 페이지이동
