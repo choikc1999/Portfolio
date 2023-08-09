@@ -30,26 +30,21 @@ app.set("views", path.join(__dirname, "views"));
 // 미들웨어: 로그인 여부 체크
 app.use((req, res, next) => {
     // 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
-    if (!req.session.user && req.originalUrl !== "/login") {
-        console.error("Unauthorized access. Redirecting to login page.");
+    if (!req.session.user && req.originalUrl !== "/login" && req.originalUrl !== "/join") {
+        console.error("Unauthorized access. Redirecting to login or join page.");
         return res.redirect("/login");
-    }
-    // 로그인된 상태에서는 main.html에만 접근 가능하도록 체크
-    if (req.session.user && req.originalUrl === "/main.html") {
-        console.error("Unauthorized access to main.html. Redirecting to home page.");
-        return res.redirect("/");
     }
 
     next();
 });
-
-
 
 //Routes
 app.get("/", userController.index);
 app.post("/user", userController.post_user);
 app.get("/login", userController.login);
 app.post("/login", userController.post_login);
+// getUserInfo 핸들러에 대한 라우트 설정
+app.get("/get-user-info", userController.getUserInfo);
 /* 
 app.get("/join", userController.join);
 app.post("/edit", userController.edit);
@@ -57,6 +52,15 @@ app.patch("/user", userController.patch_user);
 app.delete("/user", userController.delete_user);
 */
 app.post("/user/check_duplicate_id", userController.checkDuplicateId); // 아이디 중복검사 하는 경로 설정
+
+    // 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
+    // /main 경로에 대한 GET 핸들러 추가
+app.get("/main", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "main.html"));
+});
+app.get("/join", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "join.html"));
+});
 
 const PORT = 4080;
 app.listen(PORT, () => {

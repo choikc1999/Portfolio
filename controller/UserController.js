@@ -61,14 +61,34 @@ exports.login = (req, res) => {
 // login 시도
 exports.post_login = (req, res) => {
     User.select(req.body.id, req.body.password, function (result) {
-        if (result == null) {
+        if (result == null || req.body.password != result.password) {
             return res.send({ result: result, flag: false });
         } else {
-            if (req.body.password != result.password) {
-                return res.send({ result: result, flag: false });
-            } else {
-                return res.send({ result: result, flag: true });
-            }
+            // 로그인에 성공한 경우 세션에 사용자 정보 저장
+            req.session.user = {
+                id: result.id,
+                name: result.name
+            };
+
+            return res.send({ result: result, flag: true });
         }
     });
+};
+
+exports.getUserInfo = (req, res) => {
+    // 세션에서 사용자 정보 가져오기
+    const user = req.session.user;
+
+    if (user) {
+        // 데이터베이스에서 사용자 이름 가져오기
+        User.select(user.id, user.password, function (result) {
+            if (result) {
+                return res.json({ name: result.name });
+            } else {
+                return res.status(401).json({ error: "User not found" });
+            }
+        });
+    } else {
+        return res.status(401).json({ error: "User not authenticated" });
+    }
 };

@@ -15,7 +15,7 @@ function loginUser() {
     // 서버로 로그인 요청 보내기
     $.ajax({
         method: 'POST',
-        url: 'http://localhost:4080/login',
+        url: '/login',
         data: {
             id: form.find("#id").val(),
             password: form.find("#password").val()
@@ -33,7 +33,7 @@ function loginUser() {
                 }
             } else {
                 // 로그인 성공 페이지이동
-                window.location.href = "http://localhost:4080/main.html";
+                window.location.href = "/main";
             }
         },
         error: function(error) {
