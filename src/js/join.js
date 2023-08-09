@@ -28,15 +28,16 @@ $("#id").on("focusout", function (){
     }
 });
 
-    // 비밀번호 유효성 검사
-    $("#password").on("focusout", function(){
-        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@!#\$%\^&\*])[a-zA-Z\d@!#\$%\^&\*]{10,20}$/;
-        if (!password.match(passwordRegex)) {
-            showError("passwordError", "비밀번호는 10자에서 20자의 영문 대소문자, 숫자, 특수문자 조합이어야 합니다.");
-        } else {
-            showError("passwordError", "", false);
-        }
-    });
+   // 비밀번호 유효성 검사
+$("#password").on("focusout", function(){
+    const password = $(this).val(); // 비밀번호 값을 가져옴
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@!#\$%\^&\*])[a-zA-Z\d@!#\$%\^&\*]{10,20}$/;
+    if (!password.match(passwordRegex)) {
+        showError("passwordError", "비밀번호는 10자에서 20자의 영문 대소문자, 숫자, 특수문자 조합이어야 합니다.");
+    } else {
+        showError("passwordError", "", false);
+    }
+});
 
     // 이름 유효성 검사
     $("#name").on("focusout", function () {
@@ -154,8 +155,8 @@ function showEmailDropdown(matchedDomains) {
     dropdown.show();
 
     // 키보드 이벤트 리스너 추가
-    // 크롬자동완성과 겹쳐서 미작동
-    dorpdown.off("keydown").on("keydown", function(e){
+    // 크롬 자동완성과 겹쳐서 미작동
+    dropdown.off("keydown").on("keydown", function(e){
         const items = $(this).find(".active");
         const activeItem = $(this).find(".active");
         if (e.key === "ArrowDown" || e.key === "Tab"){
@@ -198,6 +199,7 @@ function showEmailDropdown(matchedDomains) {
         e.stopPropagation();
     });
 }
+
 
 function hideEmailDropdown() {
     $("#emailDropdown").empty().hide();
@@ -285,7 +287,7 @@ $("#registrationForm").submit(function(e){
         data: userData,
         success: function (response) {
             console.log(response);
-            window.location.href = "http://localhost:4080/index.html";
+            window.location.href = "/login";
             alert("회원가입성공! 로그인페이지로 이동합니다.");
         },
         error: function (error) {

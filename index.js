@@ -29,9 +29,9 @@ app.set("views", path.join(__dirname, "views"));
 
 // 미들웨어: 로그인 여부 체크
 app.use((req, res, next) => {
-    // 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
-    if (!req.session.user && req.originalUrl !== "/login" && req.originalUrl !== "/join") {
-        console.error("Unauthorized access. Redirecting to login or join page.");
+    // 메인 페이지(main)에 대해서만 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
+    if (!req.session.user && req.originalUrl === "/main") {
+        console.error("Unauthorized access to main page. Redirecting to login page.");
         return res.redirect("/login");
     }
 

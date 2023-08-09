@@ -13,6 +13,8 @@ function checkLogin(req, res, next) {
 
     next();
 }
+// 회원가입 요청 처리
+router.post('/join', UserController.post_user);
 
 // 로그아웃 페이지
 router.get("/logout-page", user.logoutPage);

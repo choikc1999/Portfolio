@@ -40,15 +40,13 @@ exports.post_user = (req, res) => {
     const userData = req.body;
 
     User.insert(userData, function (err, result) {
-        if (err) {
+        if (err === "Duplicate ID") {
+            return res.status(400).json({ error: "Duplicate ID. Please choose a different ID." });
+        } else if (err) {
             console.error("UserController - Error inserting user data", err);
-            if (err === "Duplicate ID") {
-                return res.status(400).json({ error: "Duplicate ID. Please choose a different ID." });
-            } else {
-                console.error("Error saving user data to MySQL", err);
-                return res.status(500).json({ error: "Error saving user data to the database" });
-            }
+            return res.status(500).json({ error: "Error saving user data to the database" });
         }
+        
         return res.status(200).json({ id: result.id });
     });
 };
@@ -61,7 +59,9 @@ exports.login = (req, res) => {
 // login 시도
 exports.post_login = (req, res) => {
     User.select(req.body.id, req.body.password, function (result) {
-        if (result == null || req.body.password != result.password) {
+        if (result == null) {
+            return res.send({ result: result, flag: false });
+        } else if (req.body.password !== result.password) {
             return res.send({ result: result, flag: false });
         } else {
             // 로그인에 성공한 경우 세션에 사용자 정보 저장
@@ -69,9 +69,8 @@ exports.post_login = (req, res) => {
                 id: result.id,
                 name: result.name
             };
-
             return res.send({ result: result, flag: true });
-        }
+        }        
     });
 };
 
