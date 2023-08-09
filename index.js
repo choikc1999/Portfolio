@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
+const session = require("express-session"); // express-session 미들웨어 추가
 const bodyParser = require("body-parser");
 const userController = require("./controller/UserController");
-const session = require("express-session"); // express-session 미들웨어 추가
 
 const app = express();
 
@@ -22,8 +22,8 @@ app.use(session({ // express-session 설정
 
 // set the view engine
 // ejs를 사용할 수 있게 해주는 구문
-app.set("view engine ", "ejs");
-app.set("view", path.join(__dirname), "views");
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 // __dirname = 절대 경로를 알려주는 변수
 // __는 기본적으로 정의된 변수에 붙음
 
@@ -42,6 +42,7 @@ app.use((req, res, next) => {
 
     next();
 });
+
 
 
 //Routes

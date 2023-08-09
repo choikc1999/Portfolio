@@ -1,9 +1,11 @@
-const User = require("../model/User");
+const path = require("path");
+const User = require("../model/User"); // User 모델을 가져오는 부분
 
 // join id checking
 exports.index = (req, res) => {
-    res.render("login");    
-}
+    const filePath = path.join(__dirname, "../src/views", "index.html");
+    res.sendFile(filePath);    
+};
 
 exports.checkDuplicateId = (req, res) => {
     const { id } = req.body;
@@ -52,20 +54,21 @@ exports.post_user = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    res.render("login");
-}
+    const filePath = path.join(__dirname, "../src/views", "index.html"); // login.html 파일로 수정
+    res.sendFile(filePath);
+};
 
-//login 시도
+// login 시도
 exports.post_login = (req, res) => {
-    User.select( req.body.id, req.body.password, function (result) {
+    User.select(req.body.id, req.body.password, function (result) {
         if (result == null) {
-            return res.send({result: result, flag: false});
-        } else{
+            return res.send({ result: result, flag: false });
+        } else {
             if (req.body.password != result.password) {
-                return res.send({result: result, flag: false});
-            }else {
-                return res.send({result: result, flag: true});
+                return res.send({ result: result, flag: false });
+            } else {
+                return res.send({ result: result, flag: true });
             }
         }
     });
-}
+};
