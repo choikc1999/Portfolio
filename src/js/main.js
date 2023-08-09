@@ -11,4 +11,21 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Error:", error);
         }
     });
+
+    // 로그아웃 버튼 클릭 이벤트 처리
+   // 로그아웃 버튼 클릭 시
+   document.querySelector(".signout").addEventListener("click", function () {
+    // 로그아웃 요청 보내기
+    $.ajax({
+        method: 'GET',
+        url: '/logout',
+        success: function (response) {
+            // 로그아웃 후 로그인 페이지로 리디렉션
+            window.location.href = "/login";
+        },
+        error: function (error) {
+            console.error("Error:", error);
+        }
+    });
+});
 });

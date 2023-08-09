@@ -41,6 +41,9 @@ app.use((req, res, next) => {
 //Routes
 app.get("/", userController.index);
 app.post("/user", userController.post_user);
+
+app.get("/logout", userController.logout);
+
 app.get("/login", userController.login);
 app.post("/login", userController.post_login);
 // getUserInfo 핸들러에 대한 라우트 설정

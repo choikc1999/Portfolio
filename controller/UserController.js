@@ -92,3 +92,25 @@ exports.getUserInfo = (req, res) => {
         return res.status(401).json({ error: "User not authenticated" });
     }
 };
+
+// 로그아웃 페이지
+exports.logoutPage = (req, res) => {
+    const filePath = path.join(__dirname, "../src/views", "index.html");
+    res.sendFile(filePath);
+};
+
+// 로그아웃 처리
+exports.logout = (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error("Error destroying session:", err);
+            return res.status(500).json({ error: "Error destroying session" });
+        }
+        
+        // 쿠키도 삭제
+        res.clearCookie('connect.sid');
+        
+        // 로그아웃 후 로그인 페이지로 리디렉션
+        res.redirect("/login");
+    });
+};
