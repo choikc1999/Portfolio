@@ -82,12 +82,12 @@
 
 .btn_signup {
     margin-top: 30px;
-    background: #3c7199;
+    background: #076355;
     color: #fff;
 }
 
 .btn_signup:hover {
-    background: #4888b8;
+    background: #0b9882;
 }
 
 /* 에러메세지 css */

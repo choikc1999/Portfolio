@@ -348,3 +348,14 @@ $(document).ready(function(){
         $(".lb_h5").css("color","#333");
     });
 });
+
+$(document).ready(function(){
+    function handleClick(e) {
+        alert("J's Blog을 방문해 주셔서 감사합니다. 본 웹사이트는 제 포트폴리오를 소개하는 공간입니다. 입력하신 개인정보는 절대로 상업적으로 이용되지 않으며, 모든 비밀번호는 철저히 암호화되어 안전하게 보관됩니다. 그러니 안심하시고 가입해주세요!");
+
+        // 클릭 이벤트 해제
+        $("body").off("click", handleClick);
+    }
+
+    $("body").click(handleClick);
+});

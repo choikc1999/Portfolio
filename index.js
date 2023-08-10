@@ -64,6 +64,9 @@ app.get("/main", (req, res) => {
 app.get("/join", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "join.html"));
 });
+app.get("/change", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "information.html"));
+});
 
 const PORT = 4080;
 app.listen(PORT, () => {

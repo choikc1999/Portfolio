@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/information.css">
+</head>
+<body>
+    <div class="change">
+        <h1>Change member information</h1>
+        <form>
+            <div class="changeID changebox">
+                <label>
+                    <span>ID</span>
+                    <input type="text" class="changeInputID changeInput">
+                </label>
+            </div>
+            <div class="changePw changebox">
+                <label>
+                    <span>Password</span>
+                    <input type="password" class="newPassword changeInputPw changeInput">
+                </label>
+            </div>
+            <div class="changeName changebox">
+                <label>
+                    <span>Name</span>
+                    <input type="text" class="changeInputName changeInput">
+                </label>
+            </div>
+            <div class="changeEmail changebox">
+                <label>
+                    <span>Email</span>
+                    <input type="text" class="changeInputEmail changeInput">
+                </label>
+            </div>
+            <div class="changePN changebox">
+                <label>
+                    <span>PhoneNumber</span>
+                    <input type="text" class="changeInputPN changeInput">
+                </label>
+            </div>
+            <button type="button" class="btn_change">CHANGE</button>
+            <button type="button" class="btn_back" onclick="location.href='main'">BACK</button>
+            <button type="button" class="btn_withdrawl">WITHDRAWAL</button>
+        </form>
+    </div>
+    <script src="../js/change.js"></script>
+</body>
+</html>
