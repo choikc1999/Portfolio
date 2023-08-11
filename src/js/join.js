@@ -73,12 +73,6 @@ $("#password").on("focusout", function(){
     });
 
     $("#id, #password, #name, #email, #phoneNumber").on("input", function(){
-        // const id = $("#id").val(); // 여기서 val()은 인풋의 입력값
-        // const password = $("#password").val();
-        // const name = $("#name").val();
-        // const email = $("#email").val();
-        // const phoneNumber = $("#phoneNumber").val();
-
     //오류메시지 초기화
     $(".error").text("");
 
@@ -125,14 +119,6 @@ $("#email").on("input", function () {
 });
 
 function showError(elementId, errorMessage, isError) {
-    // const errorDiv = $("#" + elementId);
-    // errorDiv.text(errorMessage);
-
-    // if (isError) {
-    //     errorDiv.addClass("error-message");
-    // } else {
-    //     errorDiv.removeClass("error-message");
-    // }
     $("#" + elementId).text(errorMessage);
 }
 
@@ -230,7 +216,7 @@ $("#registrationForm").submit(function(e){
     }
     
     // 아이디 중복확인 유효성 검사
-    $.ajax({
+    $.ajax({ // ajax는 원래 모듈로 사용해야하는데 jquery에 포함되어있어서 바로 사용가능.
         url: "/user/check_duplicate_id",
         method: "POST",
         data: { id: id },
@@ -296,34 +282,7 @@ $("#registrationForm").submit(function(e){
         showError("phoneNumberError", "전화번호는 숫자만 입력 가능합니다.");
         return;
     }
-    // 유효성 검사 통과 시 user 객체 생성
-    // const userData = {
-    //     id: id,
-    //     password: password,
-    //     name: name,
-    //     email: email,
-    //     phoneNumber: phoneNumber,
-    // };
-    // user data send
-    // ajax는 원래 모듈로 사용해야하는데 jquery에 포함되어있어서 바로 사용가능. 
-    // $.ajax({
-    //     url: "user",
-    //     type: "POST",
-    //     data: userData,
-    //     success: function (response) {
-    //         if (response.message) {
-    //             alert(response.message);
-    //         }
-    //         if (response.redirectTo) {
-    //             window.location.href = response.redirectTo;
-    //         }
-    //     },
-    //     error: function (error) {
-    //         console.log("Error: ", error);
-    //         alert("회원가입에 실패하셨습니다. 다시 확인해주세요.");
-    //     },
-    // }); 
-}); // 유효성 검사 종료
+}); 
 
 // css
 $(document).ready(function(){
