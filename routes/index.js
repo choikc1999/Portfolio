@@ -33,8 +33,4 @@ router.post("/login", user.post_login);
 // 로그인 여부 체크 미들웨어를 이용해 접근 제어
 router.use(checkLogin);
 
-router.post("/edit", user.edit);
-router.patch("/edit", user.patch_user);
-router.delete("/delete", user.delete_user);
-
 module.exports = router;

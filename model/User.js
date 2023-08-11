@@ -56,31 +56,6 @@ exports.select = (id, password, cb) => {
     });
 };
 
-// 회원 정보 수정
-exports.update = (data, cb) => {
-    const sql = `UPDATE user SET name = '${data.name}', email = '${data.email}', phoneNumber = '${data.phoneNumber}', password = '${data.password}' WHERE id = '${data.id}';`;
-
-    connection.query(sql, (err, result) => {
-        if (err) {
-            console.error("Error executing MySQL query for updating user data", err);
-            throw err;  // 에러를 던지고 예외 처리를 상위로 위임
-        }
-        cb(result);  // 결과를 콜백으로 전달
-    });
-};
-
-// 회원탈퇴
-exports.delete = (id, cb) => {
-    const sql = `DELETE FROM user WHERE id = '${id}';`;
-
-    connection.query(sql, (err, result) => {
-        if (err) {
-            console.error("Error executing MySQL query for deleting user data", err);
-            throw err;  // 에러를 던지고 예외 처리를 상위로 위임
-        }
-        cb(result);  // 결과를 콜백으로 전달
-    });
-};
 
 // throw = 사용자가 정의한 '예외'를 발생시킬 수 있다, '예외'가 발생하면 함수가 중지되고 catch문으로 전달된다. catch문이 없다면 프로그램이 종료된다.
 // 우리가 정해놓은 규칙에 벗어난 결괏값이 나올 경우 예외로 지정하고 에러를 발생시킬 수  있다.
