@@ -82,13 +82,13 @@
     background: #0b9882;
 }
 
-.change .btn_withdrawl {
+.change .btn_withdrawal {
     width: 100%;
     background: #05473d;
     border-radius: 15px;
     margin-top: 10px;
 }
 
-.change .btn_withdrawl:hover {
+.change .btn_withdrawal:hover {
     background: #04312a;
 }

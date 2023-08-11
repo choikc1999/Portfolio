@@ -40,7 +40,7 @@ exports.check_duplicate_id = (req, res) => {
 exports.post_user = (req, res) => {
     const userData = req.body;
 
-    bcrypt.hash(userData.password.slice(0, 20), 10, (err, hashedPassword) => {
+    bcrypt.hash(userData.password, 10, (err, hashedPassword) => {
         if (err) {
             console.error('Error hashing password', err);
             return res.status(500).json({ error: 'Error hashing password' });
@@ -114,6 +114,56 @@ exports.getUserInfo = (req, res) => {
         return res.status(401).json({ error: "User not authenticated" });
     }
 };
+
+// 회원정보 수정기능
+exports.editProfile = (req, res) => {
+    const user = req.session.user;
+    if (!user) {
+        return res.status(401).json({ error: "User not authenticated" });
+    }
+
+    const { newName, newEmail, newPhoneNumber, newPassword } = req.body;
+
+    const userData = {
+        name: newName,
+        email: newEmail,
+        phoneNumber: newPhoneNumber
+    };
+
+    if (newPassword) {
+        console.log("Before bcrypt hash:", userData);
+
+        // 비밀번호 암호화
+        bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
+            if (err) {
+                console.error('Error hashing password', err);
+                return res.status(500).json({ error: 'Error hashing password' });
+            }
+            console.log("After bcrypt hash:", hashedPassword);
+
+            userData.password = hashedPassword;
+
+            // 수정할 회원 정보 업데이트
+            User.update(user.id, userData, (err, result) => {
+                if (err) {
+                    console.error("Error updating user profile:", err);
+                    return res.status(500).json({ error: "Error updating user profile" });
+                }
+                return res.status(200).json({ message: "회원 정보가 성공적으로 업데이트되었습니다." });
+            });
+        });
+    } else {
+        // 수정할 회원 정보 업데이트 (비밀번호 제외)
+        User.update(user.id, userData, (err, result) => {
+            if (err) {
+                console.error("Error updating user profile:", err);
+                return res.status(500).json({ error: "Error updating user profile" });
+            }
+            return res.status(200).json({ message: "회원 정보가 성공적으로 업데이트되었습니다." });
+        });
+    }
+};
+
 
 // 로그아웃 페이지
 exports.logoutPage = (req, res) => {

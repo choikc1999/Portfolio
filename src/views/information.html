@@ -11,40 +11,40 @@
 <body>
     <div class="change">
         <h1>Change member information</h1>
-        <form>
+        <form action="/edit-profile" method="POST"> <!-- 수정: action과 method 설정 -->
             <div class="changeID changebox">
                 <label>
                     <span>ID</span>
-                    <input type="text" class="changeInputID changeInput">
+                    <input type="text" class="changeInputID changeInput" name="id">
                 </label>
             </div>
             <div class="changePw changebox">
                 <label>
                     <span>Password</span>
-                    <input type="password" class="newPassword changeInputPw changeInput">
+                    <input type="password" class="newPassword changeInputPw changeInput" name="newPassword">
                 </label>
             </div>
             <div class="changeName changebox">
                 <label>
                     <span>Name</span>
-                    <input type="text" class="changeInputName changeInput">
+                    <input type="text" class="changeInputName changeInput" name="newName">
                 </label>
             </div>
             <div class="changeEmail changebox">
                 <label>
                     <span>Email</span>
-                    <input type="text" class="changeInputEmail changeInput">
+                    <input type="text" class="changeInputEmail changeInput" name="newEmail">
                 </label>
             </div>
             <div class="changePN changebox">
                 <label>
                     <span>PhoneNumber</span>
-                    <input type="text" class="changeInputPN changeInput">
+                    <input type="text" class="changeInputPN changeInput" name="newPhoneNumber">
                 </label>
             </div>
-            <button type="button" class="btn_change">CHANGE</button>
-            <button type="button" class="btn_back" onclick="location.href='main'">BACK</button>
-            <button type="button" class="btn_withdrawl">WITHDRAWAL</button>
+            <button type="submit" class="btn_change">CHANGE</button>
+            <button type="button" class="btn_back" onclick="location.href='/main'">BACK</button>
+            <button type="button" class="btn_withdrawal">WITHDRAWAL</button>
         </form>
     </div>
     <script src="../js/change.js"></script>

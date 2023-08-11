@@ -1,4 +1,5 @@
 const mysql = require("mysql");
+const bcrypt = require('bcrypt');
 
 // MySQL 연결 설정
 const connection = mysql.createConnection({
@@ -41,6 +42,47 @@ exports.insert = (data, cb) => {
             });
         }
     });
+};
+
+// 회원정보수정
+exports.update = (id, newData, cb) => {
+    const { name, email, phoneNumber, password } = newData;
+
+    if (password) {
+        // 비밀번호 암호화
+        bcrypt.hash(password, 10, (err, hashedPassword) => {
+            if (err) {
+                console.error('Error hashing password', err);
+                return cb(err);
+            }
+
+            console.log('Hashed password:', hashedPassword); // 추가
+
+            const sql = `UPDATE user
+                         SET name = '${name}', email = '${email}', phoneNumber = '${phoneNumber}', password = '${hashedPassword}'
+                         WHERE id = '${id}';`;
+
+            connection.query(sql, (err, result) => {
+                if (err) {
+                    console.error("Error executing MySQL query for updating user data", err);
+                    return cb(err);
+                }
+                cb(null, result);
+            });
+        });
+    } else {
+        const sql = `UPDATE user
+                     SET name = '${name}', email = '${email}', phoneNumber = '${phoneNumber}'
+                     WHERE id = '${id}';`;
+
+        connection.query(sql, (err, result) => {
+            if (err) {
+                console.error("Error executing MySQL query for updating user data", err);
+                return cb(err);
+            }
+            cb(null, result);
+        });
+    }
 };
 
 // 로그인 정보 읽기
