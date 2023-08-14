@@ -92,3 +92,36 @@
 .change .btn_withdrawal:hover {
     background: #04312a;
 }
+
+/* 에러메세지 css */
+.changeEmail {
+    position: relative;
+}
+
+.error { 
+    color: #f00;
+    font-size: 14px;
+    z-index: 1;
+}
+
+
+#emailDropdown{
+    display: none;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    width: 120px;
+    z-index: 1;
+    font-size: 18px;
+    line-height: 30px;
+    position: absolute;
+    right: 0;
+}
+.dropdown-item{
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    color: #333;
+}
+.dropdown-item:hover {
+    background: #f1f1f1;
+}

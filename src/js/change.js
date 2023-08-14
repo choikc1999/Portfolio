@@ -82,6 +82,111 @@ $(document).ready(function() {
         });
     });
 
+    // 전화번호에 하이폰 자동입력
+    $("#newPhoneNumber").on("input", function(){
+        const phoneNumber = $("#newPhoneNumber")
+        .val()
+        .replace(/(\d{3})(\d{4,4})\d{0,4}/, "$1-$2-");
+        
+        $("#newPhoneNumber").val(phoneNumber);
+    });
+    
+    // 이메일 드롭다운메뉴
+    $("#newEmail").on("input", function () {
+        const emailValue = $(this).val();
+        const atIndex = emailValue.indexOf("@");
+        if (atIndex !== -1) {
+            const domain = emailValue.slice(atIndex + 1);
+            const domains = ["naver.com", "kakao.com", "google.com"];
+            const matchedDomains = domains.filter((d) => d.startsWith(domain));
+            if (matchedDomains.length > 0) {
+                showEmailDropdown(matchedDomains);
+            } else {
+                hideEmailDropdown();
+            }
+        } else {
+            hideEmailDropdown();
+        }
+    });
+
+    // 추가: 이메일 입력란을 벗어날 때 도메인 자동완성 메뉴 숨기기
+    $(document).on("click", function (e) {
+        if (!$(e.target).closest("#emailDropdown").length && !$(e.target).is("#newEmail")) {
+            hideEmailDropdown();
+        }
+    });
+
+    // 이메일 드롭다운메뉴
+    function showEmailDropdown(matchedDomains) {
+        const dropdown = $("#emailDropdown");
+        dropdown.empty();
+    
+        // 매칭된 도메인들을 드롭다운 메뉴 아이템으로 생성
+        for (const domain of matchedDomains) {
+            const item = $("<div>").addClass("dropdown-item").attr("tabindex", "0").text(domain);
+    
+            // 각 메뉴 아이템 클릭 시 도메인을 이메일에 적용하고 드롭다운 숨김
+            item.on("click", function () {
+                const emailValue = $("#newEmail").val();
+                const atIndex = emailValue.indexOf("@");
+                if (atIndex !== -1) {
+                    const username = emailValue.slice(0, atIndex);
+                    $("#newEmail").val(username + "@" + domain);
+                    hideEmailDropdown();
+                }
+            });
+    
+            dropdown.append(item);
+        }
+        dropdown.show();
+    
+        // 키보드 이벤트 리스너 추가
+        dropdown.off("keydown").on("keydown", function (e) {
+            const items = $(this).find(".dropdown-item");
+            const activeItem = $(this).find(".active");
+    
+            if (e.key === "ArrowDown" || e.key === "Tab") {
+                e.preventDefault();
+                if (activeItem.length) {
+                    const nextItem = activeItem.next();
+                    if (nextItem.length) {
+                        activeItem.removeClass("active");
+                        nextItem.addClass("active");
+                    }
+                } else {
+                    items.first().addClass("active");
+                }
+            } else if (e.key === "ArrowUp") {
+                e.preventDefault();
+                if (activeItem.length) {
+                    const prevItem = activeItem.prev();
+                    if (prevItem.length) {
+                        activeItem.removeClass("active");
+                        prevItem.addClass("active");
+                    }
+                } else {
+                    items.last().addClass("active");
+                }
+            } else if (e.key === "Enter") {
+                e.preventDefault();
+                if (activeItem.length) {
+                    const emailValue = $("#newEmail").val();
+                    const atIndex = emailValue.indexOf("@");
+                    if (atIndex !== -1) {
+                        const username = emailValue.slice(0, atIndex);
+                        $("#newEmail").val(username + "@" + activeItem.text());
+                        hideEmailDropdown();
+                    }
+                }
+            } else if (e.key === "Escape") {
+                e.preventDefault();
+                hideEmailDropdown();
+            }
+            e.stopPropagation();
+        });
+    }
+    
+
     // 기타 css 변경 코드
     $(".changeInputID, .changeInputPw, .changeInputName, .changeInputEmail, .changeInputPN").click(function (e) {
         $(".changeInput").css("background", "#0b9882");

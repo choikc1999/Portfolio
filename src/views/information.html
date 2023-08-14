@@ -17,12 +17,14 @@
                     <span>ID</span>
                     <input type="text" class="changeInputID changeInput" name="newId">
                 </label>
+                <span id="idError" class="error"></span>
             </div>
             <div class="changePw changebox">
                 <label>
                     <span>Password</span>
                     <input type="password" class="newPassword changeInputPw changeInput" name="newPassword">
                 </label>
+                <span id="passwordError" class="error"></span>
             </div>
             <div class="changeName changebox">
                 <label>
@@ -34,14 +36,17 @@
             <div class="changeEmail changebox">
                 <label>
                     <span>Email</span>
-                    <input type="text" class="changeInputEmail changeInput" name="newEmail">
+                    <input type="text" class="changeInputEmail changeInput" name="newEmail" id="newEmail">
                 </label>
+                <div id="emailDropdown"></div>
+                <span id="emailError" class="error"></span>
             </div>
             <div class="changePN changebox">
                 <label>
                     <span>PhoneNumber</span>
-                    <input type="text" class="changeInputPN changeInput" name="newPhoneNumber">
+                    <input type="text" class="changeInputPN changeInput" name="newPhoneNumber" id="newPhoneNumber">
                 </label>
+                <span id="phoneNumberError" class="error"></span>
             </div>
             <button type="submit" class="btn_change">CHANGE</button>
             <button type="button" class="btn_back" onclick="location.href='/main'">BACK</button>
