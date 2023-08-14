@@ -102,10 +102,12 @@ exports.getUserInfo = (req, res) => {
     const user = req.session.user;
 
     if (user) {
-        // 데이터베이스에서 사용자 이름 가져오기
+        // 데이터베이스에서 사용자 정보 가져오기
         User.select(user.id, user.password, function (result) {
             if (result) {
-                return res.json({ name: result.name });
+                // result에 사용자 정보가 들어있다고 가정합니다. 필요한 정보를 적절하게 가져와서 사용합니다.
+                const userName = result.name; // 사용자 이름 가져오기
+                res.json({ name: userName });
             } else {
                 return res.status(401).json({ error: "User not found" });
             }
