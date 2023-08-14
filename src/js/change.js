@@ -1,35 +1,73 @@
-$(".btn_change").click(function () {
-    const id = $(".changeInputID").val();
-    const newPassword = $(".newPassword").val();
-    const newName = $(".changeInputName").val();
-    const newEmail = $(".changeInputEmail").val();
-    const newPhoneNumber = $(".changeInputPN").val();
+$(document).ready(function(event){
+    // 정보 수정 폼 유효성 검사
+    $('#changeForm').submit(function(event) {
+        event.preventDefault();
 
-    $.ajax({
-        url: "/edit-profile", // 수정: 회원 정보 수정 라우트 경로
-        method: "POST",
-        data: {
-            id: id,
-            newPassword: newPassword,
-            newName: newName,
-            newEmail: newEmail,
-            newPhoneNumber: newPhoneNumber
-        },
-        success: function(response) {
-            alert(response.message);
-            window.location.href = "/main"; // 수정: 수정 완료 후 이동할 경로
-        },
-        error: function(error) {
-            console.error("Error updating profile:", error);
-            alert("회원 정보 수정 중 오류가 발생했습니다.");
+        const newId = $('#newId').val();
+        const newEmail = $('#newEmail').val();
+        const newPhoneNumber = $('#newPhoneNumber').val();
+        const newPassword = $('#newPassword').val();
+
+        if (!idRegex.test(newId)) {
+            alert('아이디는 영문 소문자와 숫자 조합으로 6~10자리로 입력해주세요.');
+            return;
         }
+
+        if (!emailRegex.test(newEmail)) {
+            alert('올바른 이메일 주소를 입력해주세요.');
+            return;
+        }
+
+        if (!phoneNumberRegex.test(newPhoneNumber)) {
+            alert('올바른 전화번호 형식을 입력해주세요. (예: 010-1234-5678)');
+            return;
+        }
+
+        if (newPassword && !passwordRegex.test(newPassword)) {
+            alert('올바른 비밀번호 형식을 입력해주세요.');
+            return;
+        }
+
+        // AJAX 요청
+        $.ajax({
+            url: '/edit-Profile',
+            method: 'POST',
+            data: {
+                newId: newId,
+                newEmail: newEmail,
+                newPhoneNumber: newPhoneNumber,
+                newPassword: newPassword
+            },
+            success: function(response) {
+                if (response.error) {
+                    alert('오류가 발생했습니다: ' + response.error);
+                } else {
+                    if (response.success) {
+                        alert(response.message);
+                        window.location.href = '/login';
+                    } else {
+                        alert('회원 정보 업데이트 실패');
+                    }
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+                alert('서버와 통신 중 오류가 발생했습니다.');
+            }
+        });
     });
-});
+        
+
+
+// function showSuccessPopupAndRedirect(message, redirectTo) {
+//     alert(message);
+//     window.location.href = redirectTo;
+// };
 
 // css
-$(document).ready(function(){
+
     $(".changeInputID").click(function (e) {
-        $(".changeInput").css("background", "#0b9882");
+        $(".changeInput").css("background", "#0b9882");``
         $(".changeInputID").css("background", "#076355");
     });
     $(".changeInputPw").click(function (e) {

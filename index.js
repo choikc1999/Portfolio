@@ -30,7 +30,7 @@ app.set("views", path.join(__dirname, "views"));
 // 미들웨어: 로그인 여부 체크
 app.use((req, res, next) => {
     // 메인 페이지(main)와 변경 페이지(change)에 대해서만 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
-    if (!req.session.user && (req.originalUrl === "/main" || req.originalUrl === "/change")) {
+    if (!req.session.user && (req.originalUrl === "/main" || req.originalUrl === "/editProfilePage")) {
         console.error("Unauthorized access to main or change page. Redirecting to login page.");
         return res.redirect("/login");
     }
@@ -42,11 +42,8 @@ app.use((req, res, next) => {
 app.get("/", userController.index);
 app.post("/user", userController.post_user);
 
-// 회원 정보 수정 페이지 렌더링
-app.get("/edit-profile", userController.editProfile);
-
-// 회원 정보 수정 처리
-app.post("/edit-profile", userController.editProfile);
+app.get("/edit-profile", userController.editProfile); // 회원 정보 수정 페이지 렌더링
+app.post("/edit-profile", userController.editProfile);    // 회원 정보 수정 처리
 
 app.get("/logout", userController.logout);
 
@@ -65,7 +62,7 @@ app.get("/main", (req, res) => {
 app.get("/join", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "join.html"));
 });
-app.get("/change", (req, res) => {
+app.get("/editProfilePage", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "information.html"));
 });
 

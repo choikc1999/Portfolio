@@ -122,24 +122,20 @@ exports.editProfile = (req, res) => {
         return res.status(401).json({ error: "User not authenticated" });
     }
 
-    const { newName, newEmail, newPhoneNumber, newPassword } = req.body;
+    const { newEmail, newPhoneNumber, newPassword } = req.body;
 
     const userData = {
-        name: newName,
         email: newEmail,
         phoneNumber: newPhoneNumber
     };
 
     if (newPassword) {
-        console.log("Before bcrypt hash:", userData);
-
         // 비밀번호 암호화
         bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
             if (err) {
                 console.error('Error hashing password', err);
                 return res.status(500).json({ error: 'Error hashing password' });
             }
-            console.log("After bcrypt hash:", hashedPassword);
 
             userData.password = hashedPassword;
 
@@ -149,7 +145,10 @@ exports.editProfile = (req, res) => {
                     console.error("Error updating user profile:", err);
                     return res.status(500).json({ error: "Error updating user profile" });
                 }
-                return res.status(200).json({ message: "회원 정보가 성공적으로 업데이트되었습니다." });
+
+                // 정보 업데이트 성공 시 팝업 띄우고 페이지 리디렉션
+                const successMessage = "회원 정보가 성공적으로 업데이트되었습니다.";
+                res.send(`<script>alert('${successMessage}'); window.location.href = '/login';</script>`);
             });
         });
     } else {
@@ -159,7 +158,10 @@ exports.editProfile = (req, res) => {
                 console.error("Error updating user profile:", err);
                 return res.status(500).json({ error: "Error updating user profile" });
             }
-            return res.status(200).json({ message: "회원 정보가 성공적으로 업데이트되었습니다." });
+
+            // 정보 업데이트 성공 시 팝업 띄우고 페이지 리디렉션
+            const successMessage = "회원 정보가 성공적으로 업데이트되었습니다. 로그인페이지로 이동합니다.";
+            res.send(`<script>alert('${successMessage}'); window.location.href = '/login';</script>`);
         });
     }
 };
