@@ -12,6 +12,13 @@ $(document).ready(function() {
         }
     });
 
+    // Enter evenet 잠금기능
+    $("#editform").on("keydown", function (e) {
+        if (e.key === "Enter") {
+            e.preventDefault();
+        }
+    });
+
     // 정보 수정 폼 유효성 검사
     $('#changeForm').submit(function(event) {
         event.preventDefault();
@@ -108,14 +115,14 @@ $(document).ready(function() {
             hideEmailDropdown();
         }
     });
-
+    
     // 추가: 이메일 입력란을 벗어날 때 도메인 자동완성 메뉴 숨기기
     $(document).on("click", function (e) {
         if (!$(e.target).closest("#emailDropdown").length && !$(e.target).is("#newEmail")) {
             hideEmailDropdown();
         }
     });
-
+    
     // 이메일 드롭다운메뉴
     function showEmailDropdown(matchedDomains) {
         const dropdown = $("#emailDropdown");
@@ -132,58 +139,19 @@ $(document).ready(function() {
                 if (atIndex !== -1) {
                     const username = emailValue.slice(0, atIndex);
                     $("#newEmail").val(username + "@" + domain);
-                    hideEmailDropdown();
+                } else {
+                    $("#newEmail").val(domain);
                 }
+                hideEmailDropdown();
             });
     
             dropdown.append(item);
         }
         dropdown.show();
+    }
     
-        // 키보드 이벤트 리스너 추가
-        dropdown.off("keydown").on("keydown", function (e) {
-            const items = $(this).find(".dropdown-item");
-            const activeItem = $(this).find(".active");
-    
-            if (e.key === "ArrowDown" || e.key === "Tab") {
-                e.preventDefault();
-                if (activeItem.length) {
-                    const nextItem = activeItem.next();
-                    if (nextItem.length) {
-                        activeItem.removeClass("active");
-                        nextItem.addClass("active");
-                    }
-                } else {
-                    items.first().addClass("active");
-                }
-            } else if (e.key === "ArrowUp") {
-                e.preventDefault();
-                if (activeItem.length) {
-                    const prevItem = activeItem.prev();
-                    if (prevItem.length) {
-                        activeItem.removeClass("active");
-                        prevItem.addClass("active");
-                    }
-                } else {
-                    items.last().addClass("active");
-                }
-            } else if (e.key === "Enter") {
-                e.preventDefault();
-                if (activeItem.length) {
-                    const emailValue = $("#newEmail").val();
-                    const atIndex = emailValue.indexOf("@");
-                    if (atIndex !== -1) {
-                        const username = emailValue.slice(0, atIndex);
-                        $("#newEmail").val(username + "@" + activeItem.text());
-                        hideEmailDropdown();
-                    }
-                }
-            } else if (e.key === "Escape") {
-                e.preventDefault();
-                hideEmailDropdown();
-            }
-            e.stopPropagation();
-        });
+    function hideEmailDropdown() {
+        $("#emailDropdown").empty().hide();
     }
     
 
