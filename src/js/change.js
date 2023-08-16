@@ -12,7 +12,7 @@ $(document).ready(function() {
         }
     });
 
-    // Enter evenet 잠금기능
+    // Enter event 잠금기능
     $("#editform").on("keydown", function (e) {
         if (e.key === "Enter") {
             e.preventDefault();
@@ -20,7 +20,74 @@ $(document).ready(function() {
     });
 
     // 정보 수정 폼 유효성 검사
-    $('#changeForm').submit(function(event) {
+    $('#editform').on('input', function(event) {
+        const inputId = event.target.id;
+        const inputValue = event.target.value;
+
+        switch (inputId) {
+            case 'newId':
+                validateId(inputValue);
+                break;
+            case 'newPassword':
+                validatePassword(inputValue);
+                break;
+            case 'newEmail':
+                validateEmail(inputValue);
+                break;
+            case 'newPhoneNumber':
+                validatePhoneNumber(inputValue);
+                break;
+            default:
+                break;
+        }
+    });
+
+    function validateId(id) {
+        const idError = $('#idError');
+        const idRegex = /^[a-z0-9]{6,10}$/;
+
+        if (!idRegex.test(id)) {
+            idError.text('아이디는 6자에서 10자의 영문 소문자와 숫자만 가능합니다.');
+        } else {
+            idError.text('');
+        }
+    }
+
+    function validatePassword(password) {
+        const passwordError = $('#passwordError');
+        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@!#\$%\^&\*])[a-zA-Z\d@!#\$%\^&\*]{10,20}$/;
+
+        if (!passwordRegex.test(password)) {
+            passwordError.text('비밀번호는 10자에서 20자의 영문 대소문자, 숫자, 특수문자 조합이어야 합니다.');
+        } else {
+            passwordError.text('');
+        }
+    }
+
+    function validateEmail(email) {
+        const emailError = $('#emailError');
+        const emailRegex = /^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/;
+
+        if (!emailRegex.test(email)) {
+            emailError.text('이메일 형식이 올바르지 않습니다.');
+        } else {
+            emailError.text('');
+        }
+    }
+
+    function validatePhoneNumber(phoneNumber) {
+        const phoneNumberError = $('#phoneNumberError');
+        const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+
+        if (!phoneNumberRegex.test(phoneNumber)) {
+            phoneNumberError.text('전화번호는 숫자만 입력 가능합니다.');
+        } else {
+            phoneNumberError.text('');
+        }
+    }
+
+    // AJAX 요청
+    $('#editform').submit(function(event) {
         event.preventDefault();
 
         const newId = $('#newId').val();
@@ -28,27 +95,6 @@ $(document).ready(function() {
         const newPhoneNumber = $('#newPhoneNumber').val();
         const newPassword = $('#newPassword').val();
 
-        if (!idRegex.test(newId)) {
-            alert('아이디는 영문 소문자와 숫자 조합으로 6~10자리로 입력해주세요.');
-            return;
-        }
-
-        if (!emailRegex.test(newEmail)) {
-            alert('올바른 이메일 주소를 입력해주세요.');
-            return;
-        }
-
-        if (!phoneNumberRegex.test(newPhoneNumber)) {
-            alert('올바른 전화번호 형식을 입력해주세요. (예: 010-1234-5678)');
-            return;
-        }
-
-        if (newPassword && !passwordRegex.test(newPassword)) {
-            alert('올바른 비밀번호 형식을 입력해주세요.');
-            return;
-        }
-
-        // AJAX 요청
         $.ajax({
             url: '/edit-Profile',
             method: 'POST',
@@ -94,10 +140,10 @@ $(document).ready(function() {
         const phoneNumber = $("#newPhoneNumber")
         .val()
         .replace(/(\d{3})(\d{4,4})\d{0,4}/, "$1-$2-");
-        
+
         $("#newPhoneNumber").val(phoneNumber);
     });
-    
+
     // 이메일 드롭다운메뉴
     $("#newEmail").on("input", function () {
         const emailValue = $(this).val();
@@ -115,23 +161,23 @@ $(document).ready(function() {
             hideEmailDropdown();
         }
     });
-    
+
     // 추가: 이메일 입력란을 벗어날 때 도메인 자동완성 메뉴 숨기기
     $(document).on("click", function (e) {
         if (!$(e.target).closest("#emailDropdown").length && !$(e.target).is("#newEmail")) {
             hideEmailDropdown();
         }
     });
-    
+
     // 이메일 드롭다운메뉴
     function showEmailDropdown(matchedDomains) {
         const dropdown = $("#emailDropdown");
         dropdown.empty();
-    
+
         // 매칭된 도메인들을 드롭다운 메뉴 아이템으로 생성
         for (const domain of matchedDomains) {
             const item = $("<div>").addClass("dropdown-item").attr("tabindex", "0").text(domain);
-    
+
             // 각 메뉴 아이템 클릭 시 도메인을 이메일에 적용하고 드롭다운 숨김
             item.on("click", function () {
                 const emailValue = $("#newEmail").val();
@@ -144,25 +190,23 @@ $(document).ready(function() {
                 }
                 hideEmailDropdown();
             });
-    
+
             dropdown.append(item);
         }
         dropdown.show();
     }
-    
+
     function hideEmailDropdown() {
         $("#emailDropdown").empty().hide();
     }
-    
 
     // 기타 css 변경 코드
     $(".changeInputID, .changeInputPw, .changeInputName, .changeInputEmail, .changeInputPN").click(function (e) {
         $(".changeInput").css("background", "#0b9882");
         $(this).css("background", "#076355");
     });
-    
+
     $(".changeInput").css("transition", "background-color 0.2s");
-    
 
     $(".userName").click(function (e) {
         alert("이름은 변경할 수 없습니다.");
