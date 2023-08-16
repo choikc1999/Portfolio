@@ -86,6 +86,61 @@ $(document).ready(function() {
         }
     }
 
+    // 유효성 검사 함수
+    function validateFormData(newId, newEmail, newPhoneNumber, newPassword) {
+        validateId(newId);
+        validateEmail(newEmail);
+        validatePhoneNumber(newPhoneNumber);
+
+        if (newPassword) {
+            validatePassword(newPassword);
+        }
+
+        // 유효성 검사 실패 시
+        if ($('#idError').text() || $('#emailError').text() || $('#phoneNumberError').text() || $('#passwordError').text()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    // 아이디 중복 체크 함수
+    function checkDuplicateId(id) {
+        if (id) { // 입력된 아이디가 있는 경우에만 실행
+            // 아이디 유효성 검사
+            validateId(id);
+    
+            // 아이디 유효성 검사를 통과한 경우에만 중복 체크 요청
+            if ($('#idError').text() === '') {
+                $.ajax({
+                    url: "/user/check_duplicate_id",
+                    method: "POST",
+                    data: { id: id },
+                    success: function(response) {
+                        if (response.isDuplicate) {
+                            $('#idError').text('이미 사용 중인 아이디입니다.');
+                        } else {
+                            $('#idError').text('');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', error);
+                        $('#idError').text('');
+                        // 오류 처리 로직 추가
+                    }
+                });
+            }
+        } else {
+            $('#idError').text('');
+        }
+    }
+    
+    // 아이디 입력란 변경 이벤트
+    $('#newId').on('input', function(event) {
+        const newId = $(this).val();
+        checkDuplicateId(newId);
+    });
+
     // AJAX 요청
     $('#editform').submit(function(event) {
         event.preventDefault();
@@ -94,6 +149,11 @@ $(document).ready(function() {
         const newEmail = $('#newEmail').val();
         const newPhoneNumber = $('#newPhoneNumber').val();
         const newPassword = $('#newPassword').val();
+
+        // 유효성 검사 추가
+        if (!validateFormData(newId, newEmail, newPhoneNumber, newPassword)) {
+            return;
+        }
 
         $.ajax({
             url: '/edit-Profile',
