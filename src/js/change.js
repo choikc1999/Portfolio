@@ -19,6 +19,59 @@ $(document).ready(function() {
         }
     });
 
+    // 아이디 중복 체크 함수
+    function checkDuplicateId(id, callback) {
+        if (id) {
+            $.ajax({
+                url: "/user/check_duplicate_id",
+                method: "POST",
+                data: { id: id },
+                success: function(response) {
+                    callback(response.isDuplicate);
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                    callback(false);
+                }
+            });
+        } else {
+            callback(false);
+        }
+    }
+
+    // 아이디 입력란 변경 이벤트
+    $('#newId').on('input', function(event) {
+        const newId = $(this).val();
+        validateAndCheckId(newId);
+    });
+    
+    // 아이디 유효성 검사 함수
+    function validateId(id) {
+        const idError = $('#idError');
+        const idRegex = /^[a-z0-9]{6,10}$/;
+
+        if (!idRegex.test(id)) {
+            idError.text('아이디는 6자에서 10자의 영문 소문자와 숫자만 가능합니다.');
+        } else {
+            idError.text('');
+        }
+    }
+
+    // 유효성 검사 및 아이디 중복 체크
+    function validateAndCheckId(newId) {
+        validateId(newId);
+        
+        if ($('#idError').text() === '') {
+            checkDuplicateId(newId, function(isDuplicate) {
+                if (isDuplicate) {
+                    $('#idError').text('이미 사용 중인 아이디입니다.');
+                } else {
+                    $('#idError').text('');
+                }
+            });
+        }
+    }
+
     // 정보 수정 폼 유효성 검사
     $('#editform').on('input', function(event) {
         const inputId = event.target.id;
@@ -42,16 +95,12 @@ $(document).ready(function() {
         }
     });
 
-    function validateId(id) {
-        const idError = $('#idError');
-        const idRegex = /^[a-z0-9]{6,10}$/;
+    // 아이디 입력란 변경 이벤트
+    $('#newId').on('input', function(event) {
+        const newId = $(this).val();
+        validateAndCheckId(newId);
+    });
 
-        if (!idRegex.test(id)) {
-            idError.text('아이디는 6자에서 10자의 영문 소문자와 숫자만 가능합니다.');
-        } else {
-            idError.text('');
-        }
-    }
 
     function validatePassword(password) {
         const passwordError = $('#passwordError');
@@ -103,43 +152,7 @@ $(document).ready(function() {
 
         return true;
     }
-
-    // 아이디 중복 체크 함수
-    function checkDuplicateId(id) {
-        if (id) { // 입력된 아이디가 있는 경우에만 실행
-            // 아이디 유효성 검사
-            validateId(id);
     
-            // 아이디 유효성 검사를 통과한 경우에만 중복 체크 요청
-            if ($('#idError').text() === '') {
-                $.ajax({
-                    url: "/user/check_duplicate_id",
-                    method: "POST",
-                    data: { id: id },
-                    success: function(response) {
-                        if (response.isDuplicate) {
-                            $('#idError').text('이미 사용 중인 아이디입니다.');
-                        } else {
-                            $('#idError').text('');
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error('AJAX Error:', error);
-                        $('#idError').text('');
-                        // 오류 처리 로직 추가
-                    }
-                });
-            }
-        } else {
-            $('#idError').text('');
-        }
-    }
-    
-    // 아이디 입력란 변경 이벤트
-    $('#newId').on('input', function(event) {
-        const newId = $(this).val();
-        checkDuplicateId(newId);
-    });
 
     // AJAX 요청
     $('#editform').submit(function(event) {
@@ -150,47 +163,50 @@ $(document).ready(function() {
         const newPhoneNumber = $('#newPhoneNumber').val();
         const newPassword = $('#newPassword').val();
 
+        // 아이디 중복 체크를 위한 변수
+        let isIdValid = false;
+
         // 유효성 검사 추가
         if (!validateFormData(newId, newEmail, newPhoneNumber, newPassword)) {
             return;
         }
 
-        $.ajax({
-            url: '/edit-Profile',
-            method: 'POST',
-            data: {
-                newId: newId,
-                newEmail: newEmail,
-                newPhoneNumber: newPhoneNumber,
-                newPassword: newPassword
-            },
-            success: function(response) {
-                if (response.error) {
-                    alert('오류가 발생했습니다: ' + response.error);
-                } else {
-                    if (response.success) {
-                        // 정보 수정 성공 시 서버에서 받은 이름 표시
-                        $.ajax({
-                            url: "/get-user-info",
-                            method: "GET",
-                            success: function(nameResponse) {
-                                $("input[name='newName']").val(nameResponse.name);
-                                alert(response.message);  // 수정 완료 메시지
-                                window.location.href = '/login';
-                            },
-                            error: function() {
-                                $(".userName").text("Unknown");
-                                alert('서버에서 이름을 가져오지 못했습니다.');
-                            }
-                        });
-                    } else {
-                        alert('회원 정보 업데이트 실패');
+        // 아이디 중복 체크
+        checkDuplicateId(newId, function(isDuplicate) {
+            if (isDuplicate) {
+                $('#idError').text('이미 사용 중인 아이디입니다.');
+            } else {
+                $('#idError').text('');
+                isIdValid = true;
+            }
+
+            // 모든 조건 충족 시 서버로 요청 보냄
+            if (isIdValid) {
+                $.ajax({
+                    url: '/edit-profile',
+                    method: 'POST',
+                    data: {
+                        newId: newId,
+                        newEmail: newEmail,
+                        newPhoneNumber: newPhoneNumber,
+                        newPassword: newPassword
+                    },
+                    success: function(response) {
+                        if (response.error) {
+                            alert('오류가 발생했습니다: ' + response.error);
+                        } else if (response.success) {
+                            // 정보 수정 성공 시 서버에서 받은 메시지 표시
+                            alert(response.message);  // 수정 완료 메시지
+                            window.location.href = '/login';
+                        } else {
+                            alert('회원 정보 업데이트 실패');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', error);
+                        alert('서버와 통신 중 오류가 발생했습니다.');
                     }
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', error);
-                alert('서버와 통신 중 오류가 발생했습니다.');
+                });
             }
         });
     });
@@ -270,5 +286,27 @@ $(document).ready(function() {
 
     $(".userName").click(function (e) {
         alert("이름은 변경할 수 없습니다.");
+    });
+
+    $("#deleteAccountBtn").click(function () {
+        if (confirm("정말로 회원 탈퇴하시겠습니까?")) {
+            // 서버에 회원 탈퇴 요청 전송
+            $.ajax({
+                url: "/delete-account",
+                method: "POST",
+                success: function (response) {
+                    if (response.success) {
+                        alert("회원 탈퇴가 성공적으로 처리되었습니다.");
+                        window.location.href = '/login'; // 로그인 페이지로 리다이렉션
+                    } else {
+                        alert("회원 탈퇴에 실패하였습니다. 다시 시도해주세요.");
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('AJAX Error:', error);
+                    alert('서버와 통신 중 오류가 발생했습니다.');
+                }
+            });
+        }
     });
 });

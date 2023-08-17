@@ -13,6 +13,10 @@ router.get("/edit-profile", UserController.editProfile);
 // 회원 정보 수정 처리
 router.post("/edit-profile", UserController.editProfile);
 
+// 회원탈퇴
+router.get('/delete-account', UserController.deleteAccount);
+router.post('/delete-account', UserController.deleteAccount);
+
 // 로그아웃 페이지
 router.get("/logout-page", user.logoutPage);
 

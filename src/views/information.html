@@ -22,7 +22,7 @@
             <div class="changePw changebox">
                 <label>
                     <span>Password</span>
-                    <input type="password" class="newPassword changeInputPw changeInput" name="newPassword" id="newPassword">
+                    <input type="password" class="newPassword changeInputPw changeInput" name="newPassword" id="newPassword" autocomplete="new-password">
                 </label>
                 <span id="passwordError" class="error"></span>
             </div>
@@ -50,7 +50,7 @@
             </div>
             <button type="submit" class="btn_change">CHANGE</button>
             <button type="button" class="btn_back" onclick="location.href='/main'">BACK</button>
-            <button type="button" class="btn_withdrawal">WITHDRAWAL</button>
+            <button type="button" class="btn_withdrawal" id="deleteAccountBtn">WITHDRAWAL</button>
         </form>
     </div>
     <script src="../js/change.js"></script>

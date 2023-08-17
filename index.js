@@ -45,6 +45,9 @@ app.post("/user", userController.post_user);
 app.get("/edit-profile", userController.editProfile); // 회원 정보 수정 페이지 렌더링
 app.post("/edit-profile", userController.editProfile);    // 회원 정보 수정 처리
 
+app.get('/delete-account', userController.deleteAccount); //회원 탈퇴
+app.post('/delete-account', userController.deleteAccount); //회원탈퇴
+
 app.get("/logout", userController.logout);
 
 app.get("/login", userController.login);

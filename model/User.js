@@ -51,10 +51,10 @@ User.insert = (data, cb) => {
 User.update = (id, userData, callback) => {
     const query = `
         UPDATE user
-        SET email = ?, phoneNumber = ?, password = ?
+        SET id = ?, email = ?, phoneNumber = ?, password = ?
         WHERE id = ?
     `;
-    const values = [userData.email, userData.phoneNumber, userData.password, id];
+    const values = [userData.id, userData.email, userData.phoneNumber, userData.password, id];
     
     // 데이터베이스 업데이트 쿼리 실행
     connection.query(query, values, (err, result) => {
@@ -96,6 +96,25 @@ User.select = (id, password, cb) => {
             throw err;  // 예외 처리
         }
         cb(rows[0]);  // 결과를 콜백으로 전달
+    });
+};
+
+// 회원탈퇴
+User.delete = (id, callback) => {
+    const query = `
+        DELETE FROM user
+        WHERE id = ?
+    `;
+    const values = [id];
+
+    // 데이터베이스 쿼리 실행
+    connection.query(query, values, (err, result) => {
+        if (err) {
+            console.error("Error deleting user:", err);
+            return callback(err, null);
+        }
+        // 성공적으로 삭제되었을 때 콜백 실행
+        callback(null, result);
     });
 };
 

@@ -127,24 +127,34 @@ exports.editProfile = (req, res) => {
     const { newId, newEmail, newPhoneNumber, newPassword } = req.body;
 
     const userData = {
-        id: newId,
+        id: newId, // 이 부분 추가
         email: newEmail,
         phoneNumber: newPhoneNumber,
     };
 
-    if (!newPassword) {
-        return res.status(400).json({ error: "Password is required" });
-    }
+    if (newPassword) {
+        // 비밀번호 암호화
+        bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
+            if (err) {
+                console.error('Error hashing password', err);
+                return res.status(500).json({ error: 'Error hashing password' });
+            }
 
-    // 비밀번호 암호화
-    bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
-        if (err) {
-            console.error('Error hashing password', err);
-            return res.status(500).json({ error: 'Error hashing password' });
-        }
+            userData.password = hashedPassword;
 
-        userData.password = hashedPassword;
+            // 수정할 회원 정보 업데이트
+            User.update(user.id, userData, (err, result) => {
+                if (err) {
+                    console.error("Error updating user profile:", err);
+                    return res.status(500).json({ error: "Error updating user profile" });
+                }
 
+                // 정보 업데이트 성공 시
+                const successMessage = "회원 정보가 성공적으로 업데이트되었습니다.";
+                res.json({ success: true, message: successMessage });
+            });
+        });
+    } else {
         // 수정할 회원 정보 업데이트
         User.update(user.id, userData, (err, result) => {
             if (err) {
@@ -152,10 +162,32 @@ exports.editProfile = (req, res) => {
                 return res.status(500).json({ error: "Error updating user profile" });
             }
 
-            // 정보 업데이트 성공 시 팝업 띄우고 페이지 리디렉션
+            // 정보 업데이트 성공 시
             const successMessage = "회원 정보가 성공적으로 업데이트되었습니다.";
-            res.send(`<script>alert('${successMessage}'); window.location.href = '/login';</script>`);
+            res.json({ success: true, message: successMessage });
         });
+    }
+};
+
+// 회원탈퇴
+exports.deleteAccount = (req, res) => {
+    const user = req.session.user;
+    if (!user) {
+        return res.status(401).json({ error: "User not authenticated" });
+    }
+
+    // 회원 정보 삭제
+    User.delete(user.id, (err, result) => {
+        if (err) {
+            console.error("Error deleting user:", err);
+            return res.status(500).json({ error: "Error deleting user" });
+        }
+
+        // 세션 삭제
+        req.session.destroy();
+
+        // 회원 탈퇴 성공 시
+        res.json({ success: true });
     });
 };
 
