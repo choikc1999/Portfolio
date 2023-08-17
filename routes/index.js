@@ -8,7 +8,7 @@ const bcrypt = require('bcrypt');
 router.post('/join', UserController.post_user);
 
 // 회원 정보 수정 페이지 렌더링
-router.get("/edit-profile", UserController.editProfilePage);
+router.get("/edit-profile", UserController.editProfile);
 
 // 회원 정보 수정 처리
 router.post("/edit-profile", UserController.editProfile);
