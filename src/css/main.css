@@ -60,6 +60,11 @@
 }
 #main_contents .contaner_2 .portfolio ul li:first-child {
     margin-left: 0;
+    background: url(../images/portfolio_1.jpg) no-repeat 0 0;
+}
+
+#main_contents .contaner_2 .portfolio ul li:nth-child(2) {
+    background: url(../images/portfolio_2.jpg) no-repeat 0 0;
 }
 
 #main_contents .contaner_2 h2 {
