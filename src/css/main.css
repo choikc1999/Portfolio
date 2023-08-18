@@ -13,10 +13,13 @@
 }
 
 #main_contents .contaner_1 h2 {
-    font-size: 32px;
-    color: #076355;
     padding: 0 0 8px 20px;
     border-bottom: 2px solid #076355;
+}
+
+#main_contents .contaner_1 h2 a {
+    font-size: 32px;
+    color: #076355;
 }
 
 #main_contents .contaner_1 .intro {
@@ -24,12 +27,177 @@
     height: 100%;
 }
 
+#main_contents .contaner_1 .intro .it_inner {
+    width: 100%;
+    padding: 20px 5px;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents1 {
+    width: 100%;
+}
+
+#main_contents .contaner_1 .intro .it_inner .my_profile {
+    width: 166px;
+    height: 222px;
+    border: 1px solid #000;
+    background: #000;
+    float: left;
+    margin: 0 10px 10px 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .my_profile p {
+    color: #fff;
+    padding-top: 50px;
+    text-align: center;
+}
+
+#main_contents .contaner_1 .intro .it_inner h5 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#main_contents .contaner_1 .intro .it_inner p {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+#main_contents .contaner_1 .intro .it_inner .ps {
+    font-size: 15px;
+    color: #919191;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 {
+    clear: both;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .icons {
+    text-align: center;
+    padding: 5px 0;
+    color: #666;
+    position: relative;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .ps_mouse {
+    color: #999;
+    font-weight: normal;
+    font-size: 14px;
+    right: -10px;
+    top: 10px;
+    position: absolute;
+}
+
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .icon {
+    width: 50px;
+    height: 50px;
+    flex-basis: auto;
+}
+/* 작업간 사용된 요소들 아이콘 */
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .html5 {
+    background: url(../images/icon/html5.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .css {
+    background: url(../images/icon/css.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .js {
+    background: url(../images/icon/js.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .jquery {
+    background: url(../images/icon/jQuery.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .node {
+    background: url(../images/icon/node.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .mysql {
+    background: url(../images/icon/mysql.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .github {
+    background: url(../images/icon/github.png) no-repeat 0 0;
+}
+
+#main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .photo {
+    background: url(../images/icon/photo.png) no-repeat 0 0;
+}
+/* 작업간 사용된 요소들 아이콘 끝 */
+
+/* icon돋보기기능 */
+.custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    width: 100px; /* 커서 크기 조절 */
+    height: 100px;
+}
+
+/* 원하는 SVG 파일로 변경 */
+.custom-cursor svg {
+    width: 100%;
+    height: 100%;
+}
+
+.workIcon .icon {
+    transition: transform 0.2s;
+}
+
+.workIcon .icon:hover {
+    transform: scale(1.3); /* 확대 효과 적용 */
+}
+
+
+/* 기능끝 */
+
 #main_contents .contaner_1 .notice {
     width: 60%;
     flex: 6;
     height: 100%;
     padding-left: 20px;
 }
+
+#main_contents .contaner_1 .notice table {
+    width: 100%;
+    text-align: center;
+    /* border-collapse : collapse; */
+    border-spacing : 0;
+    padding: 10px 5px;
+    color: #333;
+}
+
+#main_contents .contaner_1 .notice table th {
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #076355;
+}
+
+#main_contents .contaner_1 .notice table td {
+    font-size: 16px;
+    color: #666;
+    padding: 15px 0;
+    border-bottom: 1px solid #076355;
+}
+
+#main_contents .contaner_1 .notice table td:nth-child(2) {
+    font-weight: bold;
+}
+
 /* contaner_1 종료 */
 
 /* contaner_2 시작 */
@@ -44,26 +212,24 @@
 }
 
 #main_contents .contaner_2 .portfolio ul {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    height: 100%;
-    justify-content: space-around;
+    height: 300px;
 }
 
-#main_contents .contaner_2 .portfolio ul li {
-    border: 1px solid #000;
-    flex: auto;
+#main_contents .contaner_2 .portfolio .list_img {
     height: 300px;
-    margin-left: 10px;
+    position: relative;
 }
-#main_contents .contaner_2 .portfolio ul li:first-child {
-    margin-left: 0;
+
+#main_contents .contaner_2 .portfolio .list_img .img {
+    width: 100%;
+    height: 300px;
+}
+
+#main_contents .contaner_2 .portfolio .list_img .img1 {
     background: url(../images/portfolio_1.jpg) no-repeat 0 0;
 }
 
-#main_contents .contaner_2 .portfolio ul li:nth-child(2) {
+#main_contents .contaner_2 .portfolio .list_img .img2 {
     background: url(../images/portfolio_2.jpg) no-repeat 0 0;
 }
 
@@ -76,6 +242,7 @@
 
 /* contaner_3 시작 */
 #main_contents .contaner_3 {
+    clear: both;
     width: 100%;
     height: 100%;
 }
