@@ -25,7 +25,7 @@ router.get("/logout", user.logout);
 router.post("/logout", user.logout);
 
 router.get("/", user.index);
-router.post("/join", user.post_user);
+// router.post("/join", user.post_user);
 
 router.get("/login", user.login);
 router.post("/login", user.post_login);

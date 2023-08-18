@@ -40,6 +40,33 @@ exports.check_duplicate_id = (req, res) => {
 exports.post_user = (req, res) => {
     const userData = req.body;
 
+    // 유효성 검사 (정규식)
+    const idRegex = /^[a-z0-9]{6,10}$/;
+    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@!#\$%\^&\*])[a-zA-Z\d@!#\$%\^&\*]{10,20}$/;
+    const nameRegex = /^[a-zA-Z가-힣]{2,6}$/;
+    const emailRegex = /^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/;
+    const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
+
+    if (!userData.id.match(idRegex)) {
+        return res.status(400).json({ error: "아이디는 6자에서 10자의 영문 소문자와 숫자만 가능합니다." });
+    }
+
+    if (!userData.password.match(passwordRegex)) {
+        return res.status(400).json({ error: "비밀번호는 10자에서 20자의 영문 대소문자, 숫자, 특수문자 조합이어야 합니다." });
+    }
+
+    if (!userData.name.match(nameRegex)) {
+        return res.status(400).json({ error: "이름은 2자에서 6자의 한글 또는 영문(대,소문자)만 가능합니다." });
+    }
+
+    if (!userData.email.match(emailRegex)) {
+        return res.status(400).json({ error: "이메일 형식이 올바르지 않습니다." });
+    }
+
+    if (!userData.phoneNumber.match(phoneNumberRegex)) {
+        return res.status(400).json({ error: "전화번호는 숫자만 입력 가능합니다." });
+    }
+
     bcrypt.hash(userData.password, 10, (err, hashedPassword) => {
         if (err) {
             console.error('Error hashing password', err);
