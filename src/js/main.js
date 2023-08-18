@@ -1,19 +1,4 @@
 $(document).ready(function() {
-    // 슬라이드효과
-    $('.portfolio').bxSlider({
-        infiniteLoop: true,
-        minSlides: 4,
-        maxSlides: 8,
-        moveSlides: 1,
-        slideWidth: 500,
-        slideMargin : 10,
-        speed: 300,
-        autoHover: true,
-        touchEnabled : true,
-        pager: false,
-        controls: false
-    });
-
     // 서버에서 사용자 정보를 가져와서 이름 표시
     $.ajax({
         method: 'GET',
