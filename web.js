@@ -69,7 +69,7 @@ app.get("/editProfilePage", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "information.html"));
 });
 
-const PORT = 4080;
+const PORT = 8001;
 app.listen(PORT, () => {
     console.log(`Server started on port ${PORT}`);
 });

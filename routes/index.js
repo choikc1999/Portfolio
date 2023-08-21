@@ -4,6 +4,14 @@ const user = require("../controller/UserController");
 const router = express.Router();
 const bcrypt = require('bcrypt');
 
+router.get('/', function(req, res, next) {
+    fs.readFile('/home/hosting_users/choikc1999/apps/choikc1999_jsblog/', (err, data) => {
+      if(err) throw err;
+      const results = JSON.parse(data.toString('utf8'));
+      res.render('index', { title:"WEB Designer", results });
+    });
+  });
+
 // 회원가입 요청 처리
 router.post('/join', UserController.post_user);
 

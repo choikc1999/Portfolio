@@ -3,10 +3,10 @@ const bcrypt = require('bcrypt');
 
 // MySQL 연결 설정
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
+    host: 'jsblog.cafe24app.com',
+    user: 'choikc1999',
     password: 'choikc0901!',
-    database: 'portfolio',
+    database: 'choikc1999',
     port: 3306,
 });
 
