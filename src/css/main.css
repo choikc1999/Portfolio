@@ -215,6 +215,12 @@
     display: flex;
 }
 
+#main_contents .contaner_2 .portfolio_slider .slides a {
+    width: 500px;
+    height: 300px;
+    display: block;
+}
+
 #main_contents .contaner_2 .portfolio_slider .slides .slide {
     flex: 0 0 500px;
     background: url(../images/sorry.png) no-repeat 0 0;
