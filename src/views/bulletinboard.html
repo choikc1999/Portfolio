@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/code.jquery.com_jquery-3.5.1.min.js"></script>
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/bulletinboard.css">
+    <script src="../js/bulletinboard.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="center">
+            <a href="/main">
+                <h1 class="logo"></h1>
+            </a>    
+        </div>
+        <div class="center">
+            <div class="member">
+                <p>
+                    <span id="userName"></span>님 환영합니다.
+                </p>
+                <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                <button type="button" class="signout" id="logoutButton">로그아웃</button>
+            </div>
+        </div>
+        <ul class="menubar">
+            <div class="center">
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">INTRODUCE</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">PORTFOLIO</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">CAREER</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">BOARD</a>
+                    </div>    
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section id="main_contents">
+        <div class="center">
+            <div class="menulist">
+                <ul>
+                    <li class="menu menu1" data-background=".background1">
+                        <a href="#none">VIEW ALL</a>
+                        <div class="background background1"></div>
+                    </li>
+                    <li class="menu menu2" data-background=".background2">
+                        <a href="#none">NOTICE</a>
+                        <div class="background background2"></div>
+                    </li>
+                    <li class="menu menu3" data-background=".background3">
+                        <a href="#none">HTML</a>
+                        <div class="background background3"></div>
+                    </li>
+                    <li class="menu menu4" data-background=".background4">
+                        <a href="#none">CSS</a>
+                        <div class="background background4"></div>
+                    </li>
+                    <li class="menu menu5" data-background=".background5">
+                        <a href="#none">WEB</a>
+                        <div class="background background5"></div>
+                    </li>
+                    <li class="menu menu6" data-background=".background6">
+                        <a href="#none">INQUIRY</a>
+                        <div class="background background6"></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="view_board">
+                <table border="0">
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>날짜</th>
+                    <th>작성자</th>
+                    <tr>
+                        <td>1</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                    <tr class="last_tr">
+                        <td>10</td>
+                        <td>준비중</td>
+                        <td>23.08.18</td>
+                        <td>관리자</td>
+                    </tr>
+                </table>
+                <button type="button" class="write_btn">글쓰기</button>
+                <div class="number">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li>6</li>
+                        <li>7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

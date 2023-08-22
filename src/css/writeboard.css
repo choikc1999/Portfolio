@@ -1,0 +1,135 @@
+.WriteForm {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #0b5a4e;
+    border-radius: 20px;
+    padding: 15px 10px;
+}
+
+.WriteForm form {
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.WriteForm form span {
+    float: left;
+    text-align: center;
+}
+
+.WriteForm form input {
+    padding: 0 10px;
+    border: none;
+    background: none;
+    border: 2px solid #0b5a4e;
+    border-radius: 10px;
+}
+
+.WriteForm form input:focus {
+    outline: none;
+}
+
+.WriteForm form .title_label span {
+    width: 5%;
+    height: 30px;
+    line-height: 30px;
+}
+
+.WriteForm form .title_label .title_input {
+    width: 95%;
+    height: 30px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.WriteForm form .name_label {
+    margin-right: 20px;
+}
+
+.WriteForm form .name_label span {
+    width: 5%;
+    height: 25px;
+    line-height: 25px;
+}
+
+.WriteForm form .name_label .name_input {
+    width: 10%;
+    height: 25px;
+    border-radius: 7px;
+}
+
+.WriteForm form .pwd_label span {
+    width: 5%;
+    float: none;
+    height: 25px;
+    line-height: 25px;
+}
+
+.WriteForm form .pwd_label .password_input {
+    width: 30%;
+    height: 25px;
+    border-radius: 7px;
+    /* float: right; */
+}
+
+.title_box {
+    margin-bottom: 15px;
+}
+
+.information_box {
+    margin-bottom: 15px;
+}
+
+.write_setup {
+    margin-bottom: 10px;
+}
+
+.area_label {
+    width: 100%;
+}
+
+.area_label span {
+    margin: 0 0 15px 0;
+    display: inline-block;
+    width: 100%;
+}
+
+.area_label .area {
+    width: 100%;
+    resize: none;
+    height: 500px;
+    padding: 10px;
+    font-size: 17px;
+    text-align: center;
+    border: none;
+    background: none;
+    border-radius: 15px;
+    border: 2px solid #0b5a4e;
+}
+
+.area_label .area:focus {
+    outline: none;
+}
+
+.WriteForm .btn {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+}
+
+.WriteForm .btn button {
+    margin-left: 10px;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    background: #0b5a4e;
+    font-size: 16px;
+
+}
