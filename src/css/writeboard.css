@@ -73,6 +73,47 @@
     /* float: right; */
 }
 
+.WriteForm form .select_board {
+    float: right;
+}
+
+.WriteForm form .select_board ul {
+    float: left;
+    margin-right: 10px;
+}
+
+.WriteForm form .select_board ul li {
+    text-align: center;
+    border: 1px solid #d1d1d1;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.WriteForm form .select_board ul li:first-child {
+    border: 2px solid #0b5a4e;
+    border-radius: 10px;
+}
+
+.selected {
+    border: 2px solid #0b5a4e !important;
+    border-radius: 10px;
+}
+
+.dropdown_content li:not(:first-child) {
+    display: none;
+}
+
+.WriteForm form .select_board .dropdown_btn {
+    width: 18px;
+    height: 10px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    background: url(../images/dropdounbtn.png) no-repeat 0 0;
+    float: right;
+    transform: translateY(12px);
+}
+
 .title_box {
     margin-bottom: 15px;
 }

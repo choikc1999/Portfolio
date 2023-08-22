@@ -68,6 +68,13 @@ app.get("/join", (req, res) => {
 app.get("/editProfilePage", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "information.html"));
 });
+app.get("/write", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "writeboard.html"));
+});
+app.get("/board", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "bulletinboard.html"));
+});
+
 
 const PORT = 8001;
 app.listen(PORT, () => {
