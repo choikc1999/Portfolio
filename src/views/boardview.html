@@ -6,8 +6,8 @@
     <script src="../js/code.jquery.com_jquery-3.5.1.min.js"></script>
     <title>J's Blog</title>
     <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/writeboard.css">
-    <script src="../js/writeboard.js"></script>
+    <link rel="stylesheet" href="../css/boardview.css">
+    <script src="../js/boardview.js"></script>
 </head>
 <body>
     <header id="header">
@@ -52,44 +52,45 @@
     </header>
     <section id="main_contents">
         <div class="center">
-            <div class="WriteForm">
-                <form>
-                    <div class="write_setup">
-                        <div class="title_box">
-                            <label class="title_label">
-                                <span>제목</span>
-                                <input type="text" class="title_input" required placeholder="제목을 작성해주세요.">
-                            </label>
-                        </div>
-                        <div class="information_box">
-                            <label class="name_label">
-                                <span>작성자</span>
-                                <input type="text" class="name_input">
-                            </label>
-                            <label class="pwd_label">
-                                <span>비밀번호</span>
-                                <input type="password" class="password_input" required placeholder="수정 혹은 삭제할때 인증에 필요한 비밀번호를 작성해주세요">
-                            </label>
-                            <div class="select_board">
-                                <ul class="dropdown_content">
-                                    <li>--게시판 선택--</li>
-                                    <li>NOTICE</li>
-                                    <li>HTML</li>
-                                    <li>CSS</li>
-                                    <li>WEB</li>
-                                    <li>INQUIRY</li>
-                                </ul>
-                                <button class="dropdown_btn" type="button"></button>
-                            </div>
-                        </div>
+            <div class="view">
+                <label class="title_view">
+                    <span>제목 :</span>
+                    <span class="title">1</span>
+                </label>
+                <label class="name_view">
+                    <span>글쓴이 :</span>
+                    <span class="name">1</span>
+                </label>
+                <label class="date_view">
+                    <span>작성일 :</span>
+                    <span class="date">1</span>
+                </label>
+                <label class="select_view">
+                    <span class="select">1</span>
+                </label>
+                <div class="view_text">
+                    <span class="text">1</span>
+                </div>
+                <form class="information_box">
+                    <span class="reply_count">
+                        댓글
+                        <span>1</span>
+                    </span>
+                    <span class="view_count">
+                        조회수
+                        <span>1</span>
+                    </span>
+                    <div class="reply_box">
+                        <span class="nickname">NickName</span>
+                        <span class="reply">하하</span>
                     </div>
-                    <label class="area_label">
-                        <span>내용</span>
-                        <textarea required placeholder="내용을 입력해주세요." class="area"></textarea>
-                    </label>
-                    <div class="btn">
-                        <button type="submit" class="write">작성하기</button>
-                        <button type="button" class="cancle">취소</button>
+                    <div class="textarea">
+                        <textarea placeholder="댓글을 작성해주세요" class="reply_textarea"></textarea>
+                        <button type="submit" class="write_btn">작성하기</button>
+                    </div>
+                    <div class="btn_box">
+                        <button type="button" class="modify_btn">수정하기</button>
+                        <button type="button" class="back_btn">돌아가기</button>
                     </div>
                 </form>
             </div>

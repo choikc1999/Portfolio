@@ -74,6 +74,9 @@ app.get("/write", (req, res) => {
 app.get("/board", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "bulletinboard.html"));
 });
+app.get("/boardview", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "boardview.html"));
+});
 
 
 const PORT = 8001;
