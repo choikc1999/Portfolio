@@ -119,4 +119,10 @@ CREATE TABLE board (
     -> selectboard VARCHAR(50) NOT NULL
     -> );
 
+    ALTER TABLE board
+    ADD upload_date DATETIME DEFAULT NULL,
+    ADD modify_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
+    
+    날짜를 가져오기위해 해당 칼럼을 추가해야함.
+
 -=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=
