@@ -93,3 +93,30 @@ html, css만 작성햇으니 db연결하는 작업해야함
 작성한 글이 보여지는 page도 구현해야함.
 
 덮어씌우기할때 user는 변경사항만 업데이트해야함.
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'choikc0901!',
+    database: 'portfolio',
+    port: 3306,
+}); 주의
+
+-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=
+
+23/08/23/pm:18:14
+
+* 게시판
+- 작성,게시글뷰,리스트 페이지 완성
+- 게시글 작성시 db에 저장완성
+
+게시글DB컬럼값
+CREATE TABLE board (
+    -> board_ID INT AUTO_INCREMENT PRIMARY KEY,
+    -> title VARCHAR(255) NOT NULL,
+    -> text TEXT NOT NULL,
+    -> name VARCHAR(30) NOT NULL,
+    -> password VARCHAR(255) NOT NULL,
+    -> selectboard VARCHAR(50) NOT NULL
+    -> );
+
+-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=

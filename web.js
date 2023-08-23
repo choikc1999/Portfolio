@@ -59,6 +59,14 @@ app.post("/user/check_duplicate_id", userController.checkDuplicateId); // 아이
 
     // 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
     // /main 경로에 대한 GET 핸들러 추가
+
+// 게시글 작성 페이지 렌더링
+app.get('/write', userController.renderWritePage);
+
+// 게시글 작성 요청 처리
+app.post('/create-post', userController.createPost);
+
+
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));
 });

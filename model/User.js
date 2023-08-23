@@ -118,4 +118,39 @@ User.delete = (id, callback) => {
     });
 };
 
-module.exports = User;
+// 게시글 닉네임불러오는 문
+User.getUserNameByUsername = (username, callback) => {
+    const selectQuery = `SELECT name FROM user WHERE name = ?`;
+    connection.query(selectQuery, [username], (error, results) => {
+        if (error) {
+            callback(error, null);
+        } else {
+            const name = results.length > 0 ? results[0].name : 'Unknown User';
+            callback(null, name);
+        }
+    });
+};
+
+const BoardModel = {};
+
+BoardModel.createPost = (title, text, name, password, selectboard, callback) => {
+    const sql = `
+        INSERT INTO board (title, text, name, password, selectboard)
+        VALUES (?, ?, ?, ?, ?);
+    `;
+    const values = [title, text, name, password, selectboard];
+
+    connection.query(sql, values, (err, result) => {
+        if (err) {
+            console.error("Error executing MySQL query for creating a post:", err);
+            return callback(err);
+        }
+        callback(null, result.insertId); // 삽입된 게시글의 ID 반환
+    });
+};
+
+
+module.exports = {
+    User: User,
+    BoardModel: BoardModel
+};

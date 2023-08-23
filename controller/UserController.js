@@ -1,6 +1,7 @@
 const path = require("path");
-const User = require("../model/User"); // User 모델을 가져오는 부분
+const { User, BoardModel } = require("../model/User"); // User 모델을 가져오는 부분  
 const bcrypt = require('bcrypt');
+
 
 // join id checking
 exports.index = (req, res) => {
@@ -238,5 +239,40 @@ exports.logout = (req, res) => {
         
         // 로그아웃 후 로그인 페이지로 리디렉션
         res.redirect("/login");
+    });
+};
+
+// 게시글 작성 페이지 렌더링
+exports.renderWritePage = (req, res) => {
+    // 로그인된 사용자의 이름 가져오기
+    const username = req.session.user ? req.session.user.username : 'Unknown User';
+
+    // writeboard.html 파일을 읽어서 전송
+    res.sendFile(path.join(__dirname, '../src/views/writeboard.html'));
+};
+
+// 게시글 작성 요청 처리
+exports.createPost = async (req, res) => {
+    const { title, text, password, selectedBoard } = req.body;
+    const sessionUser = req.session.user;
+
+    if (!sessionUser) {
+        return res.status(401).json({ success: false, message: "로그인이 필요합니다." });
+    }
+
+    User.getUserNameByUsername(sessionUser.name, (error, name) => {
+        if (error) {
+            console.error("Error getting user name:", error);
+            return res.status(500).json({ success: false, message: "사용자 이름을 가져오는 중 오류 발생" });
+        }
+
+        BoardModel.createPost(title, text, name, password, selectedBoard, (error, postId) => {
+            if (error) {
+                console.error("Error creating post:", error);
+                res.status(500).json({ success: false, message: "게시글 작성 중 오류 발생" });
+            } else {
+                res.json({ success: true, message: "게시글이 성공적으로 작성되었습니다.", postId });
+            }
+        });
     });
 };

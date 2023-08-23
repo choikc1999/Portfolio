@@ -38,8 +38,13 @@ router.get("/", user.index);
 router.get("/login", user.login);
 router.post("/login", user.post_login);
 
-
 // 로그인 여부 체크 미들웨어를 이용해 접근 제어
 router.use(checkLogin);
+
+// 게시글 작성 페이지 렌더링
+router.get('/write', UserController.renderWritePage);
+
+// 게시글 작성 요청 처리
+router.post('/write', UserController.createPost);
 
 module.exports = router;
