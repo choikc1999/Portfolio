@@ -123,6 +123,19 @@ CREATE TABLE board (
     ADD upload_date DATETIME DEFAULT NULL,
     ADD modify_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP;
     
-    날짜를 가져오기위해 해당 칼럼을 추가해야함.
+    날짜를 가져오기위해 해당 칼럼을 추가해야함. 
+    게시글 작성후 로그인페이지로 이동하는거 해결해야함.
 
 -=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=
+
+23/08/24/pm:18:14
+
+댓글 기능을 추가하기위해 아래에 테이블을 추가해야함.
+CREATE TABLE reply (
+    reply_ID INT AUTO_INCREMENT PRIMARY KEY,
+    board_ID INT,
+    nickname VARCHAR(30) NOT NULL,
+    reply TEXT NOT NULL,
+    reply_date DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (board_ID) REFERENCES board(board_ID) ON DELETE CASCADE
+);

@@ -71,6 +71,26 @@ $(document).ready(function() {
         const selectedBoard = selectedOption ? selectedOption.textContent : null; // 선택한 게시판 가져오기
         const text = areaTextarea.value;
     
+        if (!selectedBoard) {
+            alert("게시판을 선택해주세요.");
+            return;
+        }
+    
+        if (!title) {
+            alert("제목을 입력해주세요.");
+            return;
+        }
+    
+        if (!text) {
+            alert("내용을 입력해주세요.");
+            return;
+        }
+    
+        if (!password) {
+            alert("비밀번호를 입력해주세요.");
+            return;
+        }
+    
         const post = {
             title: title,
             name: username,
@@ -87,7 +107,7 @@ $(document).ready(function() {
             success: function (response) {
                 console.log(response); // 서버 응답 출력
                 if (response.success) {
-                    window.location.href = "/"; // 작성 완료 후 메인 페이지로 리다이렉션
+                    window.location.href = "/boardview"; // 작성 완료 후 메인 페이지로 리다이렉션
                 } else {
                     alert("게시글 작성 실패");
                 }
@@ -96,5 +116,5 @@ $(document).ready(function() {
                 console.error("Error:", error);
             }
         });
-    });
+    });    
 });
