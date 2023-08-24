@@ -47,4 +47,9 @@ router.get('/write', UserController.renderWritePage);
 // 게시글 작성 요청 처리
 router.post('/write', UserController.createPost);
 
+// 게시글리스트 랜더링
+router.get('/getPosts', UserController.getPosts);
+
+router.get("/get-posts", UserController.getPosts);
+
 module.exports = router;

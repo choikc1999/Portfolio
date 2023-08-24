@@ -149,6 +149,45 @@ BoardModel.createPost = (title, text, name, password, selectboard, callback) => 
     });
 };
 
+BoardModel.getPosts = (callback) => {
+    const sql = `SELECT * FROM board ORDER BY modify_date DESC`;
+
+    connection.query(sql, (err, rows) => {
+        if (err) {
+            console.error("Error executing MySQL query for getting posts", err);
+            return callback(err, null);
+        }
+        callback(null, rows);
+    });
+};
+
+BoardModel.getPostsByPage = (page, itemsPerPage, callback) => {
+    const startIndex = (page - 1) * itemsPerPage;
+    const sql = `
+        SELECT * FROM board 
+        ORDER BY modify_date DESC 
+        LIMIT ?, ?;
+    `;
+    const values = [startIndex, itemsPerPage];
+
+    connection.query(sql, values, (err, rows) => {
+        if (err) {
+            console.error("Error executing MySQL query for getting posts by page", err);
+            return callback(err, null);
+        }
+
+        const sqlTotal = `SELECT COUNT(*) AS total FROM board;`;
+        connection.query(sqlTotal, (err, result) => {
+            if (err) {
+                console.error("Error executing MySQL query for getting total post count", err);
+                return callback(err, null);
+            }
+
+            const totalPosts = result[0].total;
+            callback(null, { posts: rows, totalPosts });
+        });
+    });
+};
 
 module.exports = {
     User: User,

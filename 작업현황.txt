@@ -139,3 +139,8 @@ CREATE TABLE reply (
     reply_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (board_ID) REFERENCES board(board_ID) ON DELETE CASCADE
 );
+
+* 게시판리스트 페이지
+- DB에 맞춰서 게시글리스트 완성
+- 한페이지당 10개에 게시글만 보여지게 제한 성공
+그리고 각 메뉴별 게시판 구분 지어놔야함.

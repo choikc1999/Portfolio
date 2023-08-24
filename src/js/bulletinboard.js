@@ -97,4 +97,112 @@ $(document).ready(function() {
     });
 
     // menulist 끝
+
+    function getPosts() {
+        $.ajax({
+            type: "GET",
+            url: "/get-posts", // 서버의 해당 경로로 요청 보내기
+            success: (response) => {
+                displayPosts(response); // 받아온 데이터로 게시글 목록 표시
+            },
+            error: (error) => {
+                console.error("Error getting posts:", error);
+            }
+        });
+    }
+
+    // 게시글 목록을 화면에 출력하는 함수
+    function formatDate(dateString) {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = new Date(dateString).toLocaleDateString('ko-KR', options);
+        return formattedDate;
+    }
+    
+    function displayPosts(posts) {
+        const tableBody = $("#boardTableBody");
+        tableBody.empty(); // 기존의 내용 비우기
+    
+        posts.forEach((post) => {
+            const formattedDate = formatDate(post.modify_date);
+            const tr = `
+                <tr>
+                    <td>${post.board_ID}</td>
+                    <td>${post.title}</td>
+                    <td>${formattedDate}</td>
+                    <td>${post.name}</td>
+                </tr>
+            `;
+            tableBody.append(tr); // 새로운 게시글 추가
+        });
+    }
+    
+    const itemsPerPage = 10; // 페이지당 게시글 수
+    let currentPage = 1; // 현재 페이지
+    
+    function getPosts(page) {
+        $.ajax({
+            type: "GET",
+            url: `/get-posts?page=${page}`, // 페이지 번호를 서버로 전달
+            success: (response) => {
+                displayPosts(response.posts); // 받아온 데이터로 게시글 목록 표시
+                displayPagination(response.totalPages, currentPage); // 페이지네이션 표시
+            },
+            error: (error) => {
+                console.error("Error getting posts:", error);
+            }
+        });
+    }
+    
+    // 페이지네이션을 표시하는 함수
+    function displayPagination(totalPages, currentPage) {
+        const pagination = $("#pagination");
+        pagination.empty();
+    
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement("li");
+            const a = document.createElement("a");
+            a.textContent = i;
+            a.href = "#";
+            if (i === currentPage) {
+                a.classList.add("active");
+            }
+            
+            // 클로저 문제 해결: 클릭 이벤트 핸들러 내에서 i 값을 저장
+            a.addEventListener("click", (event) => {
+                event.preventDefault();
+                currentPage = i; // 클릭한 페이지로 현재 페이지 변경
+                getPosts(currentPage); // 해당 페이지의 게시글 가져오기
+                updatePaginationStyle(); // 페이지 번호에 따라 스타일 업데이트
+            });
+            
+            li.appendChild(a);
+            pagination.append(li);
+        }
+        
+    }
+    
+    // 페이지 번호에 따라 스타일 업데이트
+    function updatePaginationStyle() {
+        const pageLinks = $("#pagination a");
+    
+        pageLinks.each((index, link) => {
+            const pageNumber = parseInt(link.textContent);
+            console.log(`Page Number: ${pageNumber}, Current Page: ${currentPage}`);
+            if (pageNumber === currentPage) {
+                $(link).addClass("active");
+            } else {
+                $(link).removeClass("active");
+            }
+        });
+    }
+    
+    // 초기 페이지 로딩 시 첫 번째 페이지의 게시글 목록 가져오기
+    getPosts(currentPage);
+    
+    // 게시글 목록에서 각각의 게시글을 클릭했을 때의 이벤트 처리
+    $("#boardTableBody").on("click", "tr", function() {
+        const boardID = $(this).find("td:first").text(); // 첫 번째 td에 있는 board_ID 가져오기
+        window.location.href = `/boardview?boardID=${boardID}`; // 해당 게시글 페이지로 이동
+    });
+
 });

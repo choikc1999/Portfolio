@@ -251,6 +251,16 @@ exports.renderWritePage = (req, res) => {
     res.sendFile(path.join(__dirname, '../src/views/writeboard.html'));
 };
 
+exports.getPosts = (req, res) => {
+    BoardModel.getPosts((err, posts) => {
+        if (err) {
+            console.error("Error getting posts:", err);
+            return res.status(500).json({ message: '서버 에러' });
+        }
+        res.json(posts);
+    });
+};
+
 // 게시글 작성 요청 처리
 exports.createPost = async (req, res) => {
     const { title, text, password, selectedBoard } = req.body;
@@ -274,5 +284,44 @@ exports.createPost = async (req, res) => {
                 res.json({ success: true, message: "게시글이 성공적으로 작성되었습니다.", postId });
             }
         });
+    });
+};
+
+// 게시판리스트 갯수 제한
+exports.getPostsByPage = (offset, limit, callback) => {
+    const sql = `SELECT * FROM board ORDER BY modify_date DESC LIMIT ?, ?`;
+    const values = [offset, limit];
+
+    User.query(sql, values, (err, rows) => {
+        if (err) {
+            return callback(err, null);
+        }
+        callback(null, rows);
+    });
+};
+
+exports.getTotalPostCount = (callback) => {
+    const sql = `SELECT COUNT(*) AS count FROM board`;
+
+    User.query(sql, (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        const totalCount = result[0].count;
+        callback(null, totalCount);
+    });
+};
+
+exports.getPosts = (req, res) => {
+    const page = parseInt(req.query.page) || 1; // parseInt를 사용하여 정수로 변환
+    const itemsPerPage = 10; // 페이지당 게시글 수
+
+    BoardModel.getPostsByPage(page, itemsPerPage, (err, posts) => {
+        if (err) {
+            console.error("Error getting posts:", err);
+            res.status(500).json({ error: "Error getting posts" });
+        } else {
+            res.status(200).json(posts);
+        }
     });
 };

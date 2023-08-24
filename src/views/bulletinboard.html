@@ -82,75 +82,81 @@
             </div>
             <div class="view_board">
                 <table border="0">
-                    <th>번호</th>
-                    <th>제목</th>
-                    <th>날짜</th>
-                    <th>작성자</th>
-                    <tr>
-                        <td>1</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>8</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr>
-                        <td>9</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
-                    <tr class="last_tr">
-                        <td>10</td>
-                        <td>준비중</td>
-                        <td>23.08.18</td>
-                        <td>관리자</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>제목</th>
+                            <th>날짜</th>
+                            <th>작성자</th>
+                        </tr>
+                    </thead>
+                    <tbody id="boardTableBody">
+                            <tr>
+                                <td>1</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                            <tr class="last_tr">
+                                <td>10</td>
+                                <td>준비중</td>
+                                <td>23.08.18</td>
+                                <td>관리자</td>
+                            </tr>
+                        </tbody>
                 </table>
                 <button type="button" class="write_btn" onclick="location.href='/write'">글쓰기</button>
                 <div class="number">
-                    <ul>
-                        <li>1</li>
+                    <ul id="pagination">
+                        <!-- <li>1</li>
                         <li>2</li>
                         <li>3</li>
                         <li>4</li>
@@ -159,7 +165,7 @@
                         <li>7</li>
                         <li>8</li>
                         <li>9</li>
-                        <li>10</li>
+                        <li>10</li> -->
                     </ul>
                 </div>
             </div>

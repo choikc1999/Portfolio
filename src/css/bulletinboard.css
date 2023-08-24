@@ -95,6 +95,7 @@
     padding: 15px 0;
     color: #333;
     border-bottom: 1px solid #076355;
+    cursor: pointer;
 }
 
 #main_contents .view_board table tr td:first-child {
@@ -104,14 +105,14 @@
 }
 
 #main_contents .view_board table tr td:nth-child(2) {
-    width: 60%;
+    width: 55%;
     text-align: left;
     font-weight: bold;
     padding: 15px;
 }
 
 #main_contents .view_board table tr td:nth-child(3) {
-    width: 10%;
+    width: 15%;
     background: rgb(14,192,165,0.8);
     color: #000;
 }
@@ -157,7 +158,7 @@
 }
 
 #main_contents .view_board .number ul li {
-    padding: 5px;
+    height: 36px;
     width: 36px;
     text-align: center;
     background:#d1d1d1;
@@ -166,8 +167,15 @@
     color: #fff;
     margin: 0 5px;
     cursor: pointer;
+    line-height: 35px;
 }
 
-#main_contents .view_board .number ul li:first-child {
+#main_contents .view_board .number ul li a.active {
     background: #999;
+}
+
+#main_contents .view_board .number ul li a {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
 }

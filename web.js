@@ -3,6 +3,7 @@ const path = require("path");
 const session = require("express-session"); // express-session 미들웨어 추가
 const bodyParser = require("body-parser");
 const userController = require("./controller/UserController");
+const { BoardModel } = require('./model/User');
 
 const app = express();
 
@@ -65,6 +66,9 @@ app.get('/write', userController.renderWritePage);
 
 // 게시글 작성 요청 처리
 app.post('/create-post', userController.createPost);
+
+// 게시물 목록을 가져오는 경로
+app.get('/get-posts', userController.getPosts);
 
 
 app.get("/main", (req, res) => {
