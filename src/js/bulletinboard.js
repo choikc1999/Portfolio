@@ -103,7 +103,8 @@ $(document).ready(function() {
             type: "GET",
             url: "/get-posts", // 서버의 해당 경로로 요청 보내기
             success: (response) => {
-                displayPosts(response); // 받아온 데이터로 게시글 목록 표시
+                console.log("Server Response:", response);
+                displayPosts(response.posts); // 받아온 데이터로 게시글 목록 표시
             },
             error: (error) => {
                 console.error("Error getting posts:", error);
@@ -119,6 +120,11 @@ $(document).ready(function() {
     }
     
     function displayPosts(posts) {
+        if (!Array.isArray(posts)) {
+            console.error("Error: posts is not an array");
+            return;
+        }
+
         const tableBody = $("#boardTableBody");
         tableBody.empty(); // 기존의 내용 비우기
     
@@ -139,13 +145,25 @@ $(document).ready(function() {
     const itemsPerPage = 10; // 페이지당 게시글 수
     let currentPage = 1; // 현재 페이지
     
-    function getPosts(page) {
+    function getPostsByPage(page, selectedBoard) {
+        let url = `/get-posts?page=${page}`;
+        
+        if (selectedBoard) {
+            url += `&selectboard=${selectedBoard}`;
+        }
+        
         $.ajax({
             type: "GET",
-            url: `/get-posts?page=${page}`, // 페이지 번호를 서버로 전달
+            url: url,
             success: (response) => {
-                displayPosts(response.posts); // 받아온 데이터로 게시글 목록 표시
-                displayPagination(response.totalPages, currentPage); // 페이지네이션 표시
+                if (Array.isArray(response.posts)) {
+                    const filteredPosts = selectedBoard ? response.posts.filter(post => post.selectboard === selectedBoard) : response.posts;
+                    displayPosts(filteredPosts);
+                    displayPagination(Math.ceil(response.totalPosts / itemsPerPage), currentPage);
+                    updatePaginationStyle();
+                } else {
+                    console.error("Error: Response.posts is not an array");
+                }
             },
             error: (error) => {
                 console.error("Error getting posts:", error);
@@ -153,6 +171,9 @@ $(document).ready(function() {
         });
     }
     
+    // 초기 페이지 로딩 시 첫 번째 페이지의 게시글 목록 가져오기
+    getPostsByPage(currentPage);
+
     // 페이지네이션을 표시하는 함수
     function displayPagination(totalPages, currentPage) {
         const pagination = $("#pagination");
@@ -170,9 +191,9 @@ $(document).ready(function() {
             // 클로저 문제 해결: 클릭 이벤트 핸들러 내에서 i 값을 저장
             a.addEventListener("click", (event) => {
                 event.preventDefault();
-                currentPage = i; // 클릭한 페이지로 현재 페이지 변경
-                getPosts(currentPage); // 해당 페이지의 게시글 가져오기
-                updatePaginationStyle(); // 페이지 번호에 따라 스타일 업데이트
+                currentPage = i;
+                getPostsByPage(currentPage); // 수정된 부분: getPosts 대신 getPostsByPage 호출
+                updatePaginationStyle();
             });
             
             li.appendChild(a);
@@ -195,10 +216,24 @@ $(document).ready(function() {
             }
         });
     }
+
+    // 페이지 이동 처리
+    $("#pagination").on("click", "a", function(event) {
+        event.preventDefault();
+        const pageNumber = parseInt($(this).text());
+        if (!isNaN(pageNumber)) {
+            currentPage = pageNumber;
+            getPostsByPage(currentPage);
+        }
+    });
     
-    // 초기 페이지 로딩 시 첫 번째 페이지의 게시글 목록 가져오기
-    getPosts(currentPage);
-    
+    // "menu2" 클래스명을 가진 li를 클릭할 때의 이벤트 핸들러
+    $(".menu2").click(function () {
+        const selectedBoard = "NOTICE"; // 선택한 게시판 값 (여기서는 NOTICE로 고정)
+        currentPage = 1; // 선택한 게시판에서 첫 번째 페이지부터 보여줄 것이므로 currentPage를 1로 초기화
+        getPostsByPage(currentPage, selectedBoard); // 선택한 게시판 값도 함께 전송
+    });
+
     // 게시글 목록에서 각각의 게시글을 클릭했을 때의 이벤트 처리
     $("#boardTableBody").on("click", "tr", function() {
         const boardID = $(this).find("td:first").text(); // 첫 번째 td에 있는 board_ID 가져오기
