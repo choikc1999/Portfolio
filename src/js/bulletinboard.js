@@ -143,14 +143,15 @@ $(document).ready(function() {
     
     const itemsPerPage = 10; // 페이지당 게시글 수
     let currentPage = 1; // 현재 페이지
+    let selectedBoard = null
 
-    function getPostsByPage(page, selectedBoard) {
+    function getPostsByPage(page) {
         let url = `/get-posts?page=${page}`;
-        
+            
         if (selectedBoard) {
             url += `&selectboard=${selectedBoard}`;
         }
-        
+            
         $.ajax({
             type: "GET",
             url: url,
@@ -158,7 +159,7 @@ $(document).ready(function() {
                 if (Array.isArray(response.posts)) {
                     const filteredPosts = selectedBoard ? response.posts.filter(post => post.selectboard === selectedBoard) : response.posts;
                     displayPosts(filteredPosts);
-                    displayPagination(Math.ceil(response.totalPosts / itemsPerPage), currentPage);
+                    displayPagination(Math.ceil(response.totalPosts / itemsPerPage), currentPage, selectedBoard);
                     updatePaginationStyle();
                 } else {
                     console.error("Error: Response.posts is not an array");
@@ -170,14 +171,14 @@ $(document).ready(function() {
         });
     }
     
-        // 초기 페이지 로딩 시 첫 번째 페이지의 게시글 목록 가져오기
-        getPostsByPage(currentPage);
+    // 초기 페이지 로딩 시 첫 번째 페이지의 게시글 목록 가져오기
+    getPostsByPage(currentPage, null); // 선택한 게시판 값이 없을 경우 null 전달
 
     // 페이지네이션을 표시하는 함수
-    function displayPagination(totalPages, currentPage) {
+    function displayPagination(totalPages, currentPage, selectedBoard) {
         const pagination = $("#pagination");
         pagination.empty();
-    
+
         for (let i = 1; i <= totalPages; i++) {
             const li = document.createElement("li");
             const a = document.createElement("a");
@@ -191,7 +192,7 @@ $(document).ready(function() {
             a.addEventListener("click", (event) => {
                 event.preventDefault();
                 currentPage = i;
-                getPostsByPage(currentPage); // 수정된 부분: getPosts 대신 getPostsByPage 호출
+                getPostsByPage(currentPage);
                 updatePaginationStyle();
             });
             
@@ -199,6 +200,13 @@ $(document).ready(function() {
             pagination.append(li);
         }
         
+        // 페이지 이동 시 선택한 게시판 값을 유지
+        if (selectedBoard) {
+            const pageLinks = $("#pagination a");
+            pageLinks.each((index, link) => {
+                $(link).attr("href", `#?page=${index + 1}&selectboard=${selectedBoard}`);
+            });
+        }
     }
     
     // 페이지 번호에 따라 스타일 업데이트
@@ -222,46 +230,46 @@ $(document).ready(function() {
         const pageNumber = parseInt($(this).text());
         if (!isNaN(pageNumber)) {
             currentPage = pageNumber;
-            getPostsByPage(currentPage);
+            getPostsByPage(currentPage, selectedBoard); // 수정된 부분: selectedBoard 값을 전달
         }
     });
     
     // menu1 클릭 이벤트 핸들러
     $(".menu1").click(function () {
-        const selectedBoard = null; // 선택한 게시판 값을 null로 설정하여 모든 게시글을 가져옴
+        selectedBoard = null; // 선택한 게시판 값을 null로 설정하여 모든 게시글을 가져옴
         currentPage = 1; // 전체 게시글에서 첫 번째 페이지부터 보여줄 것이므로 currentPage를 1로 초기화
-        getPostsByPage(currentPage, selectedBoard); // 선택한 게시판 값도 함께 전송
+        getPostsByPage(currentPage); // 선택한 게시판 값도 함께 전송
     });
 
     // menu2 클릭 이벤트 핸들러
     $(".menu2").click(function () {
-        const selectedBoard = "NOTICE"; // 선택한 게시판 값 (여기서는 NOTICE로 고정)
+        selectedBoard = "NOTICE"; // 선택한 게시판 값 (여기서는 NOTICE로 고정)
         currentPage = 1; // 선택한 게시판에서 첫 번째 페이지부터 보여줄 것이므로 currentPage를 1로 초기화
-        getPostsByPage(currentPage, selectedBoard); // 선택한 게시판 값도 함께 전송
+        getPostsByPage(currentPage); // 선택한 게시판 값도 함께 전송
     });
 
     $(".menu3").click(function () {
-        const selectedBoard = "HTML"; 
+        selectedBoard = "HTML"; 
         currentPage = 1; 
-        getPostsByPage(currentPage, selectedBoard); 
+        getPostsByPage(currentPage); 
     });
 
     $(".menu4").click(function () {
-        const selectedBoard = "CSS"; 
+        selectedBoard = "CSS"; 
         currentPage = 1; 
-        getPostsByPage(currentPage, selectedBoard); 
+        getPostsByPage(currentPage); 
     });
 
     $(".menu5").click(function () {
-        const selectedBoard = "WEB"; 
+        selectedBoard = "WEB"; 
         currentPage = 1; 
-        getPostsByPage(currentPage, selectedBoard); 
+        getPostsByPage(currentPage); 
     });
 
     $(".menu6").click(function () {
-        const selectedBoard = "INQUIRY"; 
+        selectedBoard = "INQUIRY"; 
         currentPage = 1; 
-        getPostsByPage(currentPage, selectedBoard); 
+        getPostsByPage(currentPage);
     });
 
     // 게시글 목록에서 각각의 게시글을 클릭했을 때의 이벤트 처리
