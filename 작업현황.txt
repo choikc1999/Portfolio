@@ -139,8 +139,13 @@ CREATE TABLE reply (
     reply_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (board_ID) REFERENCES board(board_ID) ON DELETE CASCADE
 );
+댓글 기능 추가X
+
+-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=
+
+23/08/26/pm:23:49
 
 * 게시판리스트 페이지
 - DB에 맞춰서 게시글리스트 완성
 - 한페이지당 10개에 게시글만 보여지게 제한 성공
-그리고 각 메뉴별 게시판 구분 지어놔야함.
+- 카테고리별 게시글 보여지는 기능 구현했지만 1번 페이지만 적용되고 2번페이지부터 초기화되는 현상 수정해야함.

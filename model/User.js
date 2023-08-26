@@ -161,14 +161,25 @@ BoardModel.getPosts = (callback) => {
     });
 };
 
-BoardModel.getPostsByPage = (page, itemsPerPage, callback) => {
+BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
     const startIndex = (page - 1) * itemsPerPage;
-    const sql = `
+    let sql = `
         SELECT * FROM board 
         ORDER BY modify_date DESC 
         LIMIT ?, ?;
     `;
-    const values = [startIndex, itemsPerPage];
+    let values = [startIndex, itemsPerPage];
+
+    if (selectboard) {
+        // 필터링 값을 사용하여 SQL 쿼리 수정
+        sql = `
+            SELECT * FROM board
+            WHERE selectboard = ?
+            ORDER BY modify_date DESC
+            LIMIT ?, ?;
+        `;
+        values = [selectboard, startIndex, itemsPerPage];
+    }
 
     connection.query(sql, values, (err, rows) => {
         if (err) {
@@ -176,8 +187,14 @@ BoardModel.getPostsByPage = (page, itemsPerPage, callback) => {
             return callback(err, null);
         }
 
-        const sqlTotal = `SELECT COUNT(*) AS total FROM board;`;
-        connection.query(sqlTotal, (err, result) => {
+        let sqlTotal = `SELECT COUNT(*) AS total FROM board;`;
+
+        if (selectboard) {
+            // 필터링 값을 사용하여 총 게시글 수 쿼리 수정
+            sqlTotal = `SELECT COUNT(*) AS total FROM board WHERE selectboard = ?;`;
+        }
+
+        connection.query(sqlTotal, [selectboard], (err, result) => {
             if (err) {
                 console.error("Error executing MySQL query for getting total post count", err);
                 return callback(err, null);

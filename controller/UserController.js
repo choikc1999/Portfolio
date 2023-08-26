@@ -288,17 +288,33 @@ exports.createPost = async (req, res) => {
 };
 
 // 게시판리스트 갯수 제한
-exports.getPostsByPage = (offset, limit, callback) => {
-    const sql = `SELECT * FROM board ORDER BY modify_date DESC LIMIT ?, ?`;
-    const values = [offset, limit];
+exports.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
+    const startIndex = (page - 1) * itemsPerPage;
+    let sql = `SELECT * FROM board WHERE selectboard = ?`;
+    sql += ` ORDER BY modify_date DESC LIMIT ?, ?`;
+    const values = [selectboard, startIndex, itemsPerPage];
 
     User.query(sql, values, (err, rows) => {
         if (err) {
+            console.error("Error executing MySQL query for getting posts by page", err);
             return callback(err, null);
         }
-        callback(null, rows);
+
+        const sqlTotal = `SELECT COUNT(*) AS total FROM board WHERE selectboard = ?`;
+        const totalValues = [selectboard];
+
+        User.query(sqlTotal, totalValues, (err, result) => {
+            if (err) {
+                console.error("Error executing MySQL query for getting total post count", err);
+                return callback(err, null);
+            }
+
+            const totalPosts = result[0].total;
+            callback(null, { posts: rows, totalPosts });
+        });
     });
 };
+
 
 exports.getTotalPostCount = (callback) => {
     const sql = `SELECT COUNT(*) AS count FROM board`;
@@ -315,8 +331,9 @@ exports.getTotalPostCount = (callback) => {
 exports.getPosts = (req, res) => {
     const page = parseInt(req.query.page) || 1; // parseInt를 사용하여 정수로 변환
     const itemsPerPage = 10; // 페이지당 게시글 수
+    const selectboard = req.query.selectboard; // 선택한 게시판 필터링 값을 가져옴
 
-    BoardModel.getPostsByPage(page, itemsPerPage, (err, posts) => {
+    BoardModel.getPostsByPage(page, itemsPerPage, selectboard, (err, posts) => {
         if (err) {
             console.error("Error getting posts:", err);
             res.status(500).json({ error: "Error getting posts" });
