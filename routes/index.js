@@ -52,4 +52,19 @@ router.get('/getPosts', UserController.getPosts);
 
 router.get("/get-posts", UserController.getPosts);
 
+// 게시글 상세 페이지 렌더링
+router.get('/boardview', (req, res) => {
+  const boardID = req.query.boardID;
+
+  // boardID를 이용하여 게시글 정보를 데이터베이스에서 가져오기
+  BoardModel.getPostByID(boardID, (err, post) => {
+      if (err) {
+          console.error("Error getting post:", err);
+          res.status(500).json({ error: "Error getting post" });
+      } else {
+          res.render("boardview", { post }); // 게시글 정보를 boardview 페이지에 전달하여 렌더링
+      }
+  });
+});
+
 module.exports = router;

@@ -28,4 +28,42 @@ $(document).ready(function() {
         });
     });
     
+
+    function loadBoardInfo(boardID) {
+        // 서버에 해당 게시글 정보를 요청하는 AJAX 요청을 보냅니다.
+        $.ajax({
+            type: "GET",
+            url: `/get-post-by-id?boardID=${boardID}`, // 해당 경로로 요청 보내기
+            success: function (response) {
+                if (response) {
+                    displayBoardInfo(response); // 서버로부터 받아온 게시글 정보를 화면에 표시
+                } else {
+                    console.error("Error: No post found with boardID", boardID);
+                }
+            },
+            error: function (error) {
+                console.error("Error getting post:", error);
+            }
+        });
+    }
+
+    function displayBoardInfo(post) {
+        // 게시글 정보를 화면에 표시하는 작업을 수행합니다.
+        $(".title").text(post.title);
+        $(".name").text(post.name);
+        const date = new Date(post.modify_date);
+        const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+        $(".date").text(formattedDate);
+        $(".select").text(post.selectboard);
+        $(".text").text(post.text);
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const boardID = urlParams.get("boardID");
+
+    // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시합니다.
+    if (boardID) {
+        loadBoardInfo(boardID);
+    }
+    
 });    

@@ -342,3 +342,20 @@ exports.getPosts = (req, res) => {
         }
     });
 };
+
+// 게시글 보기 페이지 렌더링
+exports.renderBoardViewPage = (req, res) => {
+    const boardID = req.query.boardID;
+
+    // boardID를 이용하여 게시글 정보를 데이터베이스에서 가져오기
+    BoardModel.getPostByID(boardID, (err, post) => {
+        if (err) {
+            console.error("Error getting post:", err);
+            res.status(500).json({ error: "Error getting post" });
+        } else {
+            // 게시글 정보를 가져와서 클라이언트에 보내는 대신에 파일을 클라이언트로 전송합니다.
+            const filePath = path.join(__dirname, "../src/views", "boardview.html");
+            res.sendFile(filePath);
+        }
+    });
+};

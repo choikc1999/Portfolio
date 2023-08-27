@@ -70,6 +70,21 @@ app.post('/create-post', userController.createPost);
 // 게시물 목록을 가져오는 경로
 app.get('/get-posts', userController.getPosts);
 
+// 게시글 상세페이지
+app.get("/boardview", userController.renderBoardViewPage);
+app.get('/get-post-by-id', (req, res) => {
+    const boardID = req.query.boardID;
+
+    BoardModel.getPostByID(boardID, (err, post) => {
+        if (err) {
+            console.error("Error getting post:", err);
+            res.status(500).json({ error: "Error getting post" });
+        } else {
+            res.json(post);
+        }
+    });
+});
+
 
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));
@@ -89,7 +104,6 @@ app.get("/board", (req, res) => {
 app.get("/boardview", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "boardview.html"));
 });
-
 
 const PORT = 8001;
 app.listen(PORT, () => {

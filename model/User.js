@@ -206,6 +206,24 @@ BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
     });
 };
 
+BoardModel.getPostByID = (boardID, callback) => {
+    const sql = `SELECT * FROM board WHERE board_ID = ?`;
+
+    connection.query(sql, [boardID], (err, rows) => {
+        if (err) {
+            console.error("Error executing MySQL query for getting post by ID", err);
+            return callback(err, null);
+        }
+
+        if (rows.length === 0) {
+            return callback(null, null); // 해당 ID에 해당하는 게시글이 없을 경우 null 반환
+        }
+
+        const post = rows[0];
+        callback(null, post);
+    });
+};
+
 module.exports = {
     User: User,
     BoardModel: BoardModel
