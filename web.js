@@ -85,6 +85,13 @@ app.get('/get-post-by-id', (req, res) => {
     });
 });
 
+// 댓글
+// POST 요청을 통해 댓글 저장
+app.post('/save-reply', userController.saveReply);
+
+// GET 요청을 통해 해당 게시글의 모든 댓글을 가져옴
+app.get('/get-replies', userController.getReplies);
+
 
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));

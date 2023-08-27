@@ -224,7 +224,36 @@ BoardModel.getPostByID = (boardID, callback) => {
     });
 };
 
+const ReplyModel = {};
+
+// 댓글 저장
+ReplyModel.saveReply = (boardID, nickname, reply, callback) => {
+    const sql = `INSERT INTO reply (board_ID, nickname, reply) VALUES (?, ?, ?)`;
+    const values = [boardID, nickname, reply];
+
+    connection.query(sql, values, (error, result) => {
+        if (error) {
+            return callback(error, null);
+        }
+        callback(null, result);
+    });
+};
+
+// 해당 게시글의 모든 댓글 가져오기
+ReplyModel.getRepliesByBoardID = (boardID, callback) => {
+    const sql = `SELECT * FROM reply WHERE board_ID = ?`;
+    const values = [boardID];
+
+    connection.query(sql, values, (error, replies) => {
+        if (error) {
+            return callback(error, null);
+        }
+        callback(null, replies);
+    });
+};
+
 module.exports = {
     User: User,
-    BoardModel: BoardModel
+    BoardModel: BoardModel,
+    ReplyModel: ReplyModel
 };

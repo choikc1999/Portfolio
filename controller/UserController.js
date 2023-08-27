@@ -1,5 +1,5 @@
 const path = require("path");
-const { User, BoardModel } = require("../model/User"); // User 모델을 가져오는 부분  
+const { User, BoardModel, ReplyModel } = require("../model/User"); // User 모델을 가져오는 부분  
 const bcrypt = require('bcrypt');
 
 
@@ -357,5 +357,32 @@ exports.renderBoardViewPage = (req, res) => {
             const filePath = path.join(__dirname, "../src/views", "boardview.html");
             res.sendFile(filePath);
         }
+    });
+};
+
+// 댓글 렌더링
+exports.saveReply = (req, res) => {
+    const { boardID, nickname, reply } = req.body;
+
+    // ReplyModel을 이용하여 댓글을 저장하는 함수 호출
+    ReplyModel.saveReply(boardID, nickname, reply, (error, result) => {
+        if (error) {
+            console.error("Error saving reply:", error);
+            return res.status(500).json({ success: false, error: "Error saving reply" });
+        }
+        res.json({ success: true });
+    });
+};
+
+exports.getReplies = (req, res) => {
+    const boardID = req.query.boardID;
+
+    // ReplyModel을 이용하여 해당 게시글의 댓글을 가져오는 함수 호출
+    ReplyModel.getRepliesByBoardID(boardID, (error, replies) => {
+        if (error) {
+            console.error("Error getting replies:", error);
+            return res.status(500).json({ error: "Error getting replies" });
+        }
+        res.json(replies);
     });
 };

@@ -6,6 +6,20 @@ $(document).ready(function() {
         success: function (response) {
             // 사용자 정보에서 이름 가져와서 표시
             document.getElementById("userName").textContent = response.name;
+
+            // 댓글 작성 버튼 클릭 이벤트 처리
+            $(".write_btn").click(function () {
+                submitReply(response.name); // 사용자 이름을 넘겨줍니다.
+            });
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const boardID = urlParams.get("boardID");
+
+            // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시합니다.
+            if (boardID) {
+                loadBoardInfo(boardID);
+                loadRepliesFromDatabase(boardID); // 이 부분을 추가하여 댓글을 미리 가져옵니다.
+            }
         },
         error: function (error) {
             console.error("Error:", error);
@@ -64,6 +78,84 @@ $(document).ready(function() {
     // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시합니다.
     if (boardID) {
         loadBoardInfo(boardID);
+        loadRepliesFromDatabase(boardID); // 이 부분을 추가하여 댓글을 미리 가져옵니다.
     }
+
+    // 댓글 저장 및 로딩
+    function submitReply(nickname) {
+        const replyTextarea = document.querySelector(".reply_textarea");
+        const newReply = replyTextarea.value;
+        
+        if (newReply.trim() !== "") {
+            const urlParams = new URLSearchParams(window.location.search);
+            const boardID = urlParams.get("boardID");
+            saveReplyToDatabase(boardID, nickname, newReply);
+        }
+    }
+
+    let replyData = [];
+
+    function saveReplyToDatabase(boardID, nickname, reply) {
+        $.ajax({
+            type: "POST",
+            url: "/save-reply",
+            data: { boardID: boardID, nickname: nickname, reply: reply },
+            success: function (response) {
+                if (response.success) {
+                    // 새로운 댓글을 추가하고 화면 업데이트
+                    const newReply = { nickname: nickname, reply: reply };
+                    replyData.push(newReply);
+                    updateReplyBox();
+                    updateReplyCount();
     
+                    // 서버에서 댓글 목록 다시 가져와서 업데이트
+                    loadRepliesFromDatabase(boardID);
+                } else {
+                    console.error("Error saving reply:", response.error);
+                }
+            },
+            error: function (error) {
+                console.error("Error saving reply:", error);
+            }
+        });
+    }
+
+    function loadRepliesFromDatabase(boardID) {
+        $.ajax({
+            type: "GET",
+            url: `/get-replies?boardID=${boardID}`,
+            success: function (replies) {
+                replyData = replies;
+                updateReplyBox();
+                updateReplyCount();
+            },
+            error: function (error) {
+                console.error("Error getting replies:", error);
+            }
+        });
+    }
+
+    // 댓글 표시 업데이트
+    function updateReplyBox() {
+        const replyBox = document.querySelector(".reply_box");
+        replyBox.innerHTML = ""; // 기존 댓글 내용 초기화
+
+        for (const reply of replyData) {
+            const replyElement = document.createElement("div");
+            replyElement.className = "reply_item";
+            replyElement.innerHTML = `
+                <span class="nickname">${reply.nickname}</span>
+                <span class="reply">${reply.reply}</span>
+            `;
+            replyBox.appendChild(replyElement);
+        }
+    }
+
+    // 댓글 수 업데이트
+    function updateReplyCount() {
+        const replyCountElement = document.querySelector(".reply_count span");
+        replyCountElement.textContent = replyData.length.toString();
+    }
+
+
 });    

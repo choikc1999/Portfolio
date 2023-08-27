@@ -3,6 +3,7 @@ const express = require("express");
 const user = require("../controller/UserController");
 const router = express.Router();
 const bcrypt = require('bcrypt');
+const ReplyModel = require('../models/ReplyModel');
 
 router.get('/', function(req, res, next) {
     fs.readFile('/home/hosting_users/choikc1999/apps/choikc1999_jsblog/', (err, data) => {
@@ -66,5 +67,11 @@ router.get('/boardview', (req, res) => {
       }
   });
 });
+
+// POST 요청을 통해 댓글 저장
+router.post('/save-reply', UserController.saveReply);
+
+// GET 요청을 통해 해당 게시글의 모든 댓글을 가져옴
+router.get('/get-replies', UserController.getReplies);
 
 module.exports = router;
