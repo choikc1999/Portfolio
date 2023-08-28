@@ -68,6 +68,10 @@ router.get('/boardview', (req, res) => {
   });
 });
 
+// 게시글 조회 수 업데이트와 게시글 정보 조회를 처리하는 라우트 핸들러
+router.get('/board/:boardId', UserController.getBoardById);
+router.get('/update-view-count/:boardID', userController.updateViewCount);
+
 // POST 요청을 통해 댓글 저장
 router.post('/save-reply', UserController.saveReply);
 

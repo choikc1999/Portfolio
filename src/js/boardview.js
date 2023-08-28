@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    let isUpdatingViewCount = false; // 중복 요청 여부를 나타내는 변수
     // 서버에서 사용자 정보를 가져와서 이름 표시
     $.ajax({
         method: 'GET',
@@ -41,25 +42,6 @@ $(document).ready(function() {
             }
         });
     });
-    
-
-    function loadBoardInfo(boardID) {
-        // 서버에 해당 게시글 정보를 요청하는 AJAX 요청을 보냅니다.
-        $.ajax({
-            type: "GET",
-            url: `/get-post-by-id?boardID=${boardID}`, // 해당 경로로 요청 보내기
-            success: function (response) {
-                if (response) {
-                    displayBoardInfo(response); // 서버로부터 받아온 게시글 정보를 화면에 표시
-                } else {
-                    console.error("Error: No post found with boardID", boardID);
-                }
-            },
-            error: function (error) {
-                console.error("Error getting post:", error);
-            }
-        });
-    }
 
     function displayBoardInfo(post) {
         // 게시글 정보를 화면에 표시하는 작업을 수행합니다.
@@ -70,6 +52,7 @@ $(document).ready(function() {
         $(".date").text(formattedDate);
         $(".select").text(post.selectboard);
         $(".text").text(post.text);
+        $(".view_count span").text(post.views); // 조회수 출력
     }
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -158,4 +141,45 @@ $(document).ready(function() {
     }
 
 
-});    
+    function loadBoardInfo(boardID) {
+        // 서버에 해당 게시글 정보를 요청하는 AJAX 요청을 보냅니다.
+        $.ajax({
+            type: "GET",
+            url: `/board/${boardID}`,
+            success: function (response) {
+                if (response) {
+                    displayBoardInfo(response); // 서버로부터 받아온 게시글 정보를 화면에 표시
+
+                    if (!isUpdatingViewCount) { // 중복 요청이 아닌 경우에만 처리
+                        isUpdatingViewCount = true; // 요청 중 상태로 변경
+                        updateViewCount(boardID); // 조회수 업데이트 함수 호출
+                    }
+
+                    // 댓글 불러오기
+                    loadRepliesFromDatabase(boardID);
+                } else {
+                    console.error("Error: No post found with boardID", boardID);
+                }
+            },
+            error: function (error) {
+                console.error("Error getting post:", error);
+            }
+        });
+    }
+
+    function updateViewCount(boardID) {
+        $.ajax({
+            type: "GET",
+            url: `/update-view-count/${boardID}`, // 서버에서 조회수 업데이트 처리하는 경로
+            success: function (response) {
+                // 업데이트 성공하면 아무 작업도 하지 않음
+            },
+            error: function (error) {
+                console.error("Error updating view count:", error);
+            },
+            complete: function() {
+                isUpdatingViewCount = false; // 요청 완료 후 상태 초기화
+            }
+        });
+    }
+});

@@ -239,7 +239,7 @@ ReplyModel.saveReply = (boardID, nickname, reply, callback) => {
     });
 };
 
-// 해당 게시글의 모든 댓글 가져오기
+// 해당 게시글의 모든 댓글 가져오기view
 ReplyModel.getRepliesByBoardID = (boardID, callback) => {
     const sql = `SELECT * FROM reply WHERE board_ID = ?`;
     const values = [boardID];
@@ -252,8 +252,92 @@ ReplyModel.getRepliesByBoardID = (boardID, callback) => {
     });
 };
 
+// 게시글조회수
+const Board = {};
+
+const lockedBoards = new Set(); // 이미 잠긴 게시글 ID를 저장하는 Set 객체
+
+Board.updateViewCount = (boardID, callback) => {
+    // 이미 잠긴 게시글인지 확인
+    if (lockedBoards.has(boardID)) {
+        callback(new Error('View count update already in progress'));
+        return;
+    }
+
+    const updateViewCountQuery = 'UPDATE board SET views = views + 1 WHERE board_ID = ?';
+
+    // 수정: 쿼리 실행 전에 잠금 상태 설정
+    lockedBoards.add(boardID);
+
+    connection.query(updateViewCountQuery, [boardID], (err, result) => {
+        // 업데이트 완료 후 잠금 해제
+        lockedBoards.delete(boardID);
+
+        if (err) {
+            console.error('Error updating view count:', err);
+            // 에러 발생 시 콜백 함수에 에러 전달
+            if (typeof callback === 'function') {
+                callback(err);
+            }
+        } else {
+            if (result.affectedRows === 1) {
+                // 업데이트 성공 시 업데이트된 조회수 값을 가져와서 콜백 함수에 전달
+                connection.query('SELECT views FROM board WHERE board_ID = ?', [boardID], (selectErr, selectResult) => {
+                    if (selectErr) {
+                        console.error('Error fetching updated view count:', selectErr);
+                        // 에러 발생 시 콜백 함수에 에러 전달
+                        if (typeof callback === 'function') {
+                            callback(selectErr);
+                        }
+                    } else {
+                        // 업데이트 성공 및 업데이트된 조회수 값을 콜백 함수에 전달
+                        if (typeof callback === 'function') {
+                            callback(null, selectResult[0].views);
+                        }
+                    }
+                });
+            } else {
+                // 업데이트 실패 시 콜백 함수에 에러 전달
+                if (typeof callback === 'function') {
+                    callback(new Error('Failed to update view count'));
+                }
+            }
+        }
+    });
+};
+
+Board.findById = (boardID, callback) => {
+    // console.log("Fetching board by ID:", boardID);
+
+    const selectBoardQuery = 'SELECT * FROM board WHERE board_ID = ?';
+
+    connection.query(selectBoardQuery, [boardID], (err, results) => {
+        if (err) {
+            console.error("Error fetching board:", err);
+            if (typeof callback === 'function') {
+                callback(err, null);
+            }
+        } else {
+            const board = results[0];
+            if (!board) {
+                if (typeof callback === 'function') {
+                    callback(new Error('Board not found'), null);
+                }
+            } else {
+                // console.log("Board fetched:", board);
+                if (typeof callback === 'function') {
+                    callback(null, board);
+                }
+            }
+        }
+    });
+};
+
+
+
 module.exports = {
     User: User,
     BoardModel: BoardModel,
-    ReplyModel: ReplyModel
+    ReplyModel: ReplyModel,
+    Board: Board
 };

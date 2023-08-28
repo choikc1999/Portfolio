@@ -3,7 +3,8 @@ const path = require("path");
 const session = require("express-session"); // express-session 미들웨어 추가
 const bodyParser = require("body-parser");
 const userController = require("./controller/UserController");
-const { BoardModel } = require('./model/User');
+const { BoardModel, Board } = require('./model/User');
+
 
 const app = express();
 
@@ -92,6 +93,9 @@ app.post('/save-reply', userController.saveReply);
 // GET 요청을 통해 해당 게시글의 모든 댓글을 가져옴
 app.get('/get-replies', userController.getReplies);
 
+// 게시판 조회수 업데이트와 게시글 정보 조회를 처리하는 라우트 핸들러
+app.get('/board/:boardID', userController.getBoardById);
+app.get('/update-view-count/:boardID', userController.updateViewCount);
 
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));

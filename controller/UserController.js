@@ -1,5 +1,5 @@
 const path = require("path");
-const { User, BoardModel, ReplyModel } = require("../model/User"); // User 모델을 가져오는 부분  
+const { User, BoardModel, ReplyModel, Board } = require("../model/User"); // User 모델을 가져오는 부분  
 const bcrypt = require('bcrypt');
 
 
@@ -386,3 +386,51 @@ exports.getReplies = (req, res) => {
         res.json(replies);
     });
 };
+
+// 게시글 조회수 업데이트 컨트롤러
+// const viewCountLocks = {}; // 각 게시글의 조회수 업데이트 상태를 저장하는 객체
+
+// 게시글 조회수 업데이트 함수
+exports.updateViewCount = (req, res) => {
+    const boardID = req.params.boardID;
+
+    // 게시글 정보 가져오기
+    Board.findById(boardID, (err, board) => {
+        if (err) {
+            console.error("Error fetching board:", err);
+            res.status(500).json({ error: "Error fetching board" });
+        } else {
+            if (board) {
+                // 게시글 조회수 업데이트
+                Board.updateViewCount(boardID, (updateErr, updatedViewCount) => { // 수정: 두 번째 인자로 업데이트된 조회수 받음
+                    if (updateErr) {
+                        console.error("Error updating view count:", updateErr);
+                        res.status(500).json({ error: "Error updating view count" });
+                    } else {
+                        // 업데이트된 조회수 값을 클라이언트에 반환
+                        res.status(200).json({ views: updatedViewCount });
+                    }
+                });
+            } else {
+                res.status(404).json({ error: "Board not found" });
+            }
+        }
+    });
+};
+
+// 게시글 조회 함수
+exports.getBoardById = (req, res) => {
+    const boardID = req.params.boardID; // 요청의 경로 매개변수에서 게시글 ID 가져오기
+
+    Board.findById(boardID, (err, board) => {
+        if (err) {
+            console.error('Error fetching board:', err);
+            res.status(500).json({ error: 'Server error' });
+        } else if (!board) {
+            res.status(404).json({ error: 'Board not found' });
+        } else {
+            res.json(board);
+        }
+    });
+};
+

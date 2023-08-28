@@ -10,7 +10,7 @@
     border: 2px solid #076355;
     border-radius: 10px;
     height: 40px;
-    line-height: 40px;
+    line-height: 38px;
     margin-bottom: 10px;
     padding: 0 10px;
     font-size: 18px;
@@ -20,7 +20,7 @@
 .view .name_view {
     width: 20%;
     height: 30px;
-    line-height: 30px;
+    line-height: 27px;
     display: inline-block;
     border: 2px solid #076355;
     padding: 0 10px;
@@ -32,7 +32,7 @@
 .view .date_view {
     width: 20%;
     height: 30px;
-    line-height: 30px;
+    line-height: 27px;
     display: inline-block;
     border: 2px solid #076355;
     padding: 0 10px;
@@ -42,11 +42,13 @@
 }
 
 .view .select_view {
-    width: 40%;
+    width: 15%;
     height: 30px;
-    line-height: 30px;
+    line-height: 27px;
     display: inline-block;
     padding: 0 10px;
+    border: 2px solid #076355;
+    border-radius: 8px;
 }
 
 .view .view_text {
@@ -84,19 +86,23 @@
 .view .information_box .reply_box .nickname {
     width: 10%;
     height: 100%;
-    display: inline-block;
+    float: left;
     text-align: center;
     margin: 0;
+    font-size: 15px;
+    padding: 10px;
     font-weight: bold;
+    /* margin-bottom: 10px; */
 }
 
 .view .information_box .reply_box .reply {
     width: 90%;
     height: 100%;
     text-align: left;
-    padding: 0 10px;
+    padding: 10px;
     margin: 0;
-    float: right;
+    float: left;
+    margin-bottom: 10px;
     border: 2px solid #076355;
     border-radius: 10px;
 }
