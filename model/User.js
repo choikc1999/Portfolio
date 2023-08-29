@@ -224,6 +224,19 @@ BoardModel.getPostByID = (boardID, callback) => {
     });
 };
 
+// 게시글 삭제
+BoardModel.deletePost = (boardID, callback) => {
+    const sql = `DELETE FROM board WHERE board_ID = ?`;
+    
+    connection.query(sql, [boardID], (err, result) => {
+        if (err) {
+            console.error("Error executing MySQL query for deleting a post:", err);
+            return callback(err);
+        }
+        callback(null, result.affectedRows > 0); // 삭제된 행이 있을 경우 true 반환
+    });
+};
+
 const ReplyModel = {};
 
 // 댓글 저장

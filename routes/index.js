@@ -78,4 +78,7 @@ router.post('/save-reply', UserController.saveReply);
 // GET 요청을 통해 해당 게시글의 모든 댓글을 가져옴
 router.get('/get-replies', UserController.getReplies);
 
+// 게시글 삭제
+router.post('/delete-post', UserController.deletePost);
+
 module.exports = router;

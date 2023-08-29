@@ -182,4 +182,39 @@ $(document).ready(function() {
             }
         });
     }
+
+    // 게시글삭제기능
+    function getBoardIDFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get("boardID");
+    }
+
+    $(".delete_btn").click(function() {
+        const boardID = getBoardIDFromURL();
+        const password = prompt("게시글 삭제를 위해 작성할때 입력한 비밀번호를 입력하세요:");
+
+        if (password !== null && password.trim() !== "") {
+            deletePost(boardID, password);
+        }
+    });
+
+    function deletePost(boardID, password) {
+        $.ajax({
+            type: "POST",
+            url: "/delete-post",
+            data: { boardID: boardID, password: password },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    window.location.href = "/board"; // 삭제 후 목록 페이지로 이동
+                } else {
+                    alert(response.message);
+                }
+            },
+            error: function (error) {
+                console.error("Error deleting post:", error);
+                alert("게시글 삭제 중 오류가 발생했습니다.");
+            }
+        });
+    }
 });

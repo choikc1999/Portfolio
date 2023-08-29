@@ -97,6 +97,10 @@ app.get('/get-replies', userController.getReplies);
 app.get('/board/:boardID', userController.getBoardById);
 app.get('/update-view-count/:boardID', userController.updateViewCount);
 
+// 게시글 삭제기능
+app.post('/delete-post', userController.deletePost);
+
+
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));
 });

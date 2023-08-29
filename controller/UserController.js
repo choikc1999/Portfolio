@@ -287,6 +287,39 @@ exports.createPost = async (req, res) => {
     });
 };
 
+// 게시글삭제
+exports.deletePost = (req, res) => {
+    const { boardID, password } = req.body;
+
+    // 게시글 정보 가져오기
+    BoardModel.getPostByID(boardID, (err, post) => {
+        if (err) {
+            console.error("Error getting post:", err);
+            return res.status(500).json({ success: false, message: "게시글 삭제 중 오류 발생" });
+        }
+
+        if (!post) {
+            return res.json({ success: false, message: "해당 게시글이 존재하지 않습니다." });
+        }
+
+        if (post.password !== password) {
+            return res.json({ success: false, message: "비밀번호가 일치하지 않습니다." });
+        }
+
+        BoardModel.deletePost(boardID, (err, success) => {
+            if (err) {
+                console.error("Error deleting post:", err);
+                return res.status(500).json({ success: false, message: "게시글 삭제 중 오류 발생" });
+            }
+            if (success) {
+                res.json({ success: true, message: "게시글이 성공적으로 삭제되었습니다." });
+            } else {
+                res.json({ success: false, message: "게시글 삭제 실패" });
+            }
+        });
+    });
+};
+
 // 게시판리스트 갯수 제한
 exports.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
     const startIndex = (page - 1) * itemsPerPage;

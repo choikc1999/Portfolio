@@ -107,7 +107,9 @@ $(document).ready(function() {
             success: function (response) {
                 console.log(response); // 서버 응답 출력
                 if (response.success) {
-                    window.location.href = "/boardview"; // 작성 완료 후 메인 페이지로 리다이렉션
+                    const postId = response.postId; // 생성된 게시글의 아이디
+                    const redirectUrl = `/boardview?boardID=${postId}`; // 생성된 게시글의 아이디를 포함한 URL
+                    window.location.href = redirectUrl; // 작성 완료 후 생성된 게시글로 리다이렉션
                 } else {
                     alert("게시글 작성 실패");
                 }
