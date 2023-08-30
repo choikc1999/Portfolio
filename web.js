@@ -8,6 +8,9 @@ const { BoardModel, Board } = require('./model/User');
 
 const app = express();
 
+// 파비콘 추가
+app.use('/favicon.ico', express.static(path.join(__dirname, 'src', 'favicon.ico')));
+
 app.use(session({ // express-session 설정
     secret: "your-secret-key",
     resave: true,
