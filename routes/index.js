@@ -42,6 +42,9 @@ router.post("/login", user.post_login);
 // 로그인 여부 체크 미들웨어를 이용해 접근 제어
 router.use(checkLogin);
 
+// 메인 NOTICE 렌더링
+router.get('/get-recent-posts', UserController.getRecentPosts);
+
 // 게시글 작성 페이지 렌더링
 router.get('/write', UserController.renderWritePage);
 

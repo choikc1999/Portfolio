@@ -192,10 +192,12 @@
     color: #666;
     padding: 15px 0;
     border-bottom: 1px solid #076355;
+    cursor: pointer;
 }
 
 #main_contents .contaner_1 .notice table td:nth-child(2) {
     font-weight: bold;
+    width: 40%;
 }
 
 /* contaner_1 종료 */

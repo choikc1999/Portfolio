@@ -131,6 +131,18 @@ User.getUserNameByUsername = (username, callback) => {
     });
 };
 
+// 메인 NOTICE
+User.getRecentPosts = (selectboard, callback) => {
+    const sql = 'SELECT * FROM board WHERE selectboard = ? ORDER BY modify_date DESC LIMIT 6';
+    connection.query(sql, [selectboard], (err, rows) => {
+        if (err) {
+            console.error('Error executing MySQL query for getting recent posts', err);
+            return callback(err, null);
+        }
+        callback(null, rows);
+    });
+};
+
 const BoardModel = {};
 
 BoardModel.createPost = (title, text, name, password, selectboard, callback) => {

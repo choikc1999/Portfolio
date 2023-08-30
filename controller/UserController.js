@@ -545,3 +545,15 @@ exports.getPostsPerPage = (req, res) => {
     });
 };
 
+// 메인 NOTICE
+exports.getRecentPosts = (req, res) => {
+    const selectboard = 'NOTICE'; // 필터링할 게시판
+    User.getRecentPosts(selectboard, (err, posts) => {
+        if (err) {
+            console.error('Error getting recent posts:', err);
+            return res.status(500).json({ error: 'Internal Server Error' });
+        }
+        res.json(posts);
+    });
+};
+

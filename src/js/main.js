@@ -225,4 +225,41 @@ $(document).ready(function() {
             'transition': 'transform 0.5s ease-in-out' // 부드러운 애니메이션 적용
         });
     }
+
+    //NOTICE 최신글 6개를 가져와서 화면에 표시하는 함수
+    function displayRecentPosts(posts) {
+        const tableBody = $('#recentPostsTableBody');
+        tableBody.empty();
+
+        posts.forEach((post) => {
+            const modifyDate = new Date(post.modify_date);
+            const formattedDate = modifyDate.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            const tr = `
+                <tr>
+                    <td>${post.board_ID}</td>
+                    <td>${post.title}</td>
+                    <td>${formattedDate}</td>
+                    <td>${post.name}</td>
+                </tr>
+            `;
+            tableBody.append(tr);
+        });
+    }
+
+    $.ajax({
+        method: 'GET',
+        url: '/get-recent-posts', // 최신글 가져오는 경로
+        success: function(response) {
+            displayRecentPosts(response);
+        },
+        error: function(error) {
+            console.error('Error:', error);
+        }
+    });
+
+    $('#recentPostsTableBody').on('click', 'tr', function() {
+        const boardID = $(this).find('td:first').text(); // 게시글의 ID 가져오기
+        window.location.href = `/boardview?boardID=${boardID}`; // 해당 게시글 페이지로 이동
+    });
 });
