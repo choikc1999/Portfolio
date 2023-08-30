@@ -142,3 +142,29 @@
     padding: 5px;
     margin-left: 10px;
 }
+
+/* 미디어 쿼리 */
+
+@media (max-width: 960px) {
+    .view .name_view {
+        width: 29%;
+    }
+    
+    .view .date_view {
+        width: 39%;
+    }
+    
+    .view .select_view {
+        width: 29%;
+    }
+}
+
+@media (max-width: 768px) {
+    .view .information_box .reply_box .nickname {
+        width: 25%;
+    }
+    
+    .view .information_box .reply_box .reply {
+        width: 75%;
+    }
+}

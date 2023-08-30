@@ -179,3 +179,26 @@
     height: 100%;
     display: inline-block;
 }
+
+/* 미디어 쿼리 */
+
+@media (max-width: 1200px) {
+    #main_contents .menulist ul li .background {
+        background: none;
+        background: #065549;
+    }
+}
+
+/* @media (max-width: 1024px) {
+    
+}
+
+@media (max-width: 960px) {
+    
+} */
+
+@media (max-width: 768px) {
+    #main_contents .menulist ul li {
+        padding: 15px 0;
+    }
+}

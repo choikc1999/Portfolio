@@ -124,3 +124,47 @@
 .dropdown-item:hover {
     background: #f1f1f1;
 }
+
+/* 미디어 쿼리 */
+
+@media (max-width: 1024px) {
+    
+}
+
+@media (max-width: 960px) {
+    
+}
+
+@media (max-width: 768px) {
+    .change {
+        width: 100%;
+        height: 1000px;
+        margin-top: 0;
+    }
+    
+    .change .changebox {
+        margin-bottom: 60px;
+        border-radius: 20px;
+        background: #0b9882;
+    }
+
+    .change label span {
+        width: 40%;
+    }
+
+    .change input {
+        width: 60%;
+    }
+
+    .change button {
+        width: 100%;
+    }
+
+    .change .btn_change {
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+    .change .btn_back {
+        border-radius: 15px;
+    }
+}

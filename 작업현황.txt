@@ -248,3 +248,5 @@ SHOW TRIGGERS FROM portfolio; 이걸로 트리거 생성확인
 
 * 메인페이지
 - NOTICE부분 구현
+
+- 현재까지 생성한 파일들 미디어쿼리 작업 완료

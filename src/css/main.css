@@ -272,3 +272,42 @@
 }
 /* contaner_3 종료 */
 
+/* 미디어 쿼리 */
+
+@media (max-width: 1200px) {
+    #main_contents .contaner_1 .intro .it_inner .it_contents2 .ps_mouse {
+        position: static;
+        display: block;
+    }
+}
+
+@media (max-width: 1080px) {
+    #main_contents .contaner_2 {
+        margin-top: 50px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #main_contents .contaner_1 {
+        display: block;
+        height: 100%;
+    }
+
+    #main_contents .contaner_1 .intro {
+        width: 100%;
+    }
+
+    #main_contents .contaner_1 .notice {
+        width: 100%;
+    }
+}
+
+@media (max-width: 960px) {
+    #main_contents .contaner_1 .intro .it_inner .it_contents2 .ps_mouse {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    
+}

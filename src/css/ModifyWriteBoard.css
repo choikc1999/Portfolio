@@ -174,3 +174,82 @@
     font-size: 16px;
 
 }
+
+/* 미디어 쿼리 */
+
+@media (max-width: 1024px) {
+    .WriteForm form .title_label span {
+        width: 10%;
+    }
+
+    .WriteForm form .title_label .title_input {
+        width: 90%;
+    }
+
+    .WriteForm form .name_label span {
+        width: 10%;
+    }
+
+    .WriteForm form .pwd_label span {
+        width: 10%;
+    }
+}
+
+/* @media (max-width: 960px) {
+    
+} */
+
+@media (max-width: 580px) {
+    .WriteForm form .name_label span {
+        width: 10%;
+    }
+
+    .WriteForm form .name_label .name_input {
+        width: 90%;
+        margin-bottom: 10px;
+    }
+
+    .WriteForm form .pwd_label {
+        width: 100%;
+    }
+
+    .WriteForm form .pwd_label span {
+        width: 15%;
+        display: inline-block;
+    }
+    
+    .WriteForm form .pwd_label .password_input {
+        width: 85%;
+        float: right;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 520px) {
+    .WriteForm form .name_label span {
+        width: 20%;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .WriteForm form .name_label .name_input {
+        width: 80%;
+        margin-bottom: 10px;
+        float: right;
+    }
+
+    .WriteForm form .pwd_label {
+        width: 100%;
+    }
+
+    .WriteForm form .pwd_label span {
+        width: 20%;
+        float: left;
+    }
+    
+    .WriteForm form .pwd_label .password_input {
+        width: 80%;
+        float: right;
+        margin-bottom: 10px;
+    }
+}
