@@ -467,3 +467,80 @@ exports.getBoardById = (req, res) => {
     });
 };
 
+// 게시글 수정
+exports.getBoardInfo = (req, res) => {
+    const boardID = req.query.boardID;
+
+    BoardModel.getPostByID(boardID, (err, post) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: "An error occurred" });
+        }
+
+        if (!post) {
+            return res.status(404).json({ success: false, message: "Post not found" });
+        }
+
+        // 여기서 post 객체의 속성들을 가져와서 필요한 데이터를 클라이언트로 응답합니다.
+        const responseData = {
+            title: post.title,
+            author: post.name, // 작성자명이 저장된 속성을 사용합니다.
+            content: post.text, // 게시글 내용이 저장된 속성을 사용합니다.
+            selectboard: post.selectboard
+        };
+
+        res.json({ success: true, post: responseData });
+    });
+};
+
+exports.updatePost = (req, res) => {
+    const boardID = req.body.boardID;
+    const updatedPost = {
+        title: req.body.title,
+        text: req.body.text,  // Make sure 'text' property is provided in the request
+        name: req.body.name,
+        password: req.body.password,
+        selectboard: req.body.selectboard
+    };
+
+    // Check if 'text' property is provided and not null
+    if (updatedPost.text === null || updatedPost.text === undefined) {
+        return res.status(400).json({ success: false, message: "'text' is required" });
+    }
+
+    // Fetch the original post data to compare the password
+    BoardModel.getPostByID(boardID, (err, originalPost) => {
+        if (err) {
+            console.error("Error fetching original post data:", err);
+            return res.status(500).json({ success: false, message: "An error occurred" });
+        }
+
+        // If the provided password matches the original post's password,
+        // proceed with the update; otherwise, show an alert
+        if (updatedPost.password === originalPost.password) {
+            BoardModel.updatePost(boardID, updatedPost, (err, result) => {
+                if (err) {
+                    return res.status(500).json({ success: false, message: "An error occurred" });
+                }
+                res.json({ success: true, message: "Post updated successfully" });
+            });
+        } else {
+            // 비밀번호가 틀릴 경우에 클라이언트 측에서 알림을 보여줌
+            res.json({ success: false, message: "Invalid password" });
+        }
+    });
+};
+
+exports.getPostsPerPage = (req, res) => {
+    const page = req.query.page;
+    const itemsPerPage = req.query.itemsPerPage;
+    const selectboard = req.query.selectboard;
+
+    BoardModel.getPostsByPage(page, itemsPerPage, selectboard, (err, data) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: "An error occurred" });
+        }
+
+        res.json({ success: true, data });
+    });
+};
+

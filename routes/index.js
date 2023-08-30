@@ -72,6 +72,10 @@ router.get('/boardview', (req, res) => {
 router.get('/board/:boardId', UserController.getBoardById);
 router.get('/update-view-count/:boardID', userController.updateViewCount);
 
+// 게시글 수정
+router.get('/getBoardInfo', UserController.getBoardInfo);
+router.post('/update-post', UserController.updatePost);
+
 // POST 요청을 통해 댓글 저장
 router.post('/save-reply', UserController.saveReply);
 

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/code.jquery.com_jquery-3.5.1.min.js"></script>
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/ModifyWriteBoard.css">
+    <script src="../js/ModifyWriteBoard.js"></script>
+</head>
+<body>
+    <header id="header">
+        <div class="center">
+            <a href="/main">
+                <h1 class="logo"></h1>
+            </a>    
+        </div>
+        <div class="center">
+            <div class="member">
+                <p>
+                    <span id="userName"></span>님 환영합니다.
+                </p>
+                <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                <button type="button" class="signout" id="logoutButton">로그아웃</button>
+            </div>
+        </div>
+        <ul class="menubar">
+            <div class="center">
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">INTRODUCE</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">PORTFOLIO</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">CAREER</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="/board">BOARD</a>
+                    </div>    
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section id="main_contents">
+        <div class="center">
+            <div class="WriteForm">
+                <form>
+                    <div class="write_setup">
+                        <div class="title_box">
+                            <label class="title_label">
+                                <span>제목</span>
+                                <input type="text" class="title_input" required placeholder="제목을 작성해주세요.">
+                            </label>
+                        </div>
+                        <div class="information_box">
+                            <label class="name_label">
+                                <span>작성자</span>
+                                <input type="text" class="name_input" id="nameInput">
+                            </label>
+                            <label class="pwd_label">
+                                <span>비밀번호</span>
+                                <input type="password" class="password_input" required placeholder="게시글 작성간 입력한 비밀번호를 입력해주세요">
+                            </label>
+                            <div class="select_board">
+                                <ul class="dropdown_content">
+                                    <li>--게시판 선택--</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <label class="area_label">
+                        <span>내용</span>
+                        <textarea required placeholder="내용을 입력해주세요." class="area"></textarea>
+                    </label>
+                    <div class="btn">
+                        <button type="submit" class="write">수정하기</button>
+                        <button type="button" class="cancle" onclick="location.href='/board'">취소</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="center">
+            <div class="ft_logo"></div>
+            <div class="copyright">
+                <p>Copyright 2023. choikc1999 All picture cannot be copied without permission<br>
+                This blog is for personal portfolio, not for commercial use.</p>
+            </div>
+            <div class="tel_email">
+                <p><span>Tel.</span> 010-3122-1274</p>
+                <p><span>Email:</span> choikc1999@naver.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -205,6 +205,43 @@ BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
         });
     });
 };
+// 게시글수정
+BoardModel.updatePost = (boardID, updatedPost, callback) => {
+    const sql = `
+        UPDATE board 
+        SET title = ?, text = ?, name = ?, password = ?, selectboard = ? 
+        WHERE board_ID = ?
+    `;
+
+    const { title, text, name, password, selectboard } = updatedPost;
+
+    // Ensure that the 'text' property has a valid value
+    if (text === null || text === undefined) {
+        return callback(new Error("Invalid 'text' value"), null);
+    }
+
+    // Fetch the original post data to compare the password
+    BoardModel.getPostByID(boardID, (err, originalPost) => {
+        if (err) {
+            console.error("Error fetching original post data:", err);
+            return callback(err, null);
+        }
+
+        // If the provided password matches the original post's password,
+        // proceed with the update; otherwise, return an error
+        if (password === originalPost.password) {
+            connection.query(sql, [title, text, name, password, selectboard, boardID], (err, result) => {
+                if (err) {
+                    console.error("Error executing MySQL query for updating post", err);
+                    return callback(err, null);
+                }
+                callback(null, result);
+            });
+        } else {
+            return callback(new Error("Invalid password"), null);
+        }
+    });
+};
 
 BoardModel.getPostByID = (boardID, callback) => {
     const sql = `SELECT * FROM board WHERE board_ID = ?`;

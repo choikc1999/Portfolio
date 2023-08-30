@@ -217,4 +217,10 @@ $(document).ready(function() {
             }
         });
     }
+
+    // 수정 버튼 클릭 이벤트 처리
+    $(".modify_btn").click(function() {
+        const boardID = getBoardIDFromURL();
+        window.location.href = `/ModifyWrite?boardID=${boardID}`; // 수정 페이지로 이동
+    });
 });

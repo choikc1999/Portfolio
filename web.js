@@ -100,6 +100,10 @@ app.get('/update-view-count/:boardID', userController.updateViewCount);
 // 게시글 삭제기능
 app.post('/delete-post', userController.deletePost);
 
+// 게시글 수정
+app.get('/getBoardInfo', userController.getBoardInfo);
+app.post('/update-post', userController.updatePost);
+
 
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));
@@ -118,6 +122,9 @@ app.get("/board", (req, res) => {
 });
 app.get("/boardview", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "boardview.html"));
+});
+app.get("/ModifyWrite", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "ModifyWriteBoard.html"));
 });
 
 const PORT = 8001;
