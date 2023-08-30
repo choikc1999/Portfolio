@@ -134,8 +134,9 @@ exports.getUserInfo = (req, res) => {
         User.select(user.id, user.password, function (result) {
             if (result) {
                 // result에 사용자 정보가 들어있다고 가정합니다. 필요한 정보를 적절하게 가져와서 사용합니다.
+                const userId = result.id; // 사용자 아이디 가져오기
                 const userName = result.name; // 사용자 이름 가져오기
-                res.json({ name: userName });
+                res.json({ id: userId, name: userName });
             } else {
                 return res.status(401).json({ error: "User not found" });
             }

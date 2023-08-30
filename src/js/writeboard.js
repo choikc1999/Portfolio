@@ -71,25 +71,38 @@ $(document).ready(function() {
         const selectedBoard = selectedOption ? selectedOption.textContent : null; // 선택한 게시판 가져오기
         const text = areaTextarea.value;
     
-        if (!selectedBoard) {
-            alert("게시판을 선택해주세요.");
-            return;
-        }
-    
-        if (!title) {
-            alert("제목을 입력해주세요.");
-            return;
-        }
-    
-        if (!text) {
-            alert("내용을 입력해주세요.");
-            return;
-        }
-    
-        if (!password) {
-            alert("비밀번호를 입력해주세요.");
-            return;
-        }
+        $.ajax({
+            method: 'GET',
+            url: '/get-user-info',
+            success: function(response) {
+                const loggedInUserId = response.id;
+
+            // 특정 카테고리를 제외한 경우에만 작성이 가능하도록 체크
+            const restrictedCategories = ["NOTICE", "HTML", "CSS", "WEB"];
+            if (restrictedCategories.includes(selectedBoard) && loggedInUserId !== 'admin') {
+                alert("해당 카테고리는 작성권한이 없습니다. 방문객은 INQUIRY만 작성가능합니다.");
+                return;
+            }
+
+            if (!selectedBoard) {
+                alert("게시판을 선택해주세요.");
+                return;
+            }
+        
+            if (!title) {
+                alert("제목을 입력해주세요.");
+                return;
+            }
+        
+            if (!text) {
+                alert("내용을 입력해주세요.");
+                return;
+            }
+        
+            if (!password) {
+                alert("비밀번호를 입력해주세요.");
+                return;
+            }
     
         const post = {
             title: title,
@@ -117,6 +130,11 @@ $(document).ready(function() {
             error: function (error) {
                 console.error("Error:", error);
             }
+        });
+    },
+    error: function(error) {
+        console.error("Error:", error);
+    }
         });
     });    
 });
