@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/code.jquery.com_jquery-3.5.1.min.js"></script>
+    <script src="../js/common.js"></script>
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/answer.css">
+    <link rel="shortcut icon" href="../ad_favicon.png">
+    <link rel="apple-touch-icon" href="../ap_favicon.png">
+</head>
+<body>
+    <aside id="search">
+        <div class="circle">
+            <form>
+                <input type="text" placeholder="찾으시는게 있나요?" class="search_input">
+                <button class="searchicon" type="button"></button>
+            </form>
+        </div>
+    </aside>
+    <header id="header">
+        <div class="center">
+            <a href="/main">
+                <h1 class="logo"></h1>
+            </a>    
+        </div>
+        <div class="center">
+            <div class="member">
+                <p>
+                    <span id="userName"></span>님 환영합니다.
+                </p>
+                <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                <button type="button" class="signout" id="logoutButton">로그아웃</button>
+            </div>
+        </div>
+        <ul class="menubar">
+            <div class="center">
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">INTRODUCE</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">PORTFOLIO</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="#none">CAREER</a>
+                    </div>    
+                </li>
+                <li>
+                    <div class="mb_inner">
+                        <a href="/board">BOARD</a>
+                    </div>    
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section>
+        <div class="center"></div>
+    </section>
+    <footer id="footer">
+        <div class="center">
+            <div class="ft_logo"></div>
+            <div class="copyright">
+                <p>Copyright 2023. choikc1999 All picture cannot be copied without permission<br>
+                This blog is for personal portfolio, not for commercial use.</p>
+            </div>
+            <div class="tel_email">
+                <p><span>Tel.</span> 010-3122-1274</p>
+                <p><span>Email:</span> choikc1999@naver.com</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/answer.js"></script>
+</body>
+</html>

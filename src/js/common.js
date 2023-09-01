@@ -31,7 +31,7 @@ $(document).ready(function() {
 
             if (inputValue === "") {
                 $('.circle').addClass('circle_click');
-                $('.circle_click').removeClass('circle').css({"width": "400px", "transition": "0.5s"});
+                $('.circle_click').removeClass('circle').css({"width": "300px", "transition": "0.5s"});
                 $(this).addClass("searchiconShow");
                 $('.searchiconShow').removeClass("searchicon");
                 $('.searchiconShow').attr('type', 'button'); // 버튼 타입을 "button"으로 변경
