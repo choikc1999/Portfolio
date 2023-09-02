@@ -111,6 +111,20 @@ app.post('/delete-post', userController.deletePost);
 app.get('/getBoardInfo', userController.getBoardInfo);
 app.post('/update-post', userController.updatePost);
 
+// 검색기능
+app.get('/search-posts', userController.searchPosts);
+app.post('/search', (req, res) => {
+    const searchTerm = req.body.searchTerm; // POST 요청에서 검색어 가져오기
+    
+    // 검색어를 이용하여 게시글을 찾는 로직 (BoardModel.searchPosts 함수 활용)
+    Board.searchPosts(searchTerm, (err, searchResults) => {
+    if (err) {
+        console.error('Error searching posts:', err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }     
+        res.json({ searchResults: searchResults });
+    });
+});
 
 app.get("/main", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "main.html"));
@@ -132,6 +146,9 @@ app.get("/boardview", (req, res) => {
 });
 app.get("/ModifyWrite", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "ModifyWriteBoard.html"));
+});
+app.get("/answer", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "answer.html"));
 });
 
 const PORT = 8001;

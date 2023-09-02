@@ -395,6 +395,24 @@ Board.findById = (boardID, callback) => {
     });
 };
 
+Board.searchPosts = (searchTerm, callback) => {
+    const sql = `
+        SELECT * FROM board
+        WHERE title LIKE ? OR text LIKE ?
+        ORDER BY modify_date DESC;
+    `;
+    const searchPattern = `%${searchTerm}%`;
+    const values = [searchPattern, searchPattern];
+
+    connection.query(sql, values, (err, searchResults) => {
+        if (err) {
+            console.error('Error executing MySQL query for searching posts', err);
+            return callback(err, null);
+        }
+        
+        callback(null, searchResults);
+    });
+};
 
 
 module.exports = {

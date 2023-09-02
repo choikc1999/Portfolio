@@ -88,4 +88,7 @@ router.get('/get-replies', UserController.getReplies);
 // 게시글 삭제
 router.post('/delete-post', UserController.deletePost);
 
+// 검색기능
+router.get('/search-posts', UserController.searchPosts);
+
 module.exports = router;
