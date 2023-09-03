@@ -39,13 +39,24 @@ $(document).ready(function() {
             } else {
                 // 입력값이 있는 경우의 동작을 여기에 구현
                 $('.searchiconShow').attr('type', 'submit');// 버튼 타입을 "submit"으로 변경
-                const searchTerm = $(".search_input").val(); // 검색어 들고오기
-                searchPosts(searchTerm);
-                // window.location.href = `/answer?searchTerm=${searchTerm}`;
+                const searchTerm = $(".search_input").val(); // 검색어 가져오기
+                window.location.href = `/answer?searchTerm=${searchTerm}`;
+                // 검색을 실행하고 결과를 표시하는 부분
+                searchPosts(searchTerm); // 검색을 실행하도록 추가
                 console.log("검색 실행: " + inputValue);
             }
         }
     });
+
+    // /answer 페이지에서 검색어 처리 및 결과 표시
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchTerm = urlParams.get('searchTerm'); // URL에서 검색어 가져오기
+
+    if (searchTerm) {
+        // 검색어가 존재하는 경우 처리
+        $('.search_input').val(searchTerm); // 검색어를 검색 입력 필드에 설정
+        searchPosts(searchTerm);
+    }
 
     // 검색 함수를 정의합니다.
 function searchPosts(searchTerm) {
@@ -57,7 +68,6 @@ function searchPosts(searchTerm) {
         success: function (data) {
             // 검색 결과를 처리합니다.
             console.log('검색 결과:', data);
-            window.location.href = '/answer';
             displaySearchResults(data);
         },
         error: function (err) {

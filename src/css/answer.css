@@ -32,6 +32,9 @@
 
 .answerbox li {
     padding: 10px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .answerbox .q_answer {
