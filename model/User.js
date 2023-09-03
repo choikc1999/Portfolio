@@ -397,9 +397,10 @@ Board.findById = (boardID, callback) => {
 
 Board.searchPosts = (searchTerm, callback) => {
     const sql = `
-        SELECT * FROM board
-        WHERE title LIKE ? OR text LIKE ?
-        ORDER BY modify_date DESC;
+        SELECT board.board_ID, board.title, board.text
+        FROM board
+        WHERE board.title LIKE ? OR board.text LIKE ?
+        ORDER BY board.modify_date DESC;
     `;
     const searchPattern = `%${searchTerm}%`;
     const values = [searchPattern, searchPattern];

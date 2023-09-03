@@ -75,19 +75,39 @@ function searchPosts(searchTerm) {
         },
     });
 }
+
 function displaySearchResults(results) {
     const resultList = document.querySelector('.answerbox');
     resultList.innerHTML = ''; // 이전 결과를 지웁니다.
+
+    const questionElement = document.querySelector('.question');
+    const qNumberElement = document.querySelector('.q_number');
 
     // 검색 결과를 반복하여 리스트에 추가합니다.
     if (results.searchResults && Array.isArray(results.searchResults)) {
         results.searchResults.forEach(function (result) {
             const listItem = document.createElement('li');
             listItem.textContent = `- ${result.title}: ${result.text}`;
+            listItem.classList.add('searchResult'); // 검색 결과 항목에 클래스 추가
+            listItem.dataset.boardid = result.board_ID; // 검색 결과 항목에 board_ID 데이터 속성 추가
             resultList.appendChild(listItem);
         });
+
+        // 검색 결과 수 업데이트
+        qNumberElement.textContent = results.searchResults.length;
     } else {
         console.error('검색 결과가 올바르지 않습니다.');
+        qNumberElement.textContent = '0'; // 검색 결과가 없을 경우 '0'으로 설정
     }
+
+    // 검색어 표시
+    questionElement.textContent = `검색어: ${results.searchTerm}`;
+
 }
+
+$(document).on('click', '.searchResult', function () {
+    const boardID = $(this).data('boardid'); // 클릭한 결과의 board_ID 값을 가져옵니다.
+    window.location.href = `/boardview?boardID=${boardID}`; // 해당 게시글의 페이지로 이동합니다.
+});
+
 });

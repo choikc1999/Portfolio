@@ -122,7 +122,7 @@ app.post('/search', (req, res) => {
         console.error('Error searching posts:', err);
         return res.status(500).json({ error: 'Internal Server Error' });
     }     
-        res.json({ searchResults: searchResults });
+        res.json({ searchTerm: searchTerm, searchResults: searchResults });
     });
 });
 
