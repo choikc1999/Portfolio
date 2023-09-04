@@ -120,6 +120,23 @@ body {background: #f5f5f5; position: relative;}
     outline: none;
 }
 
+#mobile_menu {
+    position: absolute;
+    z-index: 999;
+    top: 50px;
+    left: 30px;
+}
+
+#mobile_menu .menu {
+    width: 100%;
+    height: 100%;
+}
+
+#mobile_menu .menu i {
+    font-size: 50px;
+    cursor: pointer;
+    color: #076355;
+}
 #header {
     width: 100%;
     height: 28.0rem;
@@ -152,20 +169,59 @@ body {background: #f5f5f5; position: relative;}
     justify-content: space-around;
 }
 
-#header .menubar .mb_inner {
+#header .menubar li {
+    flex-basis: 25%;
     text-align: center;
     font-size: 1.8rem;
     font-weight: bold;
     line-height: 4.6rem;   
+    height: 5.0rem;
+    
 }
 
-#header .menubar .mb_inner a {
+#header .menubar li a {
     color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
-#header .menubar .mb_inner a:hover {
-    color: #0ac5a8;
+#header .menubar li a::before {
+    content: "CLICK !";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    text-align: center;
+    background: #097363;
+    color: #fff;
+    transition: 0.5s;
+    transform-origin: bottom;
+    transform: translateY(-100%) rotateX(90deg);
 }
+
+#header .menubar li a:hover::before {
+    transform: translateY(0) rotateX(0deg);
+}
+
+#header .menubar li a::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background: #076355;
+    color: #fff;
+    transition: 0.5s;
+    transform-origin: top;
+    transform: translateY(0) rotateX(0deg);
+}
+#header .menubar li a:hover::after {
+    transform: translateY(100%) rotateX(90deg);
+}
+
 
 #header .member {
     float: right;
