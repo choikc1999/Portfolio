@@ -84,6 +84,12 @@ $(document).ready(function() {
                 return;
             }
 
+            const notrestrictedCategories = ["--게시판 선택--"];
+            if (notrestrictedCategories.includes(selectedBoard)){
+                alert("게시판을 선택해주세요.");
+                return;
+            }
+
             if (!selectedBoard) {
                 alert("게시판을 선택해주세요.");
                 return;

@@ -53,6 +53,7 @@ body {background: #f5f5f5; position: relative;}
     filter: drop-shadow(2px 2px 2px #000);
     width: 65px;
     height: 65px;
+    transition: 0.8s;
 }
 
 #search .circle_click .searchicon {
