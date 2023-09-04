@@ -1,3 +1,7 @@
+html {
+    font-size: 10px;
+}
+
 #main_contents {
     width: 100%;
 }
@@ -6,19 +10,19 @@
 #main_contents .contaner_1 {
     display: flex;
     width: 100%;
-    height: 500px;
+    height: 50.0rem;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
 #main_contents .contaner_1 h2 {
-    padding: 0 0 8px 20px;
-    border-bottom: 2px solid #076355;
+    padding: 0 0 0.8rem 2.0rem;
+    border-bottom: 0.2rem solid #076355;
 }
 
 #main_contents .contaner_1 h2 a {
-    font-size: 32px;
+    font-size: 3.2rem;
     color: #076355;
 }
 
@@ -29,7 +33,7 @@
 
 #main_contents .contaner_1 .intro .it_inner {
     width: 100%;
-    padding: 20px 5px;
+    padding: 2.0rem 0.5rem;
 }
 
 #main_contents .contaner_1 .intro .it_inner .it_contents1 {
@@ -37,36 +41,36 @@
 }
 
 #main_contents .contaner_1 .intro .it_inner .my_profile {
-    width: 166px;
-    height: 222px;
-    border: 1px solid #000;
+    width: 16.6rem;
+    height: 22.2rem;
+    border: 0.1rem solid #000;
     background: #000;
     float: left;
-    margin: 0 10px 10px 0;
+    margin: 0 1.0rem 1.0rem 0;
 }
 
 #main_contents .contaner_1 .intro .it_inner .my_profile p {
     color: #fff;
-    padding-top: 50px;
+    padding-top: 5.0rem;
     text-align: center;
 }
 
 #main_contents .contaner_1 .intro .it_inner h5 {
-    font-size: 18px;
+    font-size: 1.8rem;
     color: #333;
-    margin-bottom: 10px;
+    margin-bottom: 1.0rem;
 }
 
 #main_contents .contaner_1 .intro .it_inner p {
-    margin-bottom: 5px;
-    font-size: 16px;
+    margin-bottom: 0.5rem;
+    font-size: 1.6rem;
     color: #333;
     font-weight: 400;
-    line-height: 20px;
+    line-height: 2.0rem;
 }
 
 #main_contents .contaner_1 .intro .it_inner .ps {
-    font-size: 15px;
+    font-size: 1.5rem;
     color: #919191;
 }
 
@@ -76,7 +80,7 @@
 
 #main_contents .contaner_1 .intro .it_inner .it_contents2 .icons {
     text-align: center;
-    padding: 5px 0;
+    padding: 0.5rem 0;
     color: #666;
     position: relative;
 }
@@ -84,9 +88,9 @@
 #main_contents .contaner_1 .intro .it_inner .it_contents2 .ps_mouse {
     color: #999;
     font-weight: normal;
-    font-size: 14px;
-    right: -10px;
-    top: 10px;
+    font-size: 1.4rem;
+    right: -1.0rem;
+    top: 1.0rem;
     position: absolute;
 }
 
@@ -101,8 +105,8 @@
 }
 
 #main_contents .contaner_1 .intro .it_inner .it_contents2 .workIcon .icon {
-    width: 50px;
-    height: 50px;
+    width: 5.0rem;
+    height: 5.0rem;
     flex-basis: auto;
 }
 /* 작업간 사용된 요소들 아이콘 */
@@ -144,8 +148,8 @@
     position: fixed;
     pointer-events: none;
     z-index: 9999;
-    width: 100px; /* 커서 크기 조절 */
-    height: 100px;
+    width: 10.0rem; /* 커서 크기 조절 */
+    height: 10.0rem;
 }
 
 /* 원하는 SVG 파일로 변경 */
@@ -169,7 +173,7 @@
     width: 60%;
     flex: 6;
     height: 100%;
-    padding-left: 20px;
+    padding-left: 2.0rem;
 }
 
 #main_contents .contaner_1 .notice table {
@@ -177,21 +181,21 @@
     text-align: center;
     /* border-collapse : collapse; */
     border-spacing : 0;
-    padding: 10px 5px;
+    padding: 1.0rem 0.5rem;
     color: #333;
 }
 
 #main_contents .contaner_1 .notice table th {
-    font-size: 18px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #076355;
+    font-size: 1.8rem;
+    padding-bottom: 1.0rem;
+    border-bottom: 0.2rem solid #076355;
 }
 
 #main_contents .contaner_1 .notice table td {
-    font-size: 16px;
+    font-size: 1.6rem;
     color: #666;
-    padding: 15px 0;
-    border-bottom: 1px solid #076355;
+    padding: 1.5rem 0;
+    border-bottom: 0.1rem solid #076355;
     cursor: pointer;
 }
 
@@ -218,15 +222,15 @@
 }
 
 #main_contents .contaner_2 .portfolio_slider .slides a {
-    width: 500px;
-    height: 300px;
+    width: 50.0rem;
+    height: 30.0rem;
     display: block;
 }
 
 #main_contents .contaner_2 .portfolio_slider .slides .slide {
-    flex: 0 0 500px;
+    flex: 0 0 50.0rem;
     background: url(../images/sorry.png) no-repeat 0 0;
-    height: 300px;
+    height: 30.0rem;
     cursor: pointer;
     /* transition: transform 0.5s ease-in-out; */
 }
@@ -241,9 +245,9 @@
 
 
 #main_contents .contaner_2 h2 {
-    font-size: 32px;
+    font-size: 3.2rem;
     color: #076355;
-    padding: 0 0 8px 20px;
+    padding: 0 0 0.8rem 2.0rem;
 }
 /* contaner_2 종료 */
 
@@ -260,15 +264,15 @@
 }
 
 #main_contents .contaner_3 h2 {
-    font-size: 32px;
+    font-size: 3.2rem;
     color: #076355;
-    padding: 0 0 8px 20px;
+    padding: 0 0 0.8rem 2.0rem;
 }
 
 #main_contents .contaner_3 .fix_banner {
     width: 100%;
-    height: 300px;
-    border: 1px solid #000;
+    height: 30.0rem;
+    border: 0.1rem solid #000;
 }
 /* contaner_3 종료 */
 
@@ -283,7 +287,7 @@
 
 @media (max-width: 1080px) {
     #main_contents .contaner_2 {
-        margin-top: 50px;
+        margin-top: 5.0rem;
     }
 }
 

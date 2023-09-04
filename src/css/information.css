@@ -1,18 +1,22 @@
+html {
+    font-size: 10px;
+}
+
 .change {
-    width: 700px;
-    height: 800px;
+    width: 70.0rem;
+    height: 80.0rem;
     margin: 0 auto;
-    margin-top: 50px;
-    padding: 30px 80px;
+    margin-top: 5.0rem;
+    padding: 3.0rem 8.0rem;
     text-align: center;
-    border: 3px solid #0b9882;
-    border-radius: 25px;
+    border: 0.3rem solid #0b9882;
+    border-radius: 2.5rem;
 }
 
 .change h1 {
-    font-size: 32px;
+    font-size: 3.2rem;
     color: #333;
-    margin-bottom: 30px;
+    margin-bottom: 3.0rem;
 }
 
 .change input {
@@ -21,16 +25,16 @@
     border: 0;
     background: 0;
     color: #fff;
-    font-size: 18px;
-    padding: 30px;
-    border-radius: 0 25px 25px 0;
+    font-size: 1.8rem;
+    padding: 3.0rem;
+    border-radius: 0 2.5rem 2.5rem 0;
 }
 
 .change label span {
     width: 30%;
     float: left;
-    line-height: 58px;
-    font-size: 18px;
+    line-height: 5.8rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #fff;
 }
@@ -41,9 +45,9 @@
 
 .change .changebox {
     width: 100%;
-    height: 60px;
-    margin-bottom: 35px;
-    border-radius: 20px;
+    height: 6.0rem;
+    margin-bottom: 3.5rem;
+    border-radius: 2.0rem;
     background: #0b9882;
 }
 
@@ -59,14 +63,14 @@
     cursor: pointer;
     width: 50%;
     float: left;
-    height: 50px;
+    height: 5.0rem;
     color: #fff;
-    font-size: 18px;
+    font-size: 1.8rem;
 }
 
 .change .btn_change {
     background: #0b9882;
-    border-radius: 15px 0 0 15px;
+    border-radius: 1.5rem 0 0 1.5rem;
 }
 
 .change .btn_change:hover {
@@ -75,7 +79,7 @@
 
 .change .btn_back {
     background: #076355;
-    border-radius: 0 15px 15px 0;
+    border-radius: 0 1.5rem 1.5rem 0;
 }
 
 .change .btn_back:hover {
@@ -85,8 +89,8 @@
 .change .btn_withdrawal {
     width: 100%;
     background: #05473d;
-    border-radius: 15px;
-    margin-top: 10px;
+    border-radius: 1.5rem;
+    margin-top: 1.0rem;
 }
 
 .change .btn_withdrawal:hover {
@@ -100,25 +104,25 @@
 
 .error { 
     color: #f00;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 
 
 #emailDropdown{
     display: none;
-    border: 1px solid #ccc;
+    border: 0.1rem solid #ccc;
     background-color: #fff;
-    width: 120px;
+    width: 12.0rem;
     z-index: 1;
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 1.8rem;
+    line-height: 3.0rem;
     position: absolute;
     right: 0;
 }
 .dropdown-item{
-    padding: 10px;
+    padding: 1.0rem;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
+    border-bottom: 0.1rem solid #eee;
     color: #333;
 }
 .dropdown-item:hover {
@@ -138,13 +142,13 @@
 @media (max-width: 768px) {
     .change {
         width: 100%;
-        height: 1000px;
+        height: 100.0rem;
         margin-top: 0;
     }
     
     .change .changebox {
-        margin-bottom: 60px;
-        border-radius: 20px;
+        margin-bottom: 6.0rem;
+        border-radius: 2.0rem;
         background: #0b9882;
     }
 
@@ -161,10 +165,10 @@
     }
 
     .change .btn_change {
-        border-radius: 15px;
-        margin-bottom: 10px;
+        border-radius: 1.5rem;
+        margin-bottom: 1.0rem;
     }
     .change .btn_back {
-        border-radius: 15px;
+        border-radius: 1.5rem;
     }
 }

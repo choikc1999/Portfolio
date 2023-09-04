@@ -296,3 +296,5 @@ SHOW TRIGGERS FROM portfolio; 이걸로 트리거 생성확인
 
 * DB
 업로드용 db 트리거 미적용 되었음 확인해봐야함
+
+rem단위 적용

@@ -1,3 +1,7 @@
+html {
+    font-size: 10px;
+}
+
 #main_contents .menulist {
     position: relative;
 }
@@ -9,13 +13,13 @@
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
-    border-bottom: 2px solid #076355;
+    border-bottom: 0.2rem solid #076355;
 }
 
 #main_contents .menulist ul li {
     flex-basis: 100%;
     text-align: center;
-    padding: 15px;
+    padding: 1.5rem;
     position: relative;
     cursor: pointer;
     overflow: hidden;
@@ -25,7 +29,7 @@
     background: url(../images/boardmenu.png) no-repeat 0 0;
     display: none;
     position: absolute;
-    bottom: -10px;
+    bottom: -1.0rem;
     left: 0;
     width: 100%;
     height: 100%;
@@ -62,7 +66,7 @@
 }
 
 #main_contents .menulist ul li a {
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #065549;
     transition: 0.5s;
@@ -74,7 +78,7 @@
 
 #main_contents .view_board {
     width: 100%;
-    padding: 0 30px;
+    padding: 0 3.0rem;
 }
 
 #main_contents .view_board table {
@@ -82,19 +86,19 @@
     height: 100%;
     text-align: center;
     border-spacing : 0;
-    border-bottom: 2px solid #076355;
+    border-bottom: 0.2rem solid #076355;
 }
 
 #main_contents .view_board table th {
     text-align: center;
-    padding: 20px 0;
-    border-bottom: 2px solid #076355;
+    padding: 2.0rem 0;
+    border-bottom: 0.2rem solid #076355;
 }
 
 #main_contents .view_board table tr td {
-    padding: 15px 0;
+    padding: 1.5rem 0;
     color: #333;
-    border-bottom: 1px solid #076355;
+    border-bottom: 0.1rem solid #076355;
     cursor: pointer;
 }
 
@@ -108,7 +112,7 @@
     width: 55%;
     text-align: left;
     font-weight: bold;
-    padding: 15px;
+    padding: 1.5rem;
 }
 
 #main_contents .view_board table tr td:nth-child(3) {
@@ -129,14 +133,14 @@
     border: 0;
     background: none;
     float: right;
-    font-size: 16px;
-    width: 80px;
-    height: 30px;
-    margin: 15px 0;
+    font-size: 1.6rem;
+    width: 8.0rem;
+    height: 3.0rem;
+    margin: 1.5rem 0;
     cursor: pointer;
     background: #076355;
     color: #fff;
-    border-radius: 10px;
+    border-radius: 1.0rem;
 }
 
 #main_contents .view_board .write_btn:hover {
@@ -154,20 +158,20 @@
     justify-content: center;
     align-items: center;
     align-content: center;
-    margin: 20px;
+    margin: 2.0rem;
 }
 
 #main_contents .view_board .number ul li {
-    height: 36px;
-    width: 36px;
+    height: 3.6rem;
+    width: 3.6rem;
     text-align: center;
     background:#d1d1d1;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #fff;
-    margin: 0 5px;
+    margin: 0 0.5rem;
     cursor: pointer;
-    line-height: 35px;
+    line-height: 3.5rem;
 }
 
 #main_contents .view_board .number ul li a.active {
@@ -199,6 +203,6 @@
 
 @media (max-width: 768px) {
     #main_contents .menulist ul li {
-        padding: 15px 0;
+        padding: 1.5rem 0;
     }
 }

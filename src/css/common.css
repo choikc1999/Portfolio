@@ -1,21 +1,25 @@
+html {
+    font-size: 10px;
+}
+
 * {margin: 0; padding: 0; box-sizing: border-box;}
 a {text-decoration: none; color: #333;}
 ul,li,ol {list-style: none;}
-.center {max-width: 1300px; margin: 0 auto; position: relative;}
+.center {max-width: 130.0rem; margin: 0 auto; position: relative;}
 .blind {position: absolute; left: -9999px; font-size: 0;}
 body {background: #f5f5f5; position: relative;}
 
 #search {
     position: fixed;
     z-index: 999;
-    bottom: 200px;
-    right: 100px;
+    bottom: 20.0rem;
+    right: 10.0rem;
 }
 
 #search .circle {
     position: relative;
-    width: 65px;
-    height: 65px;
+    width: 6.5rem;
+    height: 6.5rem;
     min-width: 0;
     -webkit-transition: color 0.3s;
     transition: color 0.3s;
@@ -31,7 +35,7 @@ body {background: #f5f5f5; position: relative;}
     height: 100%;
     border-radius: inherit;
     z-index: 1;
-    box-shadow: inset 0 0 0 35px #076355;
+    box-shadow: inset 0 0 0 3.5rem #076355;
     -webkit-transform: scale3d(0.9, 0.9, 1);
     transform: scale3d(0.9, 0.9, 1);
     -webkit-transition: box-shadow 0.3s, -webkit-transform 0.3;
@@ -39,7 +43,7 @@ body {background: #f5f5f5; position: relative;}
 }
 
 #search .circle:hover::before {
-    box-shadow: inset 0 0 0 3px #076355;
+    box-shadow: inset 0 0 0 0.3rem #076355;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
 }
@@ -50,9 +54,9 @@ body {background: #f5f5f5; position: relative;}
     border: 0;
     transform: translateX(-50%);
     background: url(../images/search/search.png) no-repeat 0 0;
-    filter: drop-shadow(2px 2px 2px #000);
-    width: 65px;
-    height: 65px;
+    filter: drop-shadow(0.2rem 0.2rem 0.2rem #000);
+    width: 6.5rem;
+    height: 6.5rem;
     transition: 0.8s;
 }
 
@@ -61,11 +65,11 @@ body {background: #f5f5f5; position: relative;}
     border: 0;
     background: url(../images/search/search.png) no-repeat 0 0;
     /* filter: drop-shadow(2px 2px 2px #000); */
-    width: 65px;
-    height: 65px;
-    top: -3px;
+    width: 6.5rem;
+    height: 6.5rem;
+    top: -0.3rem;
     cursor: pointer;
-    right: 3px;
+    right: 0.3rem;
 }
 
 .searchiconShow{
@@ -73,20 +77,20 @@ body {background: #f5f5f5; position: relative;}
     border: 0;
     background: url(../images/search/search.png) no-repeat 0 0;
     /* filter: drop-shadow(2px 2px 2px #000); */
-    width: 65px;
-    height: 65px;
-    top: -3px;
+    width: 6.5rem;
+    height: 6.5rem;
+    top: -0.3rem;
     cursor: pointer;
-    right: 3px;
+    right: 0.3rem;
 }
 
 .circle_click {
     position: relative;
-    width: 65px;
-    height: 65px;
-    border: 3px solid #076355;
-    border-radius: 20px;
-    filter: drop-shadow(3px 4px 3px #0a0a0a);
+    width: 6.5rem;
+    height: 6.5rem;
+    border: 0.3rem solid #076355;
+    border-radius: 2.0rem;
+    filter: drop-shadow(0.3rem 0.4rem 0.3rem #0a0a0a);
 }
 
 #search .circle .search_input {
@@ -95,15 +99,15 @@ body {background: #f5f5f5; position: relative;}
 
 #search .circle_click .search_input {
     width: 85%;
-    height: 65px;
+    height: 6.5rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     border: 0;
     background: 0;
-    padding: 0 20px;
+    padding: 0 2.0rem;
     font-weight: bold;
-    font-size: 16px;
+    font-size: 1.6rem;
     /* filter: drop-shadow(3px 3px 5px #fff); */
 }
 
@@ -118,24 +122,24 @@ body {background: #f5f5f5; position: relative;}
 
 #header {
     width: 100%;
-    height: 280px;
+    height: 28.0rem;
     position: relative;
     /* background: rgba(136, 229, 215, 0.15); */
-    margin-bottom: 50px;
+    margin-bottom: 5.0rem;
 }
 #header .logo {
     background: url(../images/logo.png) no-repeat 0 0;
-    width: 200px;
-    height: 210px;
+    width: 20.0rem;
+    height: 21.0rem;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin-top: 5px;
+    margin-top: 0.5rem;
 }
 
 #header .menubar {
     width: 100%;
-    height: 50px;
+    height: 5.0rem;
     position: absolute;
     bottom: 0;
     background: #076355;
@@ -150,9 +154,9 @@ body {background: #f5f5f5; position: relative;}
 
 #header .menubar .mb_inner {
     text-align: center;
-    font-size: 18px;
+    font-size: 1.8rem;
     font-weight: bold;
-    line-height: 46px;   
+    line-height: 4.6rem;   
 }
 
 #header .menubar .mb_inner a {
@@ -166,26 +170,26 @@ body {background: #f5f5f5; position: relative;}
 #header .member {
     float: right;
     text-align: right;
-    font-size: 14px;
+    font-size: 1.4rem;
     color: #333;
-    margin-top: 5px;
+    margin-top: 0.5rem;
 }
 
 #header .member p {
     float: left;
-    margin-right: 10px;
-    line-height: 25px;
+    margin-right: 1.0rem;
+    line-height: 2.5rem;
 }
 
 #header .member button {
     border: 0;
     background: 0;
-    font-size: 13px;
+    font-size: 1.3rem;
     cursor: pointer;
-    padding: 3px;
+    padding: 0.3rem;
     color: #333;
-    border: 1px solid #333;
-    border-radius: 5px;
+    border: 0.1rem solid #333;
+    border-radius: 0.5rem;
 }
 
 #header .member button:hover {
@@ -198,15 +202,15 @@ body {background: #f5f5f5; position: relative;}
     position: relative;
     bottom: 0;
     width: 100%;
-    min-height: 200px;
+    min-height: 20.0rem;
     background: #05362f;
-    margin-top: 50px;
-    padding-top: 50px;
+    margin-top: 5.0rem;
+    padding-top: 5.0rem;
 }
 
 #footer .ft_logo {
-    width: 100px;
-    height: 100px;
+    width: 10.0rem;
+    height: 10.0rem;
     background: url(../images/ft_logo.png) no-repeat 0 0;
     /* display: inline-block; */
     float: left;
@@ -214,18 +218,18 @@ body {background: #f5f5f5; position: relative;}
 
 #footer .copyright {
     display: inline-block;
-    font-size: 18px;
+    font-size: 1.8rem;
     color: rgba(255,255,255,0.8);
-    margin: 20px 0 0 50px;
-    line-height: 30px;
+    margin: 2.0rem 0 0 5.0rem;
+    line-height: 3.0rem;
 }
 
 #footer .tel_email {
     /* display: inline-block; */
-    font-size: 18px;
+    font-size: 1.8rem;
     color: rgba(255,255,255,0.8);
-    margin: 20px 0 0 50px;
-    line-height: 30px;
+    margin: 2.0rem 0 0 5.0rem;
+    line-height: 3.0rem;
     float: right;
 }
 
@@ -238,7 +242,7 @@ body {background: #f5f5f5; position: relative;}
 
 @media (max-width: 1300px) {
     #footer {
-        padding: 50px 20px 0px 20px;
+        padding: 5.0rem 2.0rem 0px 2.0rem;
     }
 }
 
@@ -248,11 +252,11 @@ body {background: #f5f5f5; position: relative;}
     }
 
     #footer .copyright {
-        margin: 20px 0 0 0;
+        margin: 2.0rem 0 0 0;
     }
 
     #footer .tel_email {
-        margin: 20px 0 0 0;
+        margin: 2.0rem 0 0 0;
     }
 
 }
@@ -282,8 +286,8 @@ body {background: #f5f5f5; position: relative;}
 
 @media (max-width: 768px) {
     #footer {
-        padding: 20px;
+        padding: 2.0rem;
         min-height: 0;
-        height: 300px;
+        height: 30.0rem;
     }
 }
