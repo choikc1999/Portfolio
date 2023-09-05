@@ -502,6 +502,10 @@ particle {
 /* 미디어 쿼리 */
 
 @media (max-width: 1300px) {
+    #search {
+        right: 5.0rem;
+    }
+
     #footer {
         padding: 5.0rem 2.0rem 0px 2.0rem;
     }
@@ -537,6 +541,10 @@ particle {
 
     #mobile_menu {
         display: inherit;
+    }
+
+    #footer {
+        padding: 4.0rem 0;
     }
 
     #footer .copyright {
