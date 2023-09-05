@@ -310,6 +310,18 @@ html {
     #main_contents .contaner_1 .intro .it_inner .it_contents2 .ps_mouse {
         display: none;
     }
+
+    .custom-cursor {
+        display: none !important;
+    }
+
+    body {
+        cursor: auto !important;
+    }
+
+    .intro h2 {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {

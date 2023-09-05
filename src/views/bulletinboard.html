@@ -13,6 +13,52 @@
     <script src="../js/bulletinboard.js"></script>
 </head>
 <body>
+    <header id="mobile_header">
+        <h1 onclick="location.href='/main'">J's Blog</h1>
+        <aside id="mobile_menu">
+            <script src="https://kit.fontawesome.com/1ea5be4fc8.js" crossorigin="anonymous"></script>
+            <div class="menu">
+                <button class="Plus" data-type="circle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </aside>
+        <div class="side_menu">
+            <div class="sm_inner">
+                <button class="close_btn" type="button">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                </button>
+                <div class="member">
+                    <p>
+                        <span id="userName"></span>님 환영합니다.
+                    </p>
+                    <div class="btnwrap">
+                        <button type="button" class="signout" id="logoutButton">로그아웃</button>
+                        <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                    </div>
+                </div>
+                <form>
+                    <input type="text" placeholder="찾으시는게 있나요?" class="m_search_input">
+                    <button class="m_search" type="button">SEARCH</button>
+                </form>
+                <h2 class="title">TITLE</h2>
+                <ul class="m_menulist">
+                    <li>
+                        <a href="#none" data-text="INTRODUCE">INTRODUCE</a>   
+                    </li>
+                    <li>
+                        <a href="#none" data-text="PORTFOLIO">PORTFOLIO</a>    
+                    </li>
+                    <li>
+                        <a href="#none" data-text="CAREER">CAREER</a>
+                    </li>
+                    <li>
+                        <a href="/board" data-text="BOARD">BOARD</a>
+                    </li>
+                </ul>  
+            </div>
+        </div>
+    </header>
     <aside id="search">
         <div class="circle">
             <form>

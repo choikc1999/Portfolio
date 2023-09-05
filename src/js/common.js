@@ -48,6 +48,24 @@ $(document).ready(function() {
         }
     });
 
+    $('.m_search').click(function(){
+            // "searchiconShow" 클래스가 없는 경우 처리
+            var inputValue = document.querySelector(".m_search_input").value;
+
+            if (inputValue === "") {
+                $('.m_search').attr('type', 'button'); // 버튼 타입을 "button"으로 변경
+                console.log("검색어를 입력하세요");
+            } else {
+                // 입력값이 있는 경우의 동작을 여기에 구현
+                // $('.m_search').attr('type', 'submit');// 버튼 타입을 "submit"으로 변경
+                const searchTerm = $(".m_search_input").val(); // 검색어 가져오기
+                window.location.href = `/answer?searchTerm=${searchTerm}`;
+                // 검색을 실행하고 결과를 표시하는 부분
+                searchPosts(searchTerm); // 검색을 실행하도록 추가
+                console.log("검색 실행: " + inputValue);
+            }
+    });
+
     // /answer 페이지에서 검색어 처리 및 결과 표시
     const urlParams = new URLSearchParams(window.location.search);
     const searchTerm = urlParams.get('searchTerm'); // URL에서 검색어 가져오기
@@ -55,6 +73,12 @@ $(document).ready(function() {
     if (searchTerm) {
         // 검색어가 존재하는 경우 처리
         $('.search_input').val(searchTerm); // 검색어를 검색 입력 필드에 설정
+        searchPosts(searchTerm);
+    }
+
+    if (searchTerm) {
+        // 검색어가 존재하는 경우 처리
+        $('.m_search_input').val(searchTerm); // 검색어를 검색 입력 필드에 설정
         searchPosts(searchTerm);
     }
 
@@ -137,11 +161,11 @@ function createParticle(x, y, type) {
 
     switch (type) {
     case "circle":
-        particle.style.background = `hsl(${Math.random() * 88 + 53}, 70%, 60%)`;
+        particle.style.background = `hsl(${Math.random() * 202 + 53}, 95%, 77%)`;
         particle.style.borderRadius = "50%";
         break;
     default:
-        particle.style.background = `hsl(${Math.random() * 86 + 56}, 70%, 60%)`;
+        particle.style.background = `hsl(${Math.random() * 171 + 56}, 95%, 77%)`;
     }
 
     const animation = particle.animate(
@@ -173,5 +197,15 @@ function createParticle(x, y, type) {
 function removeParticle(e) {
     e.srcElement.effect.target.remove();
 }
+
+$(".Plus").click(function(){
+    $(".side_menu").css("right","0");
+    $(".Plus").css("display","none");
+    
+    $(".close_btn").click(function(){
+        $(".side_menu").css("right","-9999px");
+        $(".Plus").css("display","inline-block");
+    });
+});
 
 });
