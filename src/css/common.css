@@ -348,6 +348,7 @@ particle {
     position: relative;
     /* background: rgba(136, 229, 215, 0.15); */
     margin-bottom: 5.0rem;
+    clear: both;
 }
 #header .logo {
     background: url(../images/logo.png) no-repeat 0 0;
@@ -467,6 +468,7 @@ particle {
     background: #05362f;
     margin-top: 5.0rem;
     padding-top: 5.0rem;
+    clear: both;
 }
 
 #footer .ft_logo {
