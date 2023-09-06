@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/code.jquery.com_jquery-3.5.1.min.js"></script>
+    <script src="../js/common.js"></script>
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/portfolio.css">
+    <link rel="shortcut icon" href="../ad_favicon.png">
+    <link rel="apple-touch-icon" href="../ap_favicon.png">
+    <script src="../js/portfolio.js"></script>
+</head>
+<body>
+    <header id="mobile_header">
+        <h1 onclick="location.href='/main'">J's Blog</h1>
+        <aside id="mobile_menu">
+            <script src="https://kit.fontawesome.com/1ea5be4fc8.js" crossorigin="anonymous"></script>
+            <div class="menu">
+                <button class="Plus" data-type="circle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </aside>
+        <div class="side_menu">
+            <div class="sm_inner">
+                <button class="close_btn" type="button">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                </button>
+                <div class="member">
+                    <p>
+                        <span id="m_userName"></span>님 환영합니다.
+                    </p>
+                    <div class="btnwrap">
+                        <button type="button" class="signout" id="logoutButton">로그아웃</button>
+                        <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                    </div>
+                </div>
+                <form>
+                    <input type="text" placeholder="찾으시는게 있나요?" class="m_search_input">
+                    <button class="m_search" type="button">SEARCH</button>
+                </form>
+                <h2 class="title">TITLE</h2>
+                <ul class="m_menulist">
+                    <li>
+                        <a href="#none" data-text="INTRODUCE">INTRODUCE</a>   
+                    </li>
+                    <li>
+                        <a href="#none" data-text="PORTFOLIO">PORTFOLIO</a>    
+                    </li>
+                    <li>
+                        <a href="#none" data-text="CAREER">CAREER</a>
+                    </li>
+                    <li>
+                        <a href="/board" data-text="BOARD">BOARD</a>
+                    </li>
+                </ul>  
+            </div>
+        </div>
+    </header>
+    <aside id="search">
+        <div class="circle">
+            <form>
+                <input type="text" placeholder="찾으시는게 있나요?" class="search_input">
+                <button class="searchicon" type="button"></button>
+            </form>
+        </div>
+    </aside>
+    <header id="header">
+        <div class="center">
+            <a href="/main">
+                <h1 class="logo"></h1>
+            </a>    
+        </div>
+        <div class="center">
+            <div class="member">
+                <p>
+                    <span id="userName"></span>님 환영합니다.
+                </p>
+                <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                <button type="button" class="signout" id="logoutButton">로그아웃</button>
+            </div>
+        </div>
+        <ul class="menubar">
+            <div class="center">
+                <li>
+                    <a href="#none" data-text="INTRODUCE">INTRODUCE</a>   
+                </li>
+                <li>
+                    <a href="#none" data-text="PORTFOLIO">PORTFOLIO</a>    
+                </li>
+                <li>
+                    <a href="#none" data-text="CAREER">CAREER</a>
+                </li>
+                <li>
+                    <a href="/board" data-text="BOARD">BOARD</a>
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section id="main_contents">
+        <div class="center">
+            <div class="picture_table">
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+                <div class="table_item">
+                    <div class="iteminner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="center">
+            <div class="ft_logo"></div>
+            <div class="copyright">
+                <p>Copyright 2023. choikc1999 All picture cannot be copied without permission<br>
+                This blog is for personal portfolio, not for commercial use.</p>
+            </div>
+            <div class="tel_email">
+                <p><span>Tel.</span> 010-3122-1274</p>
+                <p><span>Email:</span> choikc1999@naver.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
