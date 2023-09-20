@@ -1,8 +1,9 @@
 .slideshow {
-    width: 60.0rem;
+    width: 46%;
     height: 100.0rem;
     overflow: hidden;
     position: relative;
+    display: inline-block;
 }
 
 .picture_left {
@@ -16,6 +17,7 @@
     height: 100%;
     right: 0;
     position: absolute;
+    top: -40.0rem;
 }
 
 .table_item {
@@ -27,13 +29,41 @@
 .iteminner {
     width: 100%;
     height: 100%;
-    border: 0.1rem solid #d1d1d1;
 }
 
 .iteminner1 {
     background: url(../images/portfolio/catshop.png) no-repeat 0 0 / cover;
+    cursor: pointer;
 }
 
 .iteminner2 {
     background: url(../images/portfolio/fastbox.png) no-repeat 0 0 / cover;
 }
+
+.site_information {
+    width: 54%;
+    padding: 0 3.0rem;
+    height: 100.0rem;
+    position: relative;
+    float: right;
+}
+
+.hole {
+    width: 51.2rem;
+    height: 284px;
+    background: url(../images/hole01.png) no-repeat 0 0 ;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+}
+
+.hole_item {
+    width: 51.2rem;
+    height: 284px;
+    background: url(../images/hole02.png) no-repeat 0 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+} 

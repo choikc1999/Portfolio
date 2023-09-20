@@ -17,9 +17,8 @@ $(document).ready(function() {
 
         var $clonedItem = $pictureRight.find('.table_item:last').clone();
     
-        $pictureRight.prepend($clonedItem);
-    
-        $pictureRight.animate({ 'top': '+=40.0rem' }, 3500, function() {
+        $pictureRight.animate({ 'top': '+=40.0rem' }, 1500, function() {
+            $pictureRight.prepend($clonedItem);
             $pictureRight.find('.table_item:last').remove();
             $pictureRight.css('top', '-40.0rem');
         });
