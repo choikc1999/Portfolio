@@ -19,8 +19,8 @@ $(document).ready(function() {
     });
 
     $('.search_input').click(function(){
+        $('.searchiconShow').css('filter', 'drop-shadow(0.2rem 0.2rem 0.2rem #0a0a0a)');
         $('.circle_click').css('background','#fff');
-        $('.searchiconShow').css('filter: drop-shadow','0.2rem 0.2rem 0.2rem #0a0a0a');
     })
 
     $('.searchicon, .searchiconShow').click(function(){
@@ -40,6 +40,8 @@ $(document).ready(function() {
                 $(this).addClass("searchiconShow");
                 $('.searchiconShow').removeClass("searchicon");
                 $('.searchiconShow').attr('type', 'button'); // 버튼 타입을 "button"으로 변경
+                $('.circle_click').css('background','none');
+                $('.searchiconShow').css('filter', 'none');
                 console.log("검색어를 입력하세요");
             } else {
                 // 입력값이 있는 경우의 동작을 여기에 구현
