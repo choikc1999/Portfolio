@@ -9,7 +9,7 @@ html {
     margin-top: 5.0rem;
     padding: 3.0rem 8.0rem;
     text-align: center;
-    border: 0.3rem solid #0b9882;
+    border: 0.3rem solid #ffcc00;
     border-radius: 2.5rem;
 }
 
@@ -48,7 +48,7 @@ html {
     height: 6.0rem;
     margin-bottom: 3.5rem;
     border-radius: 2.0rem;
-    background: #0b9882;
+    background: #ffcc00;
 }
 
 .change label {
@@ -69,32 +69,32 @@ html {
 }
 
 .change .btn_change {
-    background: #0b9882;
+    background: #ffcc00;
     border-radius: 1.5rem 0 0 1.5rem;
 }
 
 .change .btn_change:hover {
-    background: #076355;
+    background: #ffcc00;
 }
 
 .change .btn_back {
-    background: #076355;
+    background: #ffcc00;
     border-radius: 0 1.5rem 1.5rem 0;
 }
 
 .change .btn_back:hover {
-    background: #0b9882;
+    background: #f19839;
 }
 
 .change .btn_withdrawal {
     width: 100%;
-    background: #05473d;
+    background: #ffcc00;
     border-radius: 1.5rem;
     margin-top: 1.0rem;
 }
 
 .change .btn_withdrawal:hover {
-    background: #04312a;
+    background: #c85b2b;
 }
 
 /* 에러메세지 css */

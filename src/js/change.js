@@ -278,8 +278,8 @@ $(document).ready(function() {
 
     // 기타 css 변경 코드
     $(".changeInputID, .changeInputPw, .changeInputName, .changeInputEmail, .changeInputPN").click(function (e) {
-        $(".changeInput").css("background", "#0b9882");
-        $(this).css("background", "#076355");
+        $(".changeInput").css("background", "#ffcc00");
+        $(this).css("background", "#f19839");
     });
 
     $(".changeInput").css("transition", "background-color 0.2s");
