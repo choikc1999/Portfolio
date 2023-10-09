@@ -9,20 +9,38 @@
     <link rel="stylesheet" href="../css/login.css">
     <link rel="shortcut icon" href="../ad_favicon.png">
     <link rel="apple-touch-icon" href="../ap_favicon.png">
+    <script>
+        $(document).ready(function() {
+            $(".logo").css("opacity", "1");
+            setTimeout(function(){
+                $(".logo").css("transform","translateY(-150px)");
+                setTimeout(function(){
+                $("form").css("opacity","1");
+            },1000);
+            },1000);
+            
+            $("input").click(function(){
+                $("input").css({"width":"80%", "background":"rgba(255,255,255,0.3)", "color":"#ffcc00"});
+                $(this).css({"width":"100%", "background":"#ffcc00", "color":"#fff"});
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="login_form">
         <h1 class="logo"></h1>
         <form autocomplete="off" id="login">
             <div>
-                <input type="text" id="id" class="id" placeholder="ID">
+                <input type="text" id="id" class="id" placeholder="UserID">
             </div>
             <div>
                 <input type="password" id="password" class="pwd" placeholder="Password" autocomplete="new-password">
             </div>
-            <button type="button" class="join" onclick="location.href='join'">SIGN UP !</button>
-            <button type="button" class="login" onclick="loginUser();">SIGN IN !</button>
-            <div id="errorElement" class="error-message"></div>
+            <div class="btn_wrap">
+                <button type="button" class="join" onclick="location.href='join'">SIGN UP !</button>
+                <button type="button" class="login" onclick="loginUser();">SIGN IN !</button>
+            </div>
+                <div id="errorElement" class="error-message"></div>
         </form>
     </div>
     <script src="./js/login.js"></script>

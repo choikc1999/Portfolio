@@ -1,12 +1,17 @@
 html {
     font-size: 10px;
+    height: 100%;
+}
+
+body {
+    background: #ffe992;
 }
 
 .body {
     width: 60.0rem;
     height: 75.0rem;
     margin-top: 5.0rem;
-    border: 0.2rem solid #d1d1d1;
+    /* border: 0.2rem solid #d1d1d1; */
     padding: 1.0rem 3.0rem;
     position: absolute;
     left: 50%;
@@ -17,14 +22,14 @@ html {
 .body h1 {
     text-align: center;
     font-size: 4.0rem;
-    color: #333;
+    color: #ff7e00;
     line-height: 3.5rem;
     margin: 1.5rem 0 3.0rem 0;
 }
 
 .body h1 span {
     font-size: 2.0rem;
-    color: #666;
+    color: #fd9127;
     font-weight: 600;
 }
 
@@ -39,11 +44,11 @@ html {
     width: 100%;
     height: 5.0rem;
     margin: 1.8rem 0;
-    border: 0.2rem solid #d1d1d1;
+    border: 0.2rem solid #f8902a;
     padding: 1.2rem;
     font-size: 1.5rem;
-    background: #f5f5f5;
-    color: #333;
+    background: #ffe992;
+    color: #ff7e00;
     font-weight: bold;
     border-radius: 1.0rem;
 }
@@ -56,11 +61,74 @@ html {
     margin-left: 1.5rem;
     font-weight: bold;
     font-size: 1.8rem;
-    background: #f5f5f5;
+    background: #ffe992;
     position: absolute;
     padding: 0.5rem 1.0rem;
     line-height: 2.0rem;
-    color: #ccc;
+    color: #ffc286;
+}
+
+.information_area .lb_h {
+    color: #f8902a !important;
+}
+
+.body textarea {
+    width: 100%;
+    height: 8.0rem;
+    resize: none;
+    text-align: center;
+    padding: 1.0rem 0;
+    font-size: 1.6rem;
+    line-height: 2.5rem;
+    border-radius: 1.0rem;
+    border: none;
+    background: none;
+    border: 0.2rem solid #f8902a;
+    margin-top: 1.8rem;
+    /* font-weight: 500; */
+    color: #333;
+}
+
+.body textarea:focus {
+    outline: none;
+}
+
+.body textarea::-webkit-scrollbar{
+    width: 10px;
+}
+
+.body textarea::-webkit-scrollbar-thumb{
+    background-color: #ffc286;   
+    border-radius: 1.0rem;    
+}
+
+.body .ckb {
+    position: absolute;
+    right: 0;
+    height: 2.0rem;
+}
+
+/* .body .ckb input[type="checkbox"] {
+    display: none;
+} */
+
+.body .ckb .checkbox_text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f8902a;
+    padding-right: 0.6rem;
+    cursor: pointer;
+}
+
+.body .ckb .checkbox {
+    width: 1.5rem;
+    height: 100%;
+    border: none;
+    transform: translateY(0.5rem);
+}
+
+.body .ckb .checkbox:checked {
+    background: #ff7e00;
 }
 
 .btn {
@@ -77,21 +145,22 @@ html {
 
 .btn_back {
     background: none;
-    border: 0.2rem solid #d1d1d1;
+    border: 0.2rem solid #ff7e00;
 }
 
 .btn_back:hover {
-    background: #d1d1d1;
+    background: #ff7e00;
+    color: #fff;
 }
 
 .btn_signup {
     margin-top: 3.0rem;
-    background: #076355;
+    background: #ff7e00;
     color: #fff;
 }
 
 .btn_signup:hover {
-    background: #0b9882;
+    background: #cf6600;
 }
 
 /* 에러메세지 css */
@@ -126,6 +195,17 @@ html {
 }
 .dropdown-item:hover {
     background: #f1f1f1;
+}
+
+.logo {
+    background: url(../images/logo.png) no-repeat 0 0 / 100% auto;
+    width: 640px;
+    height: 640px;
+    position: fixed;
+    right: 100px;
+    bottom: 0;
+    opacity: 0.5;
+    z-index: -1;
 }
 
 /* 미디어 쿼리 */

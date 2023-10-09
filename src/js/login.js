@@ -8,7 +8,6 @@ function showError(elementId, errorMessage, isError) {
     }
 }
 
-
 function loginUser() {
     var form = $("#login"); // 로그인 폼 가져오기
 

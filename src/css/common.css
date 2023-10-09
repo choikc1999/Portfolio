@@ -7,7 +7,7 @@ a {text-decoration: none; color: #333;}
 ul,li,ol {list-style: none;}
 .center {max-width: 130.0rem; margin: 0 auto; position: relative;}
 .blind {position: absolute; left: -9999px; font-size: 0;}
-body {background: #f5f5f5; position: relative;}
+body {position: relative;}
 
 #search {
     position: fixed;
@@ -35,15 +35,15 @@ body {background: #f5f5f5; position: relative;}
     height: 100%;
     border-radius: inherit;
     z-index: 1;
-    box-shadow: inset 0 0 0 3.5rem #076355;
+    box-shadow: inset 0 0 0 3.5rem #ffd014;
     -webkit-transform: scale3d(0.9, 0.9, 1);
     transform: scale3d(0.9, 0.9, 1);
     -webkit-transition: box-shadow 0.3s, -webkit-transform 0.3;
-    transition: box-shadow 0.3s, transform 0.3s
+    transition: box-shadow 0.3s, transform 0.3s;
 }
 
 #search .circle:hover::before {
-    box-shadow: inset 0 0 0 0.3rem #076355;
+    box-shadow: inset 0 0 0 0.3rem #ffd014;
     -webkit-transform: scale3d(1, 1, 1);
     transform: scale3d(1, 1, 1);
 }
@@ -54,7 +54,7 @@ body {background: #f5f5f5; position: relative;}
     border: 0;
     transform: translateX(-50%);
     background: url(../images/search/search.png) no-repeat 0 0;
-    filter: drop-shadow(0.2rem 0.2rem 0.2rem #000);
+    filter: drop-shadow(0.2rem 0.2rem 0.1rem #000);
     width: 6.5rem;
     height: 6.5rem;
     transition: 0.8s;
@@ -82,15 +82,17 @@ body {background: #f5f5f5; position: relative;}
     top: -0.3rem;
     cursor: pointer;
     right: 0.3rem;
+    /* filter: drop-shadow(0.2rem 0.2rem 0.2rem #0a0a0a); */
 }
 
 .circle_click {
     position: relative;
     width: 6.5rem;
     height: 6.5rem;
-    border: 0.3rem solid #076355;
+    border: 0.3rem solid #ffd014;
     border-radius: 2.0rem;
     filter: drop-shadow(0.3rem 0.4rem 0.3rem #0a0a0a);
+    /* background: rgba(255,255,255,1); */
 }
 
 #search .circle .search_input {
@@ -344,20 +346,21 @@ particle {
 
 #header {
     width: 100%;
-    height: 28.0rem;
+    height: 22.5rem;
     position: relative;
     /* background: rgba(136, 229, 215, 0.15); */
     margin-bottom: 5.0rem;
     clear: both;
 }
 #header .logo {
-    background: url(../images/logo.png) no-repeat 0 0;
-    width: 20.0rem;
-    height: 21.0rem;
+    background: url(../images/s_logo.png) no-repeat 0 0;
+    width: 30.0rem;
+    height: 13.5rem;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin-top: 0.5rem;
+    left: 0;
+    top: 2.0rem;
+    /* transform: translateX(-50%); */
+    /* margin-top: 0.5rem; */
 }
 
 #header .menubar {
@@ -365,7 +368,7 @@ particle {
     height: 5.0rem;
     position: absolute;
     bottom: 0;
-    background: #076355;
+    background: #ffcc00;
 }
 
 #header .menubar .center {
@@ -400,7 +403,7 @@ particle {
     height: 100%;
     left: 0;
     text-align: center;
-    background: #097363;
+    background: #ffe375;
     color: #fff;
     transition: 0.5s;
     transform-origin: bottom;
@@ -418,7 +421,7 @@ particle {
     width: 100%;
     height: 100%;
     text-align: center;
-    background: #076355;
+    background: #ffcc00;
     color: #fff;
     transition: 0.5s;
     transform-origin: top;
@@ -432,31 +435,47 @@ particle {
 #header .member {
     float: right;
     text-align: right;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: #333;
     margin-top: 0.5rem;
 }
 
 #header .member p {
-    float: left;
-    margin-right: 1.0rem;
+    /* float: left; */
+    /* margin-right: 1.0rem; */
     line-height: 2.5rem;
+    background: #ffa200;
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 0 0.7rem;
+    margin-bottom: 0.5rem;
+}
+
+#header .member p #userName {
+    font-weight: bold;
 }
 
 #header .member button {
     border: 0;
     background: 0;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     cursor: pointer;
     padding: 0.3rem;
-    color: #333;
-    border: 0.1rem solid #333;
+    color: #fff;
+    background: #ffcc00;
+    /* border: 0.1rem solid #333; */
     border-radius: 0.5rem;
+    box-shadow: 0px 4px 0px #f09f04;
 }
 
-#header .member button:hover {
-    background: #d1d1d1;
+#header .member button:active {
+    box-shadow: 0 0 #ff4c4b; 
+    background-color: #d8af0b;
 }
+
+/* #header .member button:hover {
+    background: #d1d1d1;
+} */
 
 
 /* footer 시작 */
@@ -465,7 +484,7 @@ particle {
     bottom: 0;
     width: 100%;
     min-height: 20.0rem;
-    background: #05362f;
+    background: #ffcc00;
     margin-top: 5.0rem;
     padding-top: 5.0rem;
     clear: both;
@@ -482,7 +501,7 @@ particle {
 #footer .copyright {
     display: inline-block;
     font-size: 1.8rem;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,1);
     margin: 2.0rem 0 0 5.0rem;
     line-height: 3.0rem;
 }
@@ -490,14 +509,14 @@ particle {
 #footer .tel_email {
     /* display: inline-block; */
     font-size: 1.8rem;
-    color: rgba(255,255,255,0.8);
+    color: rgba(255,255,255,1);
     margin: 2.0rem 0 0 5.0rem;
     line-height: 3.0rem;
     float: right;
 }
 
 #footer .tel_email span{
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,1);
 }
 /* footer 종료 */
 

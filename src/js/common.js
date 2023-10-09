@@ -18,6 +18,11 @@ $(document).ready(function() {
             }); 
     });
 
+    $('.search_input').click(function(){
+        $('.circle_click').css('background','#fff');
+        $('.searchiconShow').css('filter: drop-shadow','0.2rem 0.2rem 0.2rem #0a0a0a');
+    })
+
     $('.searchicon, .searchiconShow').click(function(){
         if ($(this).hasClass("searchiconShow")) {
             // 이미 "searchiconShow" 클래스가 있는 경우 처리

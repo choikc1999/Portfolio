@@ -191,6 +191,13 @@ function hideEmailDropdown() {
     $("#emailDropdown").empty().hide();
 }
 
+// 이용약관 체크박스
+const CheckBox = $(".checkbox");
+
+$(".checkbox_text").click(function(e){
+    CheckBox.prop("checked", true);
+});
+
 $("#registrationForm").submit(function(e){
     e.preventDefault(); // event.preventDefault = a태그나 submit태그 클릭시 창이 리프레시되는 현상을 막기 위해 사용
 
@@ -282,39 +289,45 @@ $("#registrationForm").submit(function(e){
         showError("phoneNumberError", "전화번호는 숫자만 입력 가능합니다.");
         return;
     }
+
+    // 체크박스
+    if (!CheckBox.prop("checked")) {
+        alert("Privacy Terms(개인정보 이용약관)을 읽어보신 후 동의하셔야 가입가능합니다.")
+        return;
+    }
 }); 
 
 // css
 $(document).ready(function(){
     $(".input1").click(function(e){
-        $(".lb_h").css("color","#ccc");
-        $(".lb_h1").css("color","#333");
+        $(".lb_h").css("color","#ffc286");
+        $(".lb_h1").css("color","#ff7e00");
     });
     $(".input2").click(function(e){
-        $(".lb_h").css("color","#ccc");
-        $(".lb_h2").css("color","#333");
+        $(".lb_h").css("color","#ffc286");
+        $(".lb_h2").css("color","#ff7e00");
     });
     $(".input3").click(function(e){
-        $(".lb_h").css("color","#ccc");
-        $(".lb_h3").css("color","#333");
+        $(".lb_h").css("color","#ffc286");
+        $(".lb_h3").css("color","#ff7e00");
     });
     $(".input4").click(function(e){
-        $(".lb_h").css("color","#ccc");
-        $(".lb_h4").css("color","#333");
+        $(".lb_h").css("color","#ffc286");
+        $(".lb_h4").css("color","#ff7e00");
     });
     $(".input5").click(function(e){
-        $(".lb_h").css("color","#ccc");
-        $(".lb_h5").css("color","#333");
+        $(".lb_h").css("color","#ffc286");
+        $(".lb_h5").css("color","#ff7e00");
     });
 });
 
-$(document).ready(function(){
-    function handleClick(e) {
-        alert("J's Blog을 방문해 주셔서 감사합니다. 본 웹사이트는 제 포트폴리오를 소개하는 공간입니다. 입력하신 개인정보는 절대로 상업적으로 이용되지 않으며, 모든 비밀번호는 철저히 암호화되어 안전하게 보관됩니다. 그러니 안심하시고 가입해주세요!");
+// $(document).ready(function(){
+//     function handleClick(e) {
+//         alert("J's Blog을 방문해 주셔서 감사합니다. 본 웹사이트는 제 포트폴리오를 소개하는 공간입니다. 입력하신 개인정보는 절대로 상업적으로 이용되지 않으며, 모든 비밀번호는 철저히 암호화되어 안전하게 보관됩니다. 그러니 안심하시고 가입해주세요!");
 
-        // 클릭 이벤트 해제
-        $("body").off("click", handleClick);
-    }
+//         // 클릭 이벤트 해제
+//         $("body").off("click", handleClick);
+//     }
 
-    $("body").click(handleClick);
-});
+//     $("body").click(handleClick);
+// });

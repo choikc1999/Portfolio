@@ -1,10 +1,15 @@
 html {
     font-size: 10px;
+    height: 100%;
+}
+
+body {
+    background: #ffe992;
 }
 
 .login_form {
-    width: 100.0rem;
-    /* height: 800px; */
+    width: 80.0rem;
+    height: 100%;
     margin: auto;
     margin-top: 5.0rem;
     padding: 3.0rem 10.0rem;
@@ -13,38 +18,52 @@ html {
 
 .login_form .logo {
     background: url(../images/logo.png) no-repeat 0 0;
-    width: 20.0rem;
-    height: 21.0rem;
+    width: 64.0rem;
+    height: 64.0rem;
     margin: 0 auto;
-    margin-bottom: 6.0rem;
+    opacity: 0;
+    transition: 1s;
+}
+
+form {
+    display: block;
+    transform: translateY(-250px);
+    opacity: 0;
+    transition: 1s;
 }
 
 .login_form input {
-    width: 100%;
+    width: 80%;
     height: 5.0rem;
     border: 0;
     background: none;
     /* border: 2px solid #073d35; */
     margin-bottom: 2.0rem;
     border-radius: 2.5rem;
-    background: #0b9882;
+    background: rgba(255,255,255,0.3);
     color: #fff;
     padding: 0 2.5rem;
     font-size: 1.8rem;
+    text-align: center;
+    transition: 0.5s;
 }
 
 .login_form input::placeholder {
-    color: #fff;
+    color: #ffcc00;
     font-size: 1.8rem;
     font-weight: bold;
 }
 
-.login_form input:hover {
+/* .login_form input:hover {
     background: #076355;
-}
+} */
 
 .login_form input:focus {
     outline: none;
+}
+
+.btn_wrap {
+    padding: 0 10%;
 }
 
 .login_form button {
@@ -64,27 +83,47 @@ html {
 .login_form .join {
     border-radius: 2.0rem 0 0 2.0rem;
     border-right: 0;
-    background: #17695d;
+    background: #ffcc00;
     margin-bottom: 2.0rem;
+    box-shadow: 0px 4px 0px #eebf04;
 }
 
-.login_form .join:hover {
-    background: #0d3932;
+.login_form .join:active {
+    box-shadow: 0 0 #ff4c4b; 
+    background-color: #d8af0b;
 }
+
+/* .login_form .join:hover {
+    background: #0d3932;
+} */
 
 .login_form .login {
     border-radius: 0 2.0rem 2.0rem 0;
-    background: #0d3932;
+    background: #ffa800;
     margin-bottom: 2.0rem;
+    box-shadow: 0px 4px 0px #f09f04;
 }
 
+.login_form .login:active {
+    box-shadow: 0 0 #ff4c4b;
+    background-color: #9f6716;
+}
+
+/* 
 .login_form .login:hover {
     background: #17695d;
-}
+} */
 
-#errorbox {
+#login {position: relative;}
+
+#errorElement {
     font-weight: bold;
     color: #f00;
+    position: absolute;
+    bottom: -14.0rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.6rem;
 }
 
 /* 미디어 쿼리 */
