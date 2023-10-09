@@ -5,7 +5,7 @@ html {
 .WriteForm {
     width: 100%;
     height: 100%;
-    border: 0.2rem solid #0b5a4e;
+    border: 0.2rem solid #ffcc00;
     border-radius: 2.0rem;
     padding: 1.5rem 1.0rem;
 }
@@ -26,7 +26,7 @@ html {
     padding: 0 1.0rem;
     border: none;
     background: none;
-    border: 0.2rem solid #0b5a4e;
+    border: 0.2rem solid #ffcc00;
     border-radius: 1.0rem;
 }
 
@@ -94,12 +94,12 @@ html {
 }
 
 .WriteForm form .select_board ul li:first-child {
-    border: 0.2rem solid #0b5a4e;
+    border: 0.2rem solid #ffcc00;
     border-radius: 1.0rem;
 }
 
 .selected {
-    border: 0.2rem solid #0b5a4e !important;
+    border: 0.2rem solid #ffcc00 !important;
     border-radius: 1.0rem;
 }
 
@@ -150,7 +150,7 @@ html {
     border: none;
     background: none;
     border-radius: 1.5rem;
-    border: 0.2rem solid #0b5a4e;
+    border: 0.2rem solid #ffcc00;
 }
 
 .area_label .area:focus {
@@ -174,10 +174,16 @@ html {
     padding: 1.0rem;
     border-radius: 1.0rem;
     color: #fff;
-    background: #0b5a4e;
+    background: #ffcc00;
     font-size: 1.6rem;
-
+    box-shadow: 0px 4px 0px #f09f04;
 }
+
+.WriteForm .btn button:active {
+    box-shadow: 0 0 #ff4c4b; 
+    background-color: #d8af0b;
+}
+
 
 /* 미디어 쿼리 */
 

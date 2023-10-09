@@ -5,7 +5,7 @@ html {
 .answer {
     width: 100%;
     height: 100%;
-    border: 0.3rem solid #076355;
+    border: 0.3rem solid #ffcc00;
     border-radius: 1.5rem;
     min-height: 60.0rem;
     padding: 2.0rem;
@@ -14,7 +14,7 @@ html {
 .answer h2 {
     font-size: 2.8rem;
     display: block;
-    border-bottom: 0.3rem solid #076355;
+    border-bottom: 0.3rem solid #ffcc00;
     padding-bottom: 2.0rem;
 }
 

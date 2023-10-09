@@ -62,7 +62,7 @@ $(document).ready(function() {
         var targetBackground = $(this).data("background");
         $(".background").css("display", "none");
         $(targetBackground).css("display", "inline-block").addClass("animate-background");
-        $(".menu a").css("color", "#065549"); // 모든 메뉴의 색상을 기본 값으로 초기화
+        $(".menu a").css("color", "#ffd014"); // 모든 메뉴의 색상을 기본 값으로 초기화
         $(this).find("a").css("color", "#fff"); // 마우스 오버한 메뉴의 색상을 활성화된 상태로 변경
     });
 
@@ -74,7 +74,7 @@ $(document).ready(function() {
         $(".menu").not(this).each(function() {
             var backgroundSelector = $(this).data("background");
             $(backgroundSelector).removeClass("animate-background");
-            $(this).find("a").css("color", "#065549"); // 클릭한 메뉴 이외의 메뉴의 색상을 기본 값으로 초기화
+            $(this).find("a").css("color", "#ffd014"); // 클릭한 메뉴 이외의 메뉴의 색상을 기본 값으로 초기화
         });
     });
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
 
         resetMenu1();
         $(".background").css("display", "none"); // 배경을 숨김
-        $(".menu a").css("color", "#065549"); // 모든 메뉴의 색상을 기본 값으로 초기화
+        $(".menu a").css("color", "#ffd014"); // 모든 메뉴의 색상을 기본 값으로 초기화
 
         if (lastClickedMenu) {
             var lastBackground = lastClickedMenu.data("background");

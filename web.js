@@ -150,6 +150,10 @@ app.get("/ModifyWrite", (req, res) => {
 app.get("/answer", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "answer.html"));
 });
+app.get("/portfolio", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "portfolio.html"));
+});
+
 
 const PORT = 8001;
 app.listen(PORT, () => {

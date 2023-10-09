@@ -3,7 +3,7 @@ html {
 }
 
 .view {
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     border-radius: 2.5rem;
     padding: 2.0rem;
 }
@@ -11,10 +11,10 @@ html {
 .view .title_view {
     width: 100%;
     display: inline-block;
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     border-radius: 1.0rem;
     height: 4.0rem;
-    line-height: 3.8rem;
+    line-height: 3.5rem;
     margin-bottom: 1.0rem;
     padding: 0 1.0rem;
     font-size: 1.8rem;
@@ -24,9 +24,9 @@ html {
 .view .name_view {
     width: 20%;
     height: 3.0rem;
-    line-height: 2.7rem;
+    line-height: 2.5rem;
     display: inline-block;
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     padding: 0 1.0rem;
     border-radius: 0.8rem;
     color: #333;
@@ -36,9 +36,9 @@ html {
 .view .date_view {
     width: 20%;
     height: 3.0rem;
-    line-height: 2.7rem;
+    line-height: 2.5rem;
     display: inline-block;
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     padding: 0 1.0rem;
     border-radius: 0.8rem;
     color: #333;
@@ -48,17 +48,18 @@ html {
 .view .select_view {
     width: 15%;
     height: 3.0rem;
-    line-height: 2.7rem;
+    line-height: 2.5rem;
     display: inline-block;
     padding: 0 1.0rem;
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     border-radius: 0.8rem;
+    font-size: 1.6rem;
 }
 
 .view .view_text {
     margin-top: 3.0rem;
     width: 100%;
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     border-radius: 2.5rem;
     height: 100%;
     min-height: 50.0rem;
@@ -75,10 +76,12 @@ html {
 
 .view .information_box .reply_count {
     color: #666;
+    font-size: 1.6rem;
 }
 
 .view .information_box .view_count {
     color: #666;
+    font-size: 1.6rem;
 }
 
 .view .information_box .reply_box {
@@ -107,7 +110,7 @@ html {
     margin: 0;
     float: left;
     margin-bottom: 1.0rem;
-    border: 0.2rem solid #076355;
+    border: 0.2rem solid #ffcc00;
     border-radius: 1.0rem;
 }
 
@@ -126,12 +129,28 @@ html {
     padding: 1.0rem;
     font-size: 1.6rem;
     float: left;
+    border: 1px solid #ffae00;
 }
+
+.view .information_box .textarea .reply_textarea:focus {
+    outline: 1px solid #e69d01;
+}
+
 .view .information_box .textarea .write_btn {
     width: 10%;
     height: 100%;
     min-height: 10.0rem;
     float: right;
+    background: #ffae00;
+    border: none;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.view .information_box .textarea .write_btn:active {
+    box-shadow: 0 0 #ff4c4b; 
+    background-color: #e69d01;
 }
 
 .view .information_box .btn_box {
@@ -145,6 +164,16 @@ html {
 .view .information_box .btn_box button {
     padding: 0.5rem;
     margin-left: 1.0rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 0px #b07800;
+    border: none;
+    background: #fba500;
+    color: #fff;
+}
+
+.view .information_box .btn_box button:active {
+    box-shadow: 0 0 #ff4c4b; 
+    background-color: #e69d01;
 }
 
 /* 미디어 쿼리 */

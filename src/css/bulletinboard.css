@@ -2,6 +2,13 @@ html {
     font-size: 10px;
 }
 
+.h_board {
+    font-size: 3.2rem;
+    padding: 0 0 2.0rem 0;
+    text-align: center;
+    color: #e8bb00;
+}
+
 #main_contents .menulist {
     position: relative;
 }
@@ -13,7 +20,7 @@ html {
     justify-content: space-evenly;
     align-items: center;
     align-content: center;
-    border-bottom: 0.2rem solid #076355;
+    /* border-bottom: 0.2rem solid #ffd014; */
 }
 
 #main_contents .menulist ul li {
@@ -26,10 +33,11 @@ html {
 }
 
 #main_contents .menulist ul li .background {
-    background: url(../images/boardmenu.png) no-repeat 0 0;
+    background: #ffcc00;
+    border-radius: 1.0rem 1.0rem 0 0;
     display: none;
     position: absolute;
-    bottom: -1.0rem;
+    bottom: 0rem;
     left: 0;
     width: 100%;
     height: 100%;
@@ -37,6 +45,10 @@ html {
     transform: translateY(0%);
     z-index: -1;
     animation: slideUp 0.3s ease-in-out forwards;
+}
+
+#main_contents .menulist ul li:first-child {
+    left: 1px;
 }
 
 @keyframes slideUp {
@@ -68,7 +80,7 @@ html {
 #main_contents .menulist ul li a {
     font-size: 1.8rem;
     font-weight: bold;
-    color: #065549;
+    color: #ffd014;
     transition: 0.5s;
 }
 
@@ -78,7 +90,7 @@ html {
 
 #main_contents .view_board {
     width: 100%;
-    padding: 0 3.0rem;
+    /* padding: 0 3.0rem; */
 }
 
 #main_contents .view_board table {
@@ -86,27 +98,29 @@ html {
     height: 100%;
     text-align: center;
     border-spacing : 0;
-    border-bottom: 0.2rem solid #076355;
+    border-bottom: 0.2rem solid #ffcc00;
 }
 
 #main_contents .view_board table th {
     text-align: center;
     padding: 2.0rem 0;
-    border-bottom: 0.2rem solid #076355;
+    background-color: #ffcc00;
+    color: #fff;
+    /* border-bottom: 0.2rem solid #076355; */
     font-size: 1.6rem;
 }
 
 #main_contents .view_board table tr td {
     padding: 1.5rem 0;
     color: #333;
-    border-bottom: 0.1rem solid #076355;
+    border-bottom: 0.1rem solid #ffcc00;
     cursor: pointer;
     font-size: 1.6rem;
 }
 
 #main_contents .view_board table tr td:first-child {
     width: 10%;
-    background: rgb(14,192,165,0.8);
+    /* background: rgb(14,192,165,0.8); */
     color: #000;
 }
 
@@ -114,12 +128,13 @@ html {
     width: 55%;
     text-align: left;
     font-weight: bold;
+    color: #ff8314;
     padding: 1.5rem;
 }
 
 #main_contents .view_board table tr td:nth-child(3) {
     width: 15%;
-    background: rgb(14,192,165,0.8);
+    /* background: rgb(14,192,165,0.8); */
     color: #000;
 }
 
@@ -140,14 +155,20 @@ html {
     height: 3.0rem;
     margin: 1.5rem 0;
     cursor: pointer;
-    background: #076355;
+    background: #ffcc00;
     color: #fff;
     border-radius: 1.0rem;
+    box-shadow: 0px 4px 0px #f09f04;
 }
 
-#main_contents .view_board .write_btn:hover {
-    background: #065549;
+#main_contents .view_board .write_btn:active {
+    box-shadow: 0 0 #ff4c4b; 
+    background-color: #d8af0b;
 }
+
+/* #main_contents .view_board .write_btn:hover {
+    background: #065549;
+} */
 
 #main_contents .view_board .number {
     width: 100%;
