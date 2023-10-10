@@ -9,6 +9,10 @@ html {
     color: #e8bb00;
 }
 
+#main_contents {
+    min-height: 800px;
+}
+
 #main_contents .menulist {
     position: relative;
 }

@@ -24,3 +24,35 @@ $(document).ready(function() {
         });
     }
 });
+
+$(document).on('click', '.iteminner1', function(){
+    $(".ViewDetails").css({
+        'opacity': '0',
+        'top': '100%' // 시작 위치를 페이지 아래로 설정
+    }).animate({
+        'opacity': '1',
+        'top': '30.0rem'
+    }, 100, function(){
+        $(".Dt_item2").css("display","none");
+        $(".ViewDetails").css({'width':'100%','height':'60.0rem','top':'0','border-radius':'3.0rem','background':'none','border':'3px solid #ff9000'});
+        setTimeout(function(){
+            $(".Dt_item1").css("display","block"); 
+        }, 800);
+    });
+});
+
+$(document).on('click', '.iteminner2', function(){
+    $(".ViewDetails").css({
+        'opacity': '0',
+        'top': '100%' // 시작 위치를 페이지 아래로 설정
+    }).animate({
+        'opacity': '1',
+        'top': '30.0rem'
+    }, 100, function(){
+        $(".Dt_item1").css("display","none");
+        $(".ViewDetails").css({'width':'100%','height':'60.0rem','top':'0','border-radius':'3.0rem','background':'none','border':'3px solid #ff9000'});
+        setTimeout(function(){
+            $(".Dt_item2").css("display","block"); 
+        }, 800);
+    });
+});
