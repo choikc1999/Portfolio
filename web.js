@@ -153,6 +153,9 @@ app.get("/answer", (req, res) => {
 app.get("/portfolio", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "portfolio.html"));
 });
+app.get("/introduce", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "introduce.html"));
+});
 
 
 const PORT = 8001;
