@@ -11,6 +11,7 @@ $(document).ready(function() {
             // 댓글 작성 버튼 클릭 이벤트 처리
             $(".write_btn").click(function () {
                 submitReply(response.name); // 사용자 이름을 넘겨줍니다.
+                $(".reply_textarea").val("");
             });
 
             const urlParams = new URLSearchParams(window.location.search);
