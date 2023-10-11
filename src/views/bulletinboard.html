@@ -33,13 +33,13 @@
                         <span id="m_userName"></span>님 환영합니다.
                     </p>
                     <div class="btnwrap">
-                        <button type="button" class="signout" id="logoutButton">로그아웃</button>
-                        <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                        <button type="button" class="signout" id="logoutButton" tabindex="-1">로그아웃</button>
+                        <button type="button" class="change" onclick="location.href='editProfilePage'" tabindex="-1">회원정보 변경</button>
                     </div>
                 </div>
                 <form>
-                    <input type="text" placeholder="찾으시는게 있나요?" class="m_search_input">
-                    <button class="m_search" type="button">SEARCH</button>
+                    <input type="text" placeholder="찾으시는게 있나요?" class="m_search_input" tabindex="-1">
+                    <button class="m_search" type="button" tabindex="-1">SEARCH</button>
                 </form>
                 <h2 class="title">TITLE</h2>
                 <ul class="m_menulist">
@@ -62,8 +62,8 @@
     <aside id="search">
         <div class="circle">
             <form>
-                <input type="text" placeholder="찾으시는게 있나요?" class="search_input">
-                <button class="searchicon" type="button"></button>
+                <input type="text" placeholder="찾으시는게 있나요?" class="search_input" tabindex="-1">
+                <button class="searchicon" type="button" tabindex="-1"></button>
             </form>
         </div>
     </aside>
@@ -78,8 +78,8 @@
                 <p>
                     <span id="userName"></span>님 환영합니다.
                 </p>
-                <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
-                <button type="button" class="signout" id="logoutButton">로그아웃</button>
+                <button type="button" class="change" onclick="location.href='editProfilePage'" tabindex="-1">회원정보 변경</button>
+                <button type="button" class="signout" id="logoutButton" tabindex="-1">로그아웃</button>
             </div>
         </div>
         <ul class="menubar">
@@ -203,7 +203,7 @@
                             </tr>
                         </tbody>
                 </table>
-                <button type="button" class="write_btn" onclick="location.href='/write'">글쓰기</button>
+                <button type="button" class="write_btn" onclick="location.href='/write'" tabindex="-1">글쓰기</button>
                 <div class="number">
                     <ul id="pagination">
                         <!-- <li>1</li>
