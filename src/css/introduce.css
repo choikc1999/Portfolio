@@ -95,6 +95,10 @@
     height: 100%;
     display: flex;
     justify-content: space-evenly;
+<<<<<<< HEAD
+=======
+    overflow: hidden;
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 }
 
 .box2_item {
@@ -103,10 +107,18 @@
     padding: 1.0rem;
     opacity: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+<<<<<<< HEAD
 }
 
 .box2_item1 {
     transform: translateY(0);
+=======
+    cursor: pointer;
+}
+
+.box2_item1 {
+    transform: translateY(100%);
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 }
 
 .item1_inner {
@@ -117,7 +129,11 @@
 }
 
 .box2_item2 {
+<<<<<<< HEAD
     transform: translateY(0);
+=======
+    transform: translateY(100%);
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 }
 
 .item2_inner {
@@ -128,7 +144,11 @@
 }
 
 .box2_item3 {
+<<<<<<< HEAD
     transform: translateY(0);
+=======
+    transform: translateY(100%);
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 }
 
 .item3_inner {
@@ -146,4 +166,12 @@
 .scroll-up2 {
     transform: translateY(10.0rem);
     opacity: 1;
+<<<<<<< HEAD
+=======
+}
+
+.scroll-up3 {
+    transform: translateY(6.0rem);
+    opacity: 1;
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 }

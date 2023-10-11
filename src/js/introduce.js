@@ -1,4 +1,47 @@
 $(document).ready(function () {
+<<<<<<< HEAD
+=======
+    $.ajax({
+        method: 'GET',
+        url: '/get-user-info', // 사용자 정보를 가져오는 경로
+        success: function (response) {
+            // 사용자 정보에서 이름 가져와서 표시
+            document.getElementById("userName").textContent = response.name;
+        },
+        error: function (error) {
+            console.error("Error:", error);
+        }
+    });
+
+    $.ajax({
+        method: 'GET',
+        url: '/get-user-info', // 사용자 정보를 가져오는 경로
+        success: function (response) {
+            // 사용자 정보에서 이름 가져와서 표시
+            document.getElementById("m_userName").textContent = response.name;
+        },
+        error: function (error) {
+            console.error("Error:", error);
+        }
+    });
+
+    // 로그아웃 버튼 클릭 이벤트 처리
+    document.querySelector(".signout").addEventListener("click", function () {
+        // 로그아웃 요청 보내기
+        $.ajax({
+            method: 'GET',
+            url: '/logout',
+            success: function (response) {
+                // 로그아웃 후 로그인 페이지로 리디렉션
+                window.location.href = "/login";
+            },
+            error: function (error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
     var text1 = "안녕하세요"; // 첫 번째 텍스트
     var index1 = 0; // 첫 번째 텍스트의 현재 인덱스
 
@@ -48,7 +91,11 @@ $(document).ready(function () {
 
     $(window).scroll(function(){
         var scrollY = $(this).scrollTop();
+<<<<<<< HEAD
         var triggerScroll = 500;
+=======
+        var triggerScroll = 1000;
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 
         $(".box2_item1").each(function () {
             var $this = $(this);
@@ -56,6 +103,7 @@ $(document).ready(function () {
 
             if (scrollY >= offsetTop - triggerScroll) {
                 $this.addClass('scroll-up1');
+<<<<<<< HEAD
             }
         });
 
@@ -68,4 +116,32 @@ $(document).ready(function () {
             }
         });
     });
+=======
+            } setTimeout(function(){
+                $(".box2_item2").each(function () {
+                    var $this = $(this);
+                    var offsetTop = $this.offset().top;
+        
+                    if (scrollY >= offsetTop - triggerScroll) {
+                        $this.addClass('scroll-up2');
+                    }
+                });
+                setTimeout(function(){
+                    $(".box2_item3").each(function () {
+                        var $this = $(this);
+                        var offsetTop = $this.offset().top;
+            
+                        if (scrollY >= offsetTop - triggerScroll) {
+                            $this.addClass('scroll-up3');
+                        }
+                    });
+                }, 300);
+            },300);
+        });
+    });
+
+    $(".box2_item").click(function() {
+        location.href = "/portfolio";
+    });
+>>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 });
