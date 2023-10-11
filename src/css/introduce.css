@@ -1,0 +1,149 @@
+.container1 {
+    width: 100%;
+    height: 60.0rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.me {
+    background: url(../images/introduce.png) no-repeat 0 0 / 100% auto;
+    width: 25.0rem;
+    height: 46.8rem;
+    position: absolute;
+    right: -30.0rem;
+    bottom: 2.0rem;
+    transition: 1s;
+}
+
+.text h2 {
+    font-size: 4.0rem;
+    line-height: 6.0rem;
+    position: relative;
+    transition: 1s;
+}
+
+#typing-text2 {
+    padding-bottom: 2.0rem;
+}
+
+#typing-text1, #typing-text2 {
+    display: inline-block;
+    /* white-space: pre-line; 줄바꿈을 유지하기 위해 필요 */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    /* border-right: 2px solid #333; */
+}
+
+.text p {
+    font-size: 2.0rem;
+    line-height: 3.5rem;
+    position: relative;
+    left: -150.0rem;
+    transition: 1s;
+}
+
+.text .p1 {
+    padding-bottom: 2.0rem;
+}
+
+.p2bold {
+    font-weight: bold;
+}
+
+.container2 {
+    width: 100%;
+    height: 50.0rem;
+    position: relative;
+    font-size: 2.0rem;
+}
+
+.box1 {
+    width: 30%;
+    height: 100%;
+    float: left;
+    position: relative;
+    padding-right: 1.0rem;
+}
+
+.box2 {
+    width: 70%;
+    height: 100%;
+    float: right;
+}
+
+.box1_day {
+    font-size: 1.5rem;
+    font-weight: normal;
+    padding: 0.5rem 0;
+    display: inline-block;
+}
+
+.box1 li {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 2.5rem;
+}
+
+.box1 p {
+    font-size: 1.4rem;
+    position: absolute;
+    bottom: 0;
+    right: 1.0rem;
+}
+
+.item_wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.box2_item {
+    width: 33.333%;
+    height: 40.0rem;
+    padding: 1.0rem;
+    opacity: 0;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.box2_item1 {
+    transform: translateY(0);
+}
+
+.item1_inner {
+    background: url(../images/introduce_portfolio1.png) no-repeat 0 0 / 100% auto;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(2px 2px 3px #000);
+}
+
+.box2_item2 {
+    transform: translateY(0);
+}
+
+.item2_inner {
+    background: url(../images/introduce_portfolio2.png) no-repeat 0 0 / 100% auto;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(2px 2px 3px #000);
+}
+
+.box2_item3 {
+    transform: translateY(0);
+}
+
+.item3_inner {
+    background: url(../images/introduce_portfolio3.png) no-repeat 0 0 / 100% auto;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(2px 2px 3px #000);
+}
+
+.scroll-up1 {
+    transform: translateY(3.0rem);
+    opacity: 1;
+}
+
+.scroll-up2 {
+    transform: translateY(10.0rem);
+    opacity: 1;
+}

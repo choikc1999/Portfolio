@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../js/code.jquery.com_jquery-3.5.1.min.js"></script>
+    <script src="../js/common.js"></script>
+    <title>J's Blog</title>
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/introduce.css">
+    <link rel="shortcut icon" href="../ad_favicon.png">
+    <link rel="apple-touch-icon" href="../ap_favicon.png">
+</head>
+<body>
+    <header id="mobile_header">
+        <h1 onclick="location.href='/main'">J's Blog</h1>
+        <aside id="mobile_menu">
+            <script src="https://kit.fontawesome.com/1ea5be4fc8.js" crossorigin="anonymous"></script>
+            <div class="menu">
+                <button class="Plus" data-type="circle">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </aside>
+        <div class="side_menu">
+            <div class="sm_inner">
+                <button class="close_btn" type="button">
+                    <i class="fa-regular fa-rectangle-xmark"></i>
+                </button>
+                <div class="member">
+                    <p>
+                        <span id="m_userName"></span>님 환영합니다.
+                    </p>
+                    <div class="btnwrap">
+                        <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                        <button type="button" class="signout" id="logoutButton">로그아웃</button>
+                    </div>
+                </div>
+                <form>
+                    <input type="text" placeholder="찾으시는게 있나요?" class="m_search_input">
+                    <button class="m_search" type="button">SEARCH</button>
+                </form>
+                <h2 class="title">TITLE</h2>
+                <ul class="m_menulist">
+                    <li>
+                        <a href="#none" data-text="INTRODUCE">INTRODUCE</a>   
+                    </li>
+                    <li>
+                        <a href="/portfolio" data-text="PORTFOLIO">PORTFOLIO</a>    
+                    </li>
+                    <li>
+                        <a href="#none" data-text="CAREER">CAREER</a>
+                    </li>
+                    <li>
+                        <a href="/board" data-text="BOARD">BOARD</a>
+                    </li>
+                </ul>  
+            </div>
+        </div>
+    </header>
+    <aside id="search">
+        <div class="circle">
+            <form>
+                <input type="text" placeholder="찾으시는게 있나요?" class="search_input">
+                <button class="searchicon" type="button"></button>
+            </form>
+        </div>
+    </aside>
+    <header id="header">
+        <div class="center">
+            <a href="/main">
+                <h1 class="logo"></h1>
+            </a>    
+        </div>
+        <div class="center">
+            <div class="member">
+                <p>
+                    <span id="userName"></span>님 환영합니다.
+                </p>
+                <button type="button" class="change" onclick="location.href='editProfilePage'">회원정보 변경</button>
+                <button type="button" class="signout" id="logoutButton">로그아웃</button>
+            </div>
+        </div>
+        <ul class="menubar">
+            <div class="center">
+                <li>
+                    <a href="#none" data-text="INTRODUCE">INTRODUCE</a>   
+                </li>
+                <li>
+                    <a href="/portfolio" data-text="PORTFOLIO">PORTFOLIO</a>    
+                </li>
+                <li>
+                    <a href="#none" data-text="CAREER">CAREER</a>
+                </li>
+                <li>
+                    <a href="/board" data-text="BOARD">BOARD</a>
+                </li>
+            </div>
+        </ul>
+    </header>
+    <section id="main_contents">
+        <div class="center">
+            <div class="container1">
+                <div class="me"></div>
+                <div class="text">
+                    <h2 id="typing-text1"></h2><br>
+                    <h2 id="typing-text2"></h2>
+                    <p class="p1">
+                        "어린 시절부터 웹 개발자를 꿈꾸었으나, 개인적인 이유로 포기하고 2022년 10월까지 서비스 업계에서 근무했습니다.<br>
+                        하지만 여전히 웹 개발에 대한 꿈을 완전히 놓지 못하여, 지금이라도 다시 시작해보자는 마음가짐으로<br>
+                        2023년 7월까지 교육을 받은 후 업계에 발을 들이게 되었습니다.<br>
+                        웹 퍼블리싱으로 시작하여 현재는 프론트엔드를 목표로 하고 있습니다.<br>
+                        지속적인 공부를 통해 목표를 이루고자 노력하고 있습니다!"
+                    </p>
+                    <p class="p2">
+                        "해당 블로그는 제 포트폴리오를 위해 제작된 블로그입니다만,<br>
+                        포트폴리오 뿐만 아니라 제가 배운 지식을 공유하고 저장하는 용도로도 활용할 것입니다.<br>
+                        <span class="p2bold">포트폴리오를 보기 위한 것뿐 아니라 지식과 정보를 얻으려고 방문해주시는 모든 분들께도<br>
+                        큰 도움이 되기를 바랍니다.</span>"
+                    </p>
+                </div>
+            </div>
+            <div class="container2">
+                <div class="box1">
+                    <h3>경력</h3>
+                    <ul>
+                        <li>
+                            <span class="box1_day">2022.12.30 - 2023.02.24</span><br>
+                            삼성직업전문학교<br>
+                            [웹표준을 활용한 쇼핑몰 제작]<br>
+                            과정 수료
+                        </li>
+                        <li>
+                            <span class="box1_day">2023.04.11 - 2023.07.05</span><br>
+                            SBS아카데미<br>
+                            [반응형웹디자인&웹퍼블리셔(프론트엔드)]<br>
+                            과정 수료
+                        </li>
+                        <li>
+                            <span class="box1_day">2023.07.10 - Ing..</span><br>
+                            상록에스 (디지털북사업부)에서 근무중
+                        </li>
+                    </ul>
+                    <p>
+                        <a href="#none">more</a>
+                    </p>
+                </div>
+                <div class="box2">
+                    <h3>포트폴리오</h3>
+                    <div class="item_wrap">
+                        <div class="box2_item box2_item1">
+                            <div class="item1_inner"></div>
+                        </div>
+                        <div class="box2_item box2_item2">
+                            <div class="item2_inner"></div>
+                        </div>
+                        <div class="box2_item box2_item3">
+                            <div class="item3_inner"></div>
+                        </div>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer id="footer">
+        <div class="center">
+            <div class="ft_logo"></div>
+            <div class="copyright">
+                <p>Copyright 2023. choikc1999 All picture cannot be copied without permission<br>
+                This blog is for personal portfolio, not for commercial use.</p>
+            </div>
+            <div class="tel_email">
+                <p><span>Tel.</span> 010-3122-1274</p>
+                <p><span>Email:</span> choikc1999@naver.com</p>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/introduce.js"></script>
+</body>
+</html>

@@ -47,6 +47,7 @@ html {
     background: #000;
     float: left;
     margin: 0 1.0rem 1.0rem 0;
+    cursor: pointer;
 }
 
 #main_contents .contaner_1 .intro .it_inner .my_profile p {
