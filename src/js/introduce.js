@@ -1,6 +1,4 @@
 $(document).ready(function () {
-<<<<<<< HEAD
-=======
     $.ajax({
         method: 'GET',
         url: '/get-user-info', // 사용자 정보를 가져오는 경로
@@ -41,7 +39,6 @@ $(document).ready(function () {
         });
     });
 
->>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
     var text1 = "안녕하세요"; // 첫 번째 텍스트
     var index1 = 0; // 첫 번째 텍스트의 현재 인덱스
 
@@ -91,11 +88,7 @@ $(document).ready(function () {
 
     $(window).scroll(function(){
         var scrollY = $(this).scrollTop();
-<<<<<<< HEAD
-        var triggerScroll = 500;
-=======
         var triggerScroll = 1000;
->>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 
         $(".box2_item1").each(function () {
             var $this = $(this);
@@ -103,20 +96,6 @@ $(document).ready(function () {
 
             if (scrollY >= offsetTop - triggerScroll) {
                 $this.addClass('scroll-up1');
-<<<<<<< HEAD
-            }
-        });
-
-        $(".box2_item2").each(function () {
-            var $this = $(this);
-            var offsetTop = $this.offset().top;
-
-            if (scrollY >= offsetTop - triggerScroll) {
-                $this.addClass('scroll-up2');
-            }
-        });
-    });
-=======
             } setTimeout(function(){
                 $(".box2_item2").each(function () {
                     var $this = $(this);
@@ -143,5 +122,4 @@ $(document).ready(function () {
     $(".box2_item").click(function() {
         location.href = "/portfolio";
     });
->>>>>>> 31ff9d53b608b722a5df93e1fbf6fd83ed052775
 });

@@ -68,6 +68,10 @@ exports.post_user = (req, res) => {
         return res.status(400).json({ error: "전화번호는 숫자만 입력 가능합니다." });
     }
 
+    if (!userData.checkbox) {
+        return res.status(400).json({ error: "Privacy Terms(개인정보 이용약관)을 읽어보신 후 동의하셔야 가입가능합니다." });
+    }
+
     bcrypt.hash(userData.password, 10, (err, hashedPassword) => {
         if (err) {
             console.error('Error hashing password', err);

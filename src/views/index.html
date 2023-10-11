@@ -19,7 +19,7 @@
             },1000);
             },1000);
             
-            $("input").click(function(){
+            $("input").on('focus', function(){
                 $("input").css({"width":"80%", "background":"rgba(255,255,255,0.3)", "color":"#ffcc00"});
                 $(this).css({"width":"100%", "background":"#ffcc00", "color":"#fff"});
             });

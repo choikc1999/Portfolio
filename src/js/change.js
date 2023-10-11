@@ -277,7 +277,7 @@ $(document).ready(function() {
     }
 
     // 기타 css 변경 코드
-    $(".changeInputID, .changeInputPw, .changeInputName, .changeInputEmail, .changeInputPN").click(function (e) {
+    $(".changeInputID, .changeInputPw, .changeInputName, .changeInputEmail, .changeInputPN").on('focus', function (e) {
         $(".changeInput").css("background", "#ffcc00");
         $(this).css("background", "#f19839");
     });

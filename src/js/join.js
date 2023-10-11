@@ -195,7 +195,7 @@ function hideEmailDropdown() {
 const CheckBox = $(".checkbox");
 
 $(".checkbox_text").click(function(e){
-    CheckBox.prop("checked", true);
+    CheckBox.prop("checked", !CheckBox.prop("checked")); // 체크박스 상태를 반전시킴
 });
 
 $("#registrationForm").submit(function(e){
@@ -299,23 +299,23 @@ $("#registrationForm").submit(function(e){
 
 // css
 $(document).ready(function(){
-    $(".input1").click(function(e){
+    $(".input1").on('focus', function(e){
         $(".lb_h").css("color","#ffc286");
         $(".lb_h1").css("color","#ff7e00");
     });
-    $(".input2").click(function(e){
+    $(".input2").on('focus', function(e){
         $(".lb_h").css("color","#ffc286");
         $(".lb_h2").css("color","#ff7e00");
     });
-    $(".input3").click(function(e){
+    $(".input3").on('focus', function(e){
         $(".lb_h").css("color","#ffc286");
         $(".lb_h3").css("color","#ff7e00");
     });
-    $(".input4").click(function(e){
+    $(".input4").on('focus', function(e){
         $(".lb_h").css("color","#ffc286");
         $(".lb_h4").css("color","#ff7e00");
     });
-    $(".input5").click(function(e){
+    $(".input5").on('focus', function(e){
         $(".lb_h").css("color","#ffc286");
         $(".lb_h5").css("color","#ff7e00");
     });

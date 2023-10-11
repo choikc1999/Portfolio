@@ -41,7 +41,7 @@ $(document).ready(function() {
 
 
     var slideIndex = 0;
-    var slideInterval = setInterval(slide, 3000); // 슬라이드 간격을 조정하세요
+    var slideInterval = setInterval(slide, 2000); // 슬라이드 간격을 조정하세요
     var $pictureLeft = $('.picture_left');
     var $pictureRight = $('.picture_right');
 
@@ -51,14 +51,14 @@ $(document).ready(function() {
 
         $pictureLeft.append($clonedItem);
 
-        $pictureLeft.animate({ 'top': '-=40.0rem' }, 1500, function() {
+        $pictureLeft.animate({ 'top': '-=40.0rem' }, 1000, function() {
             $pictureLeft.find('.table_item:first').remove();
             $pictureLeft.css('top', '0');
         });
 
         var $clonedItem = $pictureRight.find('.table_item:last').clone();
     
-        $pictureRight.animate({ 'top': '+=40.0rem' }, 1500, function() {
+        $pictureRight.animate({ 'top': '+=40.0rem' }, 1000, function() {
             $pictureRight.prepend($clonedItem);
             $pictureRight.find('.table_item:last').remove();
             $pictureRight.css('top', '-40.0rem');
