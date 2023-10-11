@@ -35,7 +35,7 @@ app.set("views", path.join(__dirname, "views"));
 // 미들웨어: 로그인 여부 체크
 app.use((req, res, next) => {
     // 메인 페이지(main)와 변경 페이지(change)에 대해서만 로그인 여부를 체크하고 로그인하지 않은 경우 로그인 페이지로 리디렉션
-    if (!req.session.user && (req.originalUrl === "/main" || req.originalUrl === "/editProfilePage" || req.originalUrl === "/write" || req.originalUrl === "/board" || req.originalUrl === "/boardview" || req.originalUrl === "/ModifyWrite" || req.originalUrl === "/answer" || req.originalUrl === "/portfolio" || req.originalUrl === "/introduce")) {
+    if (!req.session.user && (req.originalUrl === "/main" || req.originalUrl === "/editProfilePage" || req.originalUrl === "/write" || req.originalUrl === "/board" || req.originalUrl === "/boardview" || req.originalUrl === "/ModifyWrite" || req.originalUrl === "/answer" || req.originalUrl === "/portfolio" || req.originalUrl === "/introduce" || req.originalUrl === "/career")) {
         console.error("Unauthorized access to main or change page. Redirecting to login page.");
         return res.redirect("/login");
     }
@@ -155,6 +155,9 @@ app.get("/portfolio", (req, res) => {
 });
 app.get("/introduce", (req, res) => {
     res.sendFile(path.join(__dirname, "src", "views", "introduce.html"));
+});
+app.get("/career", (req, res) => {
+    res.sendFile(path.join(__dirname, "src", "views", "career.html"));
 });
 
 
