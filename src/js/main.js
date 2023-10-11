@@ -40,6 +40,21 @@ $(document).ready(function() {
         });
     });
 
+    document.querySelector(".m_signout").addEventListener("click", function () {
+        // 로그아웃 요청 보내기
+        $.ajax({
+            method: 'GET',
+            url: '/logout',
+            success: function (response) {
+                // 로그아웃 후 로그인 페이지로 리디렉션
+                window.location.href = "/login";
+            },
+            error: function (error) {
+                console.error("Error:", error);
+            }
+        });
+    });
+
     // 마우스 돋보기 기능
     // 커스텀 커서 아이콘 생성
     const customCursor = document.createElement("div");
