@@ -82,9 +82,11 @@ $(document).ready(function() {
 
                 // 각 구간에 따른 CSS 스타일 적용
                 if (newLeft <= thirtyPercent) {
-                    $(".SHOWBOX .item2").css("opacity","0")
+                    $(".SHOWBOX .item2").css("opacity","0");
+                    $(".SHOWBOX .item3").css("opacity","0");
                     setTimeout(function(){
                         $(".SHOWBOX .item2").css("display","none");
+                        $(".SHOWBOX .item3").css("display","none");
                         setTimeout(function(){
                             $(".SHOWBOX .item1").css("display","block");
                             setTimeout(function(){
@@ -110,9 +112,11 @@ $(document).ready(function() {
                     // $(".SHOWBOX .item1, .SHOWBOX .item3").css({"opacity":"0", "display":"none", "transition":"1s"});
                     // $(".SHOWBOX .item2").css({"opacity":"1", "display":"block", "transition":"1s"});
                 } else {
-                    $(".SHOWBOX .item2").css("opacity","0")
+                    $(".SHOWBOX .item2").css("opacity","0");
+                    $(".SHOWBOX .item1").css("opacity","0");
                     setTimeout(function(){
                         $(".SHOWBOX .item2").css("display","none");
+                        $(".SHOWBOX .item1").css("display","none");
                         setTimeout(function(){
                             $(".SHOWBOX .item3").css("display","block");
                             setTimeout(function(){
