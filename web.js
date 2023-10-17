@@ -4,6 +4,8 @@ const session = require("express-session"); // express-session 미들웨어 추�
 const bodyParser = require("body-parser");
 const userController = require("./controller/UserController");
 const { BoardModel, Board } = require('./model/User');
+const multer = require('multer'); // multer 미들웨어 추가
+const fs = require('fs'); // node 내장 모듈 File System약자
 
 
 const app = express();
@@ -71,6 +73,58 @@ app.get('/get-recent-posts', userController.getRecentPosts);
     
 // 게시글 작성 페이지 렌더링
 app.get('/write', userController.renderWritePage);
+
+
+// 게시글 이미지
+// 라우트: 파일 업로드 양식을 제공하는 페이지
+app.get('/upload', (req, res) => {
+    res.send('<form action="/upload" method="post" enctype="multipart/form-data"><input type="file" name="picture" accept=".jpg, .png, .gif" multiple><input type="submit" value="upload"></form>');
+    res.render('upload');
+});
+// 파일 업로드를 처리하는 엔드포인트
+app.post('/upload', userController.uploadImage);
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'src/userimages/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({ storage: storage });
+
+// 이미지 업로드 및 이미지 ID 저장
+app.post('/uploadImage', upload.single('picture'), (req, res) => {
+    const { originalname, path } = req.file;
+
+    // 이미지 정보를 데이터베이스에 저장
+    Image.create(originalname, path, (dbErr, imageId) => {
+        if (dbErr) {
+            console.error('이미지 정보를 데이터베이스에 저장할 수 없습니다.');
+            return res.status(500).send('파일 업로드에 실패했습니다.');
+        }
+
+        // 이미지 ID를 세션에 저장
+        req.session.imageId = imageId;
+
+        // 이미지 ID를 클라이언트에 반환하고 이미지 정보 저장이 완료된 후 세션과 로그 메시지를 처리합니다.
+        res.status(200).json({ id: imageId });
+        console.log(`이미지 ID ${imageId}가 세션에 저장되었습니다.`);
+        console.log('파일 업로드 및 데이터베이스 저장이 성공했습니다.');
+    });
+});
+
+
+// 이미지 정보를 가져올 라우트를 정의
+app.get('/getImageInfo', userController.getImageInfo);
+
+// 세션을 삭제하는 라우트
+app.get('/clearSession', (req, res) => {
+    delete req.session.imageId; // 이미지 ID를 세션에서 삭제
+    res.send('세션이 성공적으로 삭제되었습니다.');
+});
+
 
 // 게시글 작성 요청 처리
 app.post('/create-post', userController.createPost);

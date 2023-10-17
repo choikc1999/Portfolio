@@ -416,9 +416,38 @@ Board.searchPosts = (searchTerm, callback) => {
 };
 
 
+const Image = {};
+
+Image.create = (filename, path, callback) => {
+    const sql = 'INSERT INTO images (filename, path) VALUES (?, ?)';
+    connection.query(sql, [filename, path], (err, result) => {
+    if (err) {
+        return callback(err, null);
+    }
+    return callback(null, result.insertId);
+    });
+};
+
+Image.findById = (id, callback) => {
+    const sql = 'SELECT * FROM images WHERE id = ?';
+    connection.query(sql, [id], (err, results) => {
+    if (err) {
+        return callback(err, null);
+    }
+  
+    if (results.length === 0) {
+        return callback('이미지를 찾을 수 없습니다.', null);
+    }
+
+        const image = results[0];
+        return callback(null, image);
+    });
+};
+
 module.exports = {
     User: User,
     BoardModel: BoardModel,
     ReplyModel: ReplyModel,
-    Board: Board
+    Board: Board,
+    Image: Image
 };

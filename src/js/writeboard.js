@@ -170,5 +170,74 @@ $(document).ready(function() {
         console.error("Error:", error);
     }
         });
-    });    
+    });  
+    
+    $('#pictureInput').change(function () {
+        const files = this.files;
+        if (files.length > 0) {
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append('picture', files[i]);
+            }
+    
+            $.ajax({
+                url: '/upload',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    console.log('파일 업로드 성공');
+                    const imageId = response.id;
+    
+                    // 이미지 정보를 가져오는 함수 호출
+                    getImageInfo(imageId);
+                },
+                error: function () {
+                    console.error('파일 업로드 실패');
+                }
+            });
+        }
+    });
+    function getImageInfo(imageId) {
+        $.ajax({
+            url: '/getImageInfo',
+            type: 'GET',
+            success: function (response) {
+                console.log('이미지 정보 가져오기 성공');
+                if (response.originalFilename) {
+                     // 이미지 태그를 생성
+                    const imgTag = document.createElement('img');
+                    imgTag.src = `../userimages/${response.originalFilename}`;
+                    imgTag.alt = '이미지';
+                    imgTag.style.width = '100px';
+                    imgTag.style.height = '100px';
+
+                    // 이미지를 textarea에 추가
+                    const textareaContent = $('#textareaContent');
+                    textareaContent.append(imgTag);
+                    const currentText = textareaContent.val();
+                    textareaContent.val(currentText + '\n' + imgTag);
+                    
+                    // 세션을 삭제하는 요청
+                    $.ajax({
+                        url: '/clearSession',
+                        type: 'GET',
+                        success: function () {
+                            console.log('세션 삭제 성공');
+                            // 이미지 정보를 가져온 후 세션 삭제
+                        },
+                        error: function () {
+                            console.error('세션 삭제 중 오류 발생');
+                        }
+                    });
+                }
+            },
+            error: function () {
+                console.error('이미지 정보를 가져오는 중 오류 발생');
+            }
+        });
+    }
+    
+
 });

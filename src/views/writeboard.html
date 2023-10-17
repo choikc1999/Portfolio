@@ -120,8 +120,8 @@
                                 <input type="password" class="password_input" required placeholder="수정 혹은 삭제할때 인증에 필요한 비밀번호를 작성해주세요">
                             </label>
                             <label class="picture_label">
-                                <span>이미지 삽입</span>
-                                <input type="file">
+                                <span>사진 첨부</span>
+                                <input type="file" accept="image/.jpg, .png, .gif" multiple class="picture_input" id="pictureInput">
                             </label>
                             <div class="select_board">
                                 <ul class="dropdown_content">
@@ -138,7 +138,8 @@
                     </div>
                     <label class="area_label">
                         <span>내용</span>
-                        <textarea required placeholder="내용을 입력해주세요." class="area"></textarea>
+                        <textarea required placeholder="내용을 입력해주세요." class="area" id="textareaContent"></textarea>
+                        <!-- <div id="imageContainer"></div> -->
                     </label>
                     <div class="btn">
                         <button type="submit" class="write">작성하기</button>

@@ -77,6 +77,38 @@ html {
     /* float: right; */
 }
 
+.WriteForm form .picture_label {
+    margin-left: 2.0rem;
+}
+
+.WriteForm form .picture_label .picture_input {
+    height: 2.5rem;
+    width: 27%;
+    border-radius: 0.7rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #666;
+    line-height: 2.0rem;
+}
+
+.WriteForm form .picture_label .picture_input::file-selector-button {
+    background: none;
+    border: none;
+    float: right;
+    font-size: 0;
+    width: 2.0rem;
+    height: 2.0rem;
+    background: url(../images/upload.png) no-repeat 0 1px / 100% auto;
+    cursor: pointer;
+    /* filter: drop-shadow(1px 1px 1px #000); */
+}
+
+.WriteForm form .picture_label span {
+    float: none;
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
+
 .WriteForm form .select_board {
     float: right;
 }
@@ -138,6 +170,10 @@ html {
     margin: 0 0 1.5rem 0;
     display: inline-block;
     width: 100%;
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #333;
 }
 
 .area_label .area {

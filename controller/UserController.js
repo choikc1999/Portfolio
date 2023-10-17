@@ -1,7 +1,7 @@
 const path = require("path");
-const { User, BoardModel, ReplyModel, Board } = require("../model/User"); // User 모델을 가져오는 부분  
+const { User, BoardModel, ReplyModel, Board, Image } = require("../model/User"); // User 모델을 가져오는 부분  
 const bcrypt = require('bcrypt');
-
+const multer = require('multer');
 
 // join id checking
 exports.index = (req, res) => {
@@ -289,6 +289,68 @@ exports.createPost = async (req, res) => {
                 res.json({ success: true, message: "게시글이 성공적으로 작성되었습니다.", postId });
             }
         });
+    });
+};
+
+// 게시글 이미지 컨트롤러
+// 업로드된 파일을 저장할 디렉토리 경로 설정
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'src/userimages/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+
+const upload = multer({ storage: storage });
+
+exports.uploadImage = (req, res) => {
+    upload.single('picture')(req, res, (err) => {
+    if (err) {
+        console.error('파일 업로드 실패');
+        return res.status(500).send('파일 업로드에 실패했습니다.');
+    }
+    
+    const { originalname, path } = req.file;
+  
+    Image.create(originalname, path, (dbErr, imageId) => {
+        if (dbErr) {
+            console.error('이미지 정보를 데이터베이스에 저장할 수 없습니다.');
+            return res.status(500).send('파일 업로드에 실패했습니다.');
+        }
+        // 이미지 ID를 세션에 저장
+        req.session.imageId = imageId;
+
+        // 로그로 세션 저장 메시지 추가
+        console.log(`이미지 ID ${imageId}가 세션에 저장되었습니다.`);
+        console.log('파일 업로드 및 데이터베이스 저장이 성공했습니다.');
+        return res.status(200).send({ id: imageId });
+        });
+    });
+};
+
+exports.getImageInfo = (req, res) => {
+    // 이미지 ID를 세션에서 가져옴
+    const imageId = req.session.imageId;
+
+    // 이미지 ID를 사용하여 데이터베이스에서 이미지 정보 조회
+    Image.findById(imageId, (dbErr, images) => {
+    if (dbErr) {
+        console.error('이미지 정보를 조회할 수 없습니다.');
+        return res.status(500).send('이미지 정보 조회에 실패했습니다.');
+    }
+
+    if (!images) {
+        console.error('해당 이미지를 찾을 수 없습니다.');
+        return res.status(404).send('이미지를 찾을 수 없습니다.');
+        }
+
+        const originalFilename = images.filename;
+
+      // 클라이언트에 원본 파일명을 전송
+        res.status(200).json({ originalFilename });
+        console.log(`${originalFilename} 를 출력`);
     });
 };
 
