@@ -97,7 +97,8 @@ $(document).ready(function() {
         const password = document.querySelector(".password_input").value;
         const selectedOption = document.querySelector(".dropdown_content .selected");
         const selectedBoard = selectedOption ? selectedOption.textContent : null; // 선택한 게시판 가져오기
-        const text = areaTextarea.value;
+        const text = areaTextarea.textContent;
+        // const text = areaTextarea.value;
     
         $.ajax({
             method: 'GET',
@@ -145,7 +146,7 @@ $(document).ready(function() {
             selectedBoard: selectedBoard,
             text: text
         };
-    
+
         // AJAX를 사용하여 서버에 데이터 전송
         $.ajax({
             method: "POST",
@@ -210,8 +211,8 @@ $(document).ready(function() {
                     const imgTag = document.createElement('img');
                     imgTag.src = `../userimages/${response.originalFilename}`;
                     imgTag.alt = '이미지';
-                    imgTag.style.width = '100px';
-                    imgTag.style.height = '100px';
+                    imgTag.style.width = '100%';
+                    imgTag.style.height = 'auto';
 
                     // 이미지를 textarea에 추가
                     const textareaContent = $('#textareaContent');
@@ -238,6 +239,28 @@ $(document).ready(function() {
             }
         });
     }
-    
+});
+// text placeholder
+document.addEventListener("DOMContentLoaded", function() {
+    const textareaContent = document.getElementById("textareaContent");
+    const placeholder = textareaContent.getAttribute("data-placeholder");
 
+    // 초기 플레이스홀더 설정
+    if (!textareaContent.textContent.trim() && textareaContent.children.length === 0) {
+        textareaContent.textContent = placeholder;
+    }
+
+    // 포커스 이벤트 리스너 추가
+    textareaContent.addEventListener("focus", function() {
+        if (textareaContent.textContent === placeholder) {
+            textareaContent.textContent = "";
+        }
+    });
+
+    // 블러 이벤트 리스너 추가
+    textareaContent.addEventListener("blur", function() {
+        if (!textareaContent.textContent.trim() && textareaContent.children.length === 0) {
+            textareaContent.textContent = placeholder;
+        }
+    });
 });

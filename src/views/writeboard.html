@@ -121,7 +121,7 @@
                             </label>
                             <label class="picture_label">
                                 <span>사진 첨부</span>
-                                <input type="file" accept="image/.jpg, .png, .gif" multiple class="picture_input" id="pictureInput">
+                                <input type="file" accept=".jpg, .png, .gif" class="picture_input" id="pictureInput">
                             </label>
                             <div class="select_board">
                                 <ul class="dropdown_content">
@@ -138,7 +138,7 @@
                     </div>
                     <label class="area_label">
                         <span>내용</span>
-                        <textarea required placeholder="내용을 입력해주세요." class="area" id="textareaContent"></textarea>
+                        <div required data-placeholder="내용을 입력해주세요." class="area" id="textareaContent" contentEditable="true"></div>
                         <!-- <div id="imageContainer"></div> -->
                     </label>
                     <div class="btn">

@@ -187,6 +187,8 @@ html {
     background: none;
     border-radius: 1.5rem;
     border: 0.2rem solid #ffcc00;
+    margin-top: 3.0rem;
+    overflow: auto;
 }
 
 .area_label .area:focus {
