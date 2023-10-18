@@ -418,13 +418,13 @@ Board.searchPosts = (searchTerm, callback) => {
 
 const Image = {};
 
-Image.create = (filename, path, callback) => {
-    const sql = 'INSERT INTO images (filename, path) VALUES (?, ?)';
-    connection.query(sql, [filename, path], (err, result) => {
-    if (err) {
-        return callback(err, null);
-    }
-    return callback(null, result.insertId);
+Image.create = (filename, path, boardId, callback) => {
+    const sql = 'INSERT INTO images (filename, path, board_ID) VALUES (?, ?, ?)';
+    connection.query(sql, [filename, path, boardId], (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, result.insertId);
     });
 };
 
