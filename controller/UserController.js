@@ -354,6 +354,31 @@ exports.getImageInfo = (req, res) => {
     });
 };
 
+// 게시글 이미지 DB조회
+exports.getTopImages = (req, res) => {
+    BoardModel.getTop3Images((err, results) => {
+        if (err) {
+            res.status(500).json({ error: 'Error fetching top images' });
+        } else {
+            const imageNames = results.map(result => result.filename);
+            res.json({ images: imageNames });
+        }
+    });
+};
+
+exports.updateImageId = (req, res) => {
+    const imageFileName = req.body.imageFileName; // 이미지 파일 이름 가져오기
+    const postId = req.body.postId; // 게시글 아이디 가져오기
+
+    BoardModel.updateImageBoardId(imageFileName, postId, (err) => {
+        if (err) {
+            res.status(500).json({ error: 'Error updating image board_ID' });
+        } else {
+            res.json({ success: true });
+        }
+    });
+};
+
 // 게시글삭제
 exports.deletePost = (req, res) => {
     const { boardID, password } = req.body;

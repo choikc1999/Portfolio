@@ -217,6 +217,33 @@ BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
         });
     });
 };
+
+// 게시글 삽입 이미지 DB조회 상위 3개에서 조회
+BoardModel.getTop3Images = (callback) => {
+    const sql = 'SELECT filename FROM images LIMIT 3';
+    connection.query(sql, (err, results) => {
+        if (err) {
+            console.error('Error executing MySQL query for getting top 3 images: ' + err);
+            return callback(err, null);
+        }
+        callback(null, results);
+    });
+};
+
+// 게시글 이미지 board_ID값 변경
+BoardModel.updateImageBoardId = (imageFileName, postId, callback) => {
+    const sql = 'UPDATE images SET board_ID = ? WHERE filename = ?';
+    const values = [postId, imageFileName];
+
+    connection.query(sql, values, (err, result) => {
+        if (err) {
+            console.error('Error updating image board_ID:', err);
+            return callback(err);
+        }
+        callback(null);
+    });
+};
+
 // 게시글수정
 BoardModel.updatePost = (boardID, updatedPost, callback) => {
     const sql = `

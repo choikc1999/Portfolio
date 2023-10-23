@@ -74,7 +74,6 @@ app.get('/get-recent-posts', userController.getRecentPosts);
 // 게시글 작성 페이지 렌더링
 app.get('/write', userController.renderWritePage);
 
-
 // 게시글 이미지
 // 라우트: 파일 업로드 양식을 제공하는 페이지
 app.get('/upload', (req, res) => {
@@ -118,6 +117,10 @@ app.post('/uploadImage', upload.single('picture'), (req, res) => {
 
 // 이미지 정보를 가져올 라우트를 정의
 app.get('/getImageInfo', userController.getImageInfo);
+
+app.get('/getTopImages', userController.getTopImages);
+
+app.get('/updateImageId', userController.updateImageId);
 
 // 세션을 삭제하는 라우트
 app.get('/clearSession', (req, res) => {

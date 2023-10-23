@@ -156,8 +156,56 @@ $(document).ready(function() {
                 console.log(response); // 서버 응답 출력
                 if (response.success) {
                     const postId = response.postId; // 생성된 게시글의 아이디
+                    const text = areaTextarea.innerHTML;
+                    if (text.includes('<img')) {
+                        const imgTags = text.match(/<img[^>]*>/g); // 이미지 태그를 추출
+                    
+                        imgTags.forEach((imgTag) => {
+                            const imgClassMatch = /class="([^"]*)"/.exec(imgTag); // 클래스명 추출
+                            if (imgClassMatch) {
+                                const imgClass = imgClassMatch[1]; // 추출한 클래스명
+                    
+                                $.ajax({
+                                    method: 'GET',
+                                    url: '/getTopImages',
+                                    success: function (response) {
+                                        const topImages = response.images;
+                    
+                                        const matchingImage = topImages.find((image) => {
+                                            const filename = image.filename;
+                                            return imgClass == filename;
+                                        });
+                    
+                                        if (matchingImage) {
+                                            // const postId = matchingImage.filename;
+                                            const imageFileName = matchingImage.filename;
+                    
+                                            $.ajax({
+                                                method: 'GET',
+                                                url: '/updateImageId',
+                                                data: {
+                                                    imageFileName: imageFileName,
+                                                    postId: postId
+                                                },
+                                                success: function (response) {
+                                                    // 이미지의 board_ID가 업데이트되었습니다.
+                                                },
+                                                error: function (error) {
+                                                    console.error('Error updating image board_ID:', error);
+                                                }
+                                            });
+                                        }
+                                    },
+                                    error: function (error) {
+                                        console.error('Error fetching top images:', error);
+                                    }
+                                });
+                            }
+                        });
+                    }
+
                     const redirectUrl = `/boardview?boardID=${postId}`; // 생성된 게시글의 아이디를 포함한 URL
-                    window.location.href = redirectUrl; // 작성 완료 후 생성된 게시글로 리다이렉션
+                    // window.location.href = redirectUrl; // 작성 완료 후 생성된 게시글로 리다이렉션
                 } else {
                     alert("게시글 작성 실패");
                 }
@@ -166,9 +214,6 @@ $(document).ready(function() {
                 console.error("Error:", error);
             }
         });
-    },
-    error: function(error) {
-        console.error("Error:", error);
     }
         });
     });  
@@ -207,31 +252,46 @@ $(document).ready(function() {
             success: function (response) {
                 console.log('이미지 정보 가져오기 성공');
                 if (response.originalFilename) {
-                     // 이미지 태그를 생성
-                    const imgTag = document.createElement('img');
-                    imgTag.src = `../userimages/${response.originalFilename}`;
-                    imgTag.alt = '이미지';
-                    imgTag.style.width = '100%';
-                    imgTag.style.height = 'auto';
-
-                    // 이미지를 textarea에 추가
-                    const textareaContent = $('#textareaContent');
-                    textareaContent.append(imgTag);
-                    const currentText = textareaContent.val();
-                    textareaContent.val(currentText + '\n' + imgTag);
+                    // 파일 확장자 검사
+                    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
+                    const fileExtension = response.originalFilename.split('.').pop().toLowerCase();
                     
-                    // 세션을 삭제하는 요청
-                    $.ajax({
-                        url: '/clearSession',
-                        type: 'GET',
-                        success: function () {
-                            console.log('세션 삭제 성공');
-                            // 이미지 정보를 가져온 후 세션 삭제
-                        },
-                        error: function () {
-                            console.error('세션 삭제 중 오류 발생');
+                    if(allowedExtensions.includes(`.${fileExtension}`)) {
+                        const fileNamePattern = /^[A-Za-z0-9_.]+$/; // 파일명 검사
+                        if (fileNamePattern.test(response.originalFilename)) {
+                            // 이미지 태그를 생성
+                            const imgTag = document.createElement('img');
+                            imgTag.src = `../userimages/${response.originalFilename}`;
+                            imgTag.alt = '이미지';
+                            imgTag.style.width = '100%';
+                            imgTag.style.height = 'auto';
+                            const imageFileName = response.originalFilename;
+                            imgTag.classList.add(imageFileName);
+            
+                            // 이미지를 textarea에 추가
+                            const textareaContent = $('#textareaContent');
+                            textareaContent.append(imgTag);
+                            const currentText = textareaContent.val();
+                            textareaContent.val(currentText + '\n' + imgTag);
+                            
+                            // 세션을 삭제하는 요청
+                            $.ajax({
+                                url: '/clearSession',
+                                type: 'GET',
+                                success: function () {
+                                    console.log('세션 삭제 성공');
+                                    // 이미지 정보를 가져온 후 세션 삭제
+                                },
+                                error: function () {
+                                    console.error('세션 삭제 중 오류 발생');
+                                }
+                            });
+                        } else {
+                            alert('파일명이 유효하지 않습니다, 파일명은 영문, 숫자, _만 허용합니다.');
                         }
-                    });
+                    } else {
+                        alert('지원하지 않는 파일 확장자입니다. 허용되는 확장자: jpg, jpeg, png, gif');
+                    }
                 }
             },
             error: function () {
