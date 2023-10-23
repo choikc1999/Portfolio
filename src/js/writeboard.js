@@ -164,22 +164,24 @@ $(document).ready(function() {
                             const imgClassMatch = /class="([^"]*)"/.exec(imgTag); // 클래스명 추출
                             if (imgClassMatch) {
                                 const imgClass = imgClassMatch[1]; // 추출한 클래스명
-                    
+                                console.log("1차");
                                 $.ajax({
                                     method: 'GET',
                                     url: '/getTopImages',
                                     success: function (response) {
+                                        console.log("2차");
+                                        console.log('서버 응답:', response); // 이미지 정보 출력
                                         const topImages = response.images;
                     
-                                        const matchingImage = topImages.find((image) => {
-                                            const filename = image.filename;
-                                            return imgClass == filename;
+                                        const matchingImage = topImages.find((images) => {
+                                            const filename = images.filename;
+                                            return imgClass === filename;
                                         });
-                    
+                                        console.log("Matching Image:", matchingImage);
                                         if (matchingImage) {
-                                            // const postId = matchingImage.filename;
+                                            // const postId = response.postId;
                                             const imageFileName = matchingImage.filename;
-                    
+                                            console.log("3차");
                                             $.ajax({
                                                 method: 'GET',
                                                 url: '/updateImageId',
@@ -188,12 +190,14 @@ $(document).ready(function() {
                                                     postId: postId
                                                 },
                                                 success: function (response) {
-                                                    // 이미지의 board_ID가 업데이트되었습니다.
+                                                    console.log("4차");
                                                 },
                                                 error: function (error) {
                                                     console.error('Error updating image board_ID:', error);
                                                 }
                                             });
+                                        }else{
+                                            console.log("5차");
                                         }
                                     },
                                     error: function (error) {
