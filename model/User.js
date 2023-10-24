@@ -220,19 +220,33 @@ BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
 
 // 게시글 삽입 이미지 DB조회 상위 3개에서 조회
 BoardModel.getTop3Images = (callback) => {
-    const sql = 'SELECT filename FROM images LIMIT 3';
-    connection.query(sql, (err, results) => {
+    // 먼저 전체 행 수를 조회하는 쿼리
+    const countQuery = 'SELECT COUNT(*) AS total FROM images';
+
+    connection.query(countQuery, (err, countResult) => {
         if (err) {
-            console.error('Error executing MySQL query for getting top 3 images: ' + err);
+            console.error('Error counting rows: ' + err);
             return callback(err, null);
         }
-        callback(null, results);
+
+        // 필요한 범위의 데이터를 가져오는 쿼리
+        const sql = 'SELECT filename FROM images ORDER BY id DESC LIMIT 3';
+        
+        connection.query(sql, (err, results) => {
+            if (err) {
+                console.error('Error executing MySQL query for getting top 3 images: ' + err);
+                return callback(err, null);
+            }
+            
+            callback(null, results);
+        });
     });
 };
 
 // 게시글 이미지 board_ID값 변경
 BoardModel.updateImageBoardId = (imageFileName, postId, callback) => {
-    const sql = 'UPDATE images SET board_ID = ? WHERE filename = ?';
+    // SQL 쿼리를 사용하여 해당 이미지 파일명과 게시글 아이디에 맞는 레코드의 board_ID를 업데이트합니다.
+    const sql = 'UPDATE images SET board_ID = ? WHERE filename = ? ORDER BY uploaded_at DESC LIMIT 1';
     const values = [postId, imageFileName];
 
     connection.query(sql, values, (err, result) => {

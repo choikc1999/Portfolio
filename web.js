@@ -121,6 +121,8 @@ app.get('/getImageInfo', userController.getImageInfo);
 app.get('/getTopImages', userController.getTopImages);
 
 app.get('/updateImageId', userController.updateImageId);
+app.post('/updateImageId', userController.updateImageId);
+
 
 // 세션을 삭제하는 라우트
 app.get('/clearSession', (req, res) => {

@@ -165,6 +165,7 @@ $(document).ready(function() {
                             if (imgClassMatch) {
                                 const imgClass = imgClassMatch[1]; // 추출한 클래스명
                                 console.log("1차");
+                                console.log(imgClass);
                                 $.ajax({
                                     method: 'GET',
                                     url: '/getTopImages',
@@ -172,18 +173,18 @@ $(document).ready(function() {
                                         console.log("2차");
                                         console.log('서버 응답:', response); // 이미지 정보 출력
                                         const topImages = response.images;
-                    
-                                        const matchingImage = topImages.find((images) => {
-                                            const filename = images.filename;
+                                        console.log(topImages);
+
+                                        const matchingImage = topImages.find((filename) => {
                                             return imgClass === filename;
                                         });
                                         console.log("Matching Image:", matchingImage);
                                         if (matchingImage) {
                                             // const postId = response.postId;
-                                            const imageFileName = matchingImage.filename;
+                                            const imageFileName = matchingImage;
                                             console.log("3차");
                                             $.ajax({
-                                                method: 'GET',
+                                                method: 'POST',
                                                 url: '/updateImageId',
                                                 data: {
                                                     imageFileName: imageFileName,
@@ -191,6 +192,8 @@ $(document).ready(function() {
                                                 },
                                                 success: function (response) {
                                                     console.log("4차");
+                                                    console.log(postId);
+                                                    console.log(imageFileName);
                                                 },
                                                 error: function (error) {
                                                     console.error('Error updating image board_ID:', error);
@@ -223,6 +226,18 @@ $(document).ready(function() {
     });  
     
     $('#pictureInput').change(function () {
+        const textarea = $(".area");
+        let textContent = textarea.text().trim();
+        const placeholder = textarea.attr("data-placeholder");
+        
+        textarea.removeAttr("data-placeholder");
+
+        if (textContent === placeholder){
+            textContent = "";
+        }
+        
+        textarea.text(textContent);
+
         const files = this.files;
         if (files.length > 0) {
             const formData = new FormData();

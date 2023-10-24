@@ -370,6 +370,9 @@ exports.updateImageId = (req, res) => {
     const imageFileName = req.body.imageFileName; // 이미지 파일 이름 가져오기
     const postId = req.body.postId; // 게시글 아이디 가져오기
 
+    console.log('Received imageFileName:', imageFileName);
+    console.log('Received postId:', postId);
+
     BoardModel.updateImageBoardId(imageFileName, postId, (err) => {
         if (err) {
             res.status(500).json({ error: 'Error updating image board_ID' });
