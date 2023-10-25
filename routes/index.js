@@ -4,6 +4,7 @@ const user = require("../controller/UserController");
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const ReplyModel = require('../models/ReplyModel');
+const { BoardModel } = require("../model/User");
 
 router.get('/', function(req, res, next) {
     fs.readFile('/home/hosting_users/choikc1999/apps/choikc1999_jsblog/', (err, data) => {
@@ -69,6 +70,21 @@ router.get('/boardview', (req, res) => {
           res.render("boardview", { post }); // 게시글 정보를 boardview 페이지에 전달하여 렌더링
       }
   });
+});
+
+// 게시물 이미지 라우터
+router.get('/BoardIDsameImage', (req, res) => {
+  const boardID = req.query.boardID;
+  const filename = req.query.filename;
+
+  BoardModel.BoardIDsameImage (boardID, filename, (err, post) => {
+    if (err) {
+      console.error("Error getting post:", err);
+      res.status(500).json({ error: "Error getting images post" });
+    } else {
+      res.render("boardview", {post});
+    }
+  })
 });
 
 // 게시글 조회 수 업데이트와 게시글 정보 조회를 처리하는 라우트 핸들러

@@ -488,6 +488,21 @@ exports.renderBoardViewPage = (req, res) => {
     });
 };
 
+// 게시글 이미지 렌더링
+exports.BoardIDsameImage = (req, res) => {
+    const board_ID = req.query.boardID;
+    const filename = req.query.filename;
+
+    BoardModel.BoardIDsameImage(board_ID, filename, (err, post) => {
+        if (err) {
+            console.error("Error getting post:", err);
+            res.status(500).json({ error: "Error getting post "});
+        } else {
+            res.json(boardID, filename);
+        }
+    })
+}
+
 // 댓글 렌더링
 exports.saveReply = (req, res) => {
     const { boardID, nickname, reply } = req.body;

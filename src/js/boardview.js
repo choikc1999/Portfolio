@@ -83,6 +83,20 @@ $(document).ready(function() {
         $(".view_count span").text(post.views); // 조회수 출력
     }
 
+    // 게시물 이미지렌더링 임시
+    // function displayImagesInfo(post) {
+    //     const text = $(".text");
+    //     const imgTag = document.createElement('img');
+    //     imgTag.src = `../userimages/${response.originalFilename}`;
+    //     imgTag.alt = '이미지';
+    //     imgTag.style.width = '100%';
+    //     imgTag.style.height = 'auto';
+
+    //     text.append(imgTag);
+    // }
+
+
+
     const urlParams = new URLSearchParams(window.location.search);
     const boardID = urlParams.get("boardID");
 

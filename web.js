@@ -152,6 +152,9 @@ app.get('/get-post-by-id', (req, res) => {
     });
 });
 
+// 게시글 상세페이지 이미지
+app.get("/BoardIDsameImage", userController.BoardIDsameImage);
+
 // 댓글
 // POST 요청을 통해 댓글 저장
 app.post('/save-reply', userController.saveReply);

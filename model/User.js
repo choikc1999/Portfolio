@@ -314,6 +314,25 @@ BoardModel.getPostByID = (boardID, callback) => {
     });
 };
 
+// images 조회함수
+BoardModel.BoardIDsameImage = (boardID, callback) => {
+    const sql = `SELECT * FROM images WHERE board_ID = ? AND filename = ?`;
+
+    connection.query(sql, [boardID], [filename], (err, rows) => {
+        if (err) {
+            console.error("Error executing MySQL query for getting post by images", err);
+            return callback(err, null);
+        }
+
+        if (rows.length === 0) {
+            return callback(null, null);
+        }
+
+        const post = rows[0];
+        callback(null, post);
+    })
+}
+
 // 게시글 삭제
 BoardModel.deletePost = (boardID, callback) => {
     const sql = `DELETE FROM board WHERE board_ID = ?`;
