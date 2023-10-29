@@ -380,3 +380,6 @@ getTopImages 반환값이 엉망이니 다시 확인해야함.
 23/10/25/am 11:26
 
 * 게시물 삽입 이미지로드 로직 구현중/ usercontroller.js, user.js, index.js, boardvew.js, web.js 수정
+
+추가+
+boardID == board_ID/ filename 조회 로직 완성했으니 보완해서 적용할것.(10/39)
