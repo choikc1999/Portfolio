@@ -182,7 +182,7 @@ $(document).ready(function() {
         replyCountElement.textContent = replyData.length.toString();
     }
 
-
+    // 게시글DB 페이지 렌더링 
     function loadBoardInfo(boardID) {
         // 서버에 해당 게시글 정보를 요청하는 AJAX 요청을 보냅니다.
         $.ajax({
@@ -191,14 +191,17 @@ $(document).ready(function() {
             success: function (response) {
                 if (response) {
                     displayBoardInfo(response); // 서버로부터 받아온 게시글 정보를 화면에 표시
-
+    
                     if (!isUpdatingViewCount) { // 중복 요청이 아닌 경우에만 처리
                         isUpdatingViewCount = true; // 요청 중 상태로 변경
                         updateViewCount(boardID); // 조회수 업데이트 함수 호출
                     }
-
+    
                     // 댓글 불러오기
                     loadRepliesFromDatabase(boardID);
+    
+                    // 이미지 정보 불러오기
+                    loadImageInfo(boardID);
                 } else {
                     console.error("Error: No post found with boardID", boardID);
                 }
@@ -207,6 +210,24 @@ $(document).ready(function() {
                 console.error("Error getting post:", error);
             }
         });
+    
+        function loadImageInfo(boardID) {
+            // 이미지 정보를 요청하는 AJAX 요청을 보냅니다.
+            $.ajax({
+                type: "GET",
+                url: `/BoardIDsameImage?boardID=${boardID}`,
+                success: function (response) {
+                    if (response) {
+                        console.log("Image filename:", response.filename); // 이미지 파일명을 출력하거나 원하는 처리를 수행
+                    } else {
+                        console.error("No image found for boardID", boardID);
+                    }
+                },
+                error: function (error) {
+                    console.error("Error getting image info:", error);
+                }
+            });
+        }
     }
 
     function updateViewCount(boardID) {

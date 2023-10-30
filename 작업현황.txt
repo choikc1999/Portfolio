@@ -383,3 +383,11 @@ getTopImages 반환값이 엉망이니 다시 확인해야함.
 
 추가+
 boardID == board_ID/ filename 조회 로직 완성했으니 보완해서 적용할것.(10/39)
+
+-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-=-=-=-=-=-=-=-=-=-=
+
+23/10/30/pm 18:04
+nodemon ./web.js localhost 8081 //노드몬 실행하는방법.
+
+* 게시글 삽입 이미지로드 현재 문제점
+- BoardModel.BoardIDsameImage 모듈로 db를 조회하지 않고 /* loadImageInfo(boardID); */ 에 boardID 값을 송출하니 해결해야함.
