@@ -314,11 +314,11 @@ BoardModel.getPostByID = (boardID, callback) => {
     });
 };
 
-// images 조회함수
+// images 조회함수 
 BoardModel.BoardIDsameImage = (boardID, filename, callback) => {
-    const sql = `SELECT * FROM images WHERE filename = ? AND board_ID = ?`;
+    const sql = `SELECT * FROM images WHERE board_ID = ? AND filename = ?`;
 
-    connection.query(sql, [filename, boardID], (err, rows) => {
+    connection.query(sql, [boardID, filename], (err, rows) => {
         if (err) {
             console.error("이미지를 가져오기 위한 MySQL 쿼리 실행 중 오류 발생", err);
             return callback(err, null);

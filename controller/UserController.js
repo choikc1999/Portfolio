@@ -493,7 +493,7 @@ exports.BoardIDsameImage = (req, res) => {
     const boardID = req.query.boardID;
     const filename = req.query.filename;
 
-    BoardModel.BoardIDsameImage(filename, boardID, (err, post) => {
+    BoardModel.BoardIDsameImage(boardID, filename, (err, post) => {
         if (err) {
             console.error("Error getting post:", err);
             res.status(500).json({ error: "Error getting post" });
