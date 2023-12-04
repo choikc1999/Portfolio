@@ -402,5 +402,6 @@ nodemon ./web.js localhost 8081 //노드몬 실행하는방법.
 23/12/04/pm 16:24 
 
 - DB images.board_ID 를 board_ID_images로 컬럼명 변경 완료 // 변경값에 대한 board.board_ID를 board_ID_images에 기입하는 메소드 변경 완료 
-- 게시물에 해당하는 이미지 조회함수 완성 // 이제 불러오는 메소드만 손 보면 끝.
+- 게시물에 해당하는 이미지 조회함수 완성
+- 게시글 수정페이지에도 메소드 추가해줘야함
 

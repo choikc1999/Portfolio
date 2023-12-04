@@ -282,8 +282,8 @@ $(document).ready(function() {
                             const imgTag = document.createElement('img');
                             imgTag.src = `../userimages/${response.originalFilename}`;
                             imgTag.alt = '이미지';
-                            imgTag.style.width = '100%';
-                            imgTag.style.height = 'auto';
+                            // imgTag.style.width = '100%';
+                            // imgTag.style.height = 'auto';
                             const imageFileName = response.originalFilename;
                             imgTag.classList.add(imageFileName);
             

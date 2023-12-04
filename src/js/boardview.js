@@ -184,6 +184,15 @@ $(document).ready(function() {
 
     // 게시글DB 페이지 렌더링 
     function loadBoardInfo(boardID) {
+        // 중복 호출 방지 변수 추가
+        if (isUpdatingViewCount) {
+            console.log("Already updating view count. Ignoring duplicate request.");
+            return;
+        }
+
+        // 중복 호출 방지 상태로 변경
+        isUpdatingViewCount = true;
+
         // 서버에 해당 게시글 정보를 요청하는 AJAX 요청을 보냅니다.
         $.ajax({
             type: "GET",
@@ -191,15 +200,13 @@ $(document).ready(function() {
             success: function (response) {
                 if (response) {
                     displayBoardInfo(response); // 서버로부터 받아온 게시글 정보를 화면에 표시
-    
-                    if (!isUpdatingViewCount) { // 중복 요청이 아닌 경우에만 처리
-                        isUpdatingViewCount = true; // 요청 중 상태로 변경
-                        updateViewCount(boardID); // 조회수 업데이트 함수 호출
-                    }
-    
+
+                    // 조회수 업데이트 함수 호출
+                    updateViewCount(boardID);
+
                     // 댓글 불러오기
                     loadRepliesFromDatabase(boardID);
-    
+
                     // 이미지 정보 불러오기
                     loadImageInfo(boardID);
                 } else {
@@ -220,6 +227,12 @@ $(document).ready(function() {
                     console.log("Server Response:", response);
                     if (response !== null && response.filename !== undefined) {
                         console.log("Image filename:", response.filename);
+                        // 이미지 태그를 동적으로 생성
+                        const imagePath = `../userimages/${response.filename}`;
+                        const imageTag = `<br><img src="${imagePath}" alt="Post Image">`;
+
+                        // 이미지 태그를 화면에 추가
+                        $(".text").append(imageTag);
                     } else {
                         console.error("No image found or filename is undefined");
                     }
