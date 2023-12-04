@@ -211,16 +211,17 @@ $(document).ready(function() {
             }
         });
     
+        
         function loadImageInfo(boardID) {
-            // 이미지 정보를 요청하는 AJAX 요청을 보냅니다.
             $.ajax({
                 type: "GET",
-                url: `/BoardIDsameImage?boardID=${boardID}`,
+                url: `/getBoardImage/${boardID}`, // 엔드포인트 변경
                 success: function (response) {
-                    if (response) {
-                        console.log("Image filename:", response.filename); // 이미지 파일명을 출력하거나 원하는 처리를 수행
+                    console.log("Server Response:", response);
+                    if (response !== null && response.filename !== undefined) {
+                        console.log("Image filename:", response.filename);
                     } else {
-                        console.error("No image found for boardID", boardID);
+                        console.error("No image found or filename is undefined");
                     }
                 },
                 error: function (error) {

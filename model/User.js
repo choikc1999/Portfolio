@@ -246,7 +246,7 @@ BoardModel.getTop3Images = (callback) => {
 // 게시글 이미지 board_ID값 변경
 BoardModel.updateImageBoardId = (imageFileName, postId, callback) => {
     // SQL 쿼리를 사용하여 해당 이미지 파일명과 게시글 아이디에 맞는 레코드의 board_ID를 업데이트합니다.
-    const sql = 'UPDATE images SET board_ID = ? WHERE filename = ? ORDER BY uploaded_at DESC LIMIT 1';
+    const sql = 'UPDATE images SET board_ID_images = ? WHERE filename = ? ORDER BY uploaded_at DESC LIMIT 1';
     const values = [postId, imageFileName];
 
     connection.query(sql, values, (err, result) => {
@@ -315,24 +315,26 @@ BoardModel.getPostByID = (boardID, callback) => {
 };
 
 // images 조회함수 
-BoardModel.BoardIDsameImage = (boardID, filename, callback) => {
-    const sql = `SELECT * FROM images WHERE board_ID = ? AND filename = ?`;
+BoardModel.getBoardImage = (boardID, callback) => {
+    const sql = `SELECT * FROM images WHERE board_ID_images = ?`;
 
-    connection.query(sql, [boardID, filename], (err, rows) => {
+    connection.query(sql, [boardID], (err, rows) => {
         if (err) {
-            console.error("이미지를 가져오기 위한 MySQL 쿼리 실행 중 오류 발생", err);
+            console.error("Error executing MySQL query for image:", err);
             return callback(err, null);
         }
 
         if (rows.length === 0) {
-            console.log(boardID, filename, "이거");
+            console.log(boardID, "No image found");
             return callback(null, null);
         }
 
-        const post = rows[0].filename; 
-        callback(null, post);
+        const imageInfo = rows[0];
+        callback(null, { filename: imageInfo.filename });
     });
-}
+};
+
+
 
 // 게시글 삭제
 BoardModel.deletePost = (boardID, callback) => {

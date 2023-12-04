@@ -489,19 +489,23 @@ exports.renderBoardViewPage = (req, res) => {
 };
 
 // 게시글 이미지 렌더링
-exports.BoardIDsameImage = (req, res) => {
-    const boardID = req.query.boardID;
-    const filename = req.query.filename;
+exports.getBoardImage = (req, res) => {
+    const boardID = req.params.boardID;
 
-    BoardModel.BoardIDsameImage(boardID, filename, (err, post) => {
+    BoardModel.getBoardImage(boardID, (err, imageInfo) => {
         if (err) {
-            console.error("Error getting post:", err);
-            res.status(500).json({ error: "Error getting post" });
+            console.error("Error getting image info:", err);
+            res.status(500).json({ error: "Error getting image info" });
         } else {
-            res.status(200).json({ boardID, filename }); // 예를 들어 200은 "OK" 상태 코드입니다.
+            if (imageInfo !== null && imageInfo.filename !== undefined) {
+                res.status(200).json({ filename: imageInfo.filename });
+            } else {
+                console.error("No image found or filename is undefined");
+                res.status(404).json({ error: "No image found or filename is undefined" });
+            }
         }
-    })
-}
+    });
+};
 
 // 댓글 렌더링
 exports.saveReply = (req, res) => {
