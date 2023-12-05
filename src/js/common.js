@@ -168,11 +168,11 @@ function createParticle(x, y, type) {
 
     switch (type) {
     case "circle":
-        particle.style.background = `hsl(${Math.random() * 202 + 53}, 95%, 77%)`;
+        particle.style.background = `hsl(${Math.random() * 48 + 53}, 54%, 100%)`;
         particle.style.borderRadius = "50%";
         break;
     default:
-        particle.style.background = `hsl(${Math.random() * 171 + 56}, 95%, 77%)`;
+        particle.style.background = `hsl(${Math.random() * 48 + 56}, 100%, 91%)`;
     }
 
     const animation = particle.animate(

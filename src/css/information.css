@@ -149,7 +149,7 @@ html {
     .change .changebox {
         margin-bottom: 6.0rem;
         border-radius: 2.0rem;
-        background: #0b9882;
+        /* background: #0b9882; */
     }
 
     .change label span {

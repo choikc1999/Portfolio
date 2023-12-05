@@ -52,7 +52,7 @@
 .site_information .hole {
     width: 51.2rem;
     height: 283px;
-    background: url(../images/hole01.png) no-repeat 0 0 ;
+    background: url(../images/hole01.png) no-repeat 0 0 / 100% auto;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -62,7 +62,7 @@
 .site_information .hole_item {
     width: 51.2rem;
     height: 284px;
-    background: url(../images/hole02.png) no-repeat 0 0;
+    background: url(../images/hole02.png) no-repeat 0 0 / 100% auto;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -133,7 +133,9 @@
     line-height: 3.0rem;
     padding: 0 1.0rem;
     font-size: 1.6rem;
-}
+    height: 9.0rem;
+    overflow: auto;
+} 
 
 .Dt_F a {
     display: inline-block;
@@ -149,4 +151,58 @@
 .Dt_F a:active {
     box-shadow: 0 0 #ff4c4b; 
     background-color: #d8af0b;
+}
+
+.br {
+    display: none;
+}
+
+@media (max-width: 1275px) {
+    .picture_left {
+        display: none;
+    }
+    .picture_right {
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+
+@media (max-width: 950px) {
+    .site_information .hole {
+        width: 40.0rem;
+    }
+    
+    .site_information .hole_item {
+        width: 40.0rem;
+    }
+}
+
+@media (max-width: 780px) {
+    .site_information .hole {
+        width: 20.0rem;
+        height: 15.0rem;
+        bottom: 10.0rem;
+    }
+    
+    .site_information .hole_item {
+        width: 20.0rem;
+        height: 15.1rem;
+    }
+
+    .site_information {
+        width: 53%;
+        top: 10.0rem;
+    }
+}
+
+@media (max-width: 590px) {
+    
+
+    .br {
+        display: block;
+    }
+
+    .Dt_F p {
+        height: 6.0rem;
+    }
 }

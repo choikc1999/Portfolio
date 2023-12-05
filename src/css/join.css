@@ -82,7 +82,7 @@ body {
     line-height: 2.5rem;
     border-radius: 1.0rem;
     border: none;
-    background: none;
+    background: #ffe992;
     border: 0.2rem solid #f8902a;
     margin-top: 1.8rem;
     /* font-weight: 500; */
@@ -210,10 +210,13 @@ body {
 
 /* 미디어 쿼리 */
 
-/* @media (max-width: 1024px) {
-    
+ @media (max-width: 1850px) {
+    .logo {
+        display: none;
+    }
 }
 
+/*
 @media (max-width: 960px) {
     
 } */
