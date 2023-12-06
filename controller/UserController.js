@@ -88,7 +88,6 @@ exports.post_user = (req, res) => {
                 return res.status(500).json({ error: "Error saving user data to the database" });
             }
 
-            // 클라이언트에 회원가입 성공 메시지를 전달하고 로그인 페이지로 이동
             const message = "회원가입에 성공했습니다. 로그인 페이지로 이동합니다.";
             res.status(200).json({ message: message, redirectTo: "/login" });
         });
@@ -96,11 +95,10 @@ exports.post_user = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    const filePath = path.join(__dirname, "../src/views", "index.html"); // login.html 파일로 수정
+    const filePath = path.join(__dirname, "../src/views", "index.html");
     res.sendFile(filePath);
 };
 
-// login 시도
 // login 시도
 exports.post_login = (req, res) => {
     const { id, password } = req.body;
@@ -137,7 +135,7 @@ exports.getUserInfo = (req, res) => {
         // 데이터베이스에서 사용자 정보 가져오기
         User.select(user.id, user.password, function (result) {
             if (result) {
-                // result에 사용자 정보가 들어있다고 가정합니다. 필요한 정보를 적절하게 가져와서 사용합니다.
+                // result에 사용자 정보가 들어있다고 가정후 필요한 정보를 적절하게 가져와서 사용.
                 const userId = result.id; // 사용자 아이디 가져오기
                 const userName = result.name; // 사용자 이름 가져오기
                 res.json({ id: userId, name: userName });
@@ -160,7 +158,7 @@ exports.editProfile = (req, res) => {
     const { newId, newEmail, newPhoneNumber, newPassword } = req.body;
 
     const userData = {
-        id: newId, // 이 부분 추가
+        id: newId,
         email: newEmail,
         phoneNumber: newPhoneNumber,
     };
@@ -182,7 +180,6 @@ exports.editProfile = (req, res) => {
                     return res.status(500).json({ error: "Error updating user profile" });
                 }
 
-                // 정보 업데이트 성공 시
                 const successMessage = "회원 정보가 성공적으로 업데이트되었습니다.";
                 res.json({ success: true, message: successMessage });
             });
@@ -195,7 +192,6 @@ exports.editProfile = (req, res) => {
                 return res.status(500).json({ error: "Error updating user profile" });
             }
 
-            // 정보 업데이트 성공 시
             const successMessage = "회원 정보가 성공적으로 업데이트되었습니다.";
             res.json({ success: true, message: successMessage });
         });
@@ -219,7 +215,6 @@ exports.deleteAccount = (req, res) => {
         // 세션 삭제
         req.session.destroy();
 
-        // 회원 탈퇴 성공 시
         res.json({ success: true });
     });
 };
@@ -293,10 +288,9 @@ exports.createPost = async (req, res) => {
 };
 
 // 게시글 이미지 컨트롤러
-// 업로드된 파일을 저장할 디렉토리 경로 설정
-const storage = multer.diskStorage({
+const storage = multer.diskStorage({ 
     destination: function (req, file, cb) {
-        cb(null, 'src/userimages/');
+        cb(null, 'src/userimages/'); // 업로드된 파일을 저장할 디렉토리 경로 설정
     },
     filename: function (req, file, cb) {
         cb(null, file.originalname);
@@ -534,9 +528,6 @@ exports.getReplies = (req, res) => {
     });
 };
 
-// 게시글 조회수 업데이트 컨트롤러
-// const viewCountLocks = {}; // 각 게시글의 조회수 업데이트 상태를 저장하는 객체
-
 // 게시글 조회수 업데이트 함수
 exports.updateViewCount = (req, res) => {
     const boardID = req.params.boardID;
@@ -594,11 +585,11 @@ exports.getBoardInfo = (req, res) => {
             return res.status(404).json({ success: false, message: "Post not found" });
         }
 
-        // 여기서 post 객체의 속성들을 가져와서 필요한 데이터를 클라이언트로 응답합니다.
+        // 여기서 post 객체의 속성들을 가져와서 필요한 데이터를 클라이언트로 응답
         const responseData = {
             title: post.title,
-            author: post.name, // 작성자명이 저장된 속성을 사용합니다.
-            content: post.text, // 게시글 내용이 저장된 속성을 사용합니다.
+            author: post.name, // 작성자명
+            content: post.text, // 게시글 내용
             selectboard: post.selectboard
         };
 
@@ -610,26 +601,24 @@ exports.updatePost = (req, res) => {
     const boardID = req.body.boardID;
     const updatedPost = {
         title: req.body.title,
-        text: req.body.text,  // Make sure 'text' property is provided in the request
+        text: req.body.text,  
         name: req.body.name,
         password: req.body.password,
         selectboard: req.body.selectboard
     };
 
-    // Check if 'text' property is provided and not null
+    // text를 제대로 받아오고 있는지 확인
     if (updatedPost.text === null || updatedPost.text === undefined) {
         return res.status(400).json({ success: false, message: "'text' is required" });
     }
 
-    // Fetch the original post data to compare the password
+    // 원본 게시물 비밀번호와 수정 비밀번호가 일치하는지 확인하는 함수
     BoardModel.getPostByID(boardID, (err, originalPost) => {
         if (err) {
             console.error("Error fetching original post data:", err);
             return res.status(500).json({ success: false, message: "An error occurred" });
         }
 
-        // If the provided password matches the original post's password,
-        // proceed with the update; otherwise, show an alert
         if (updatedPost.password === originalPost.password) {
             BoardModel.updatePost(boardID, updatedPost, (err, result) => {
                 if (err) {

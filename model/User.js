@@ -62,7 +62,7 @@ User.update = (id, userData, callback) => {
             console.error("Error updating user:", err);
             return callback(err, null);
         }
-        // 성공적으로 업데이트되었을 때 콜백 실행
+        // 성공적으로 업데이트되었을 때 콜백
         callback(null, result);
     });
 };
@@ -107,18 +107,17 @@ User.delete = (id, callback) => {
     `;
     const values = [id];
 
-    // 데이터베이스 쿼리 실행
     connection.query(query, values, (err, result) => {
         if (err) {
             console.error("Error deleting user:", err);
             return callback(err, null);
         }
-        // 성공적으로 삭제되었을 때 콜백 실행
+
         callback(null, result);
     });
 };
 
-// 게시글 닉네임불러오는 문
+// 게시글 닉네임불러오기
 User.getUserNameByUsername = (username, callback) => {
     const selectQuery = `SELECT name FROM user WHERE name = ?`;
     connection.query(selectQuery, [username], (error, results) => {
@@ -131,7 +130,7 @@ User.getUserNameByUsername = (username, callback) => {
     });
 };
 
-// 메인 NOTICE
+// 메인페이지 NOTICE
 User.getRecentPosts = (selectboard, callback) => {
     const sql = 'SELECT * FROM board WHERE selectboard = ? ORDER BY modify_date DESC LIMIT 6';
     connection.query(sql, [selectboard], (err, rows) => {
@@ -183,7 +182,7 @@ BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
     let values = [startIndex, itemsPerPage];
 
     if (selectboard) {
-        // 필터링 값을 사용하여 SQL 쿼리 수정
+        // 필터링 값을 사용하여 SQL 수정
         sql = `
             SELECT * FROM board
             WHERE selectboard = ?
@@ -220,7 +219,7 @@ BoardModel.getPostsByPage = (page, itemsPerPage, selectboard, callback) => {
 
 // 게시글 삽입 이미지 DB조회 상위 3개에서 조회
 BoardModel.getTop3Images = (callback) => {
-    // 먼저 전체 행 수를 조회하는 쿼리
+    // 전체 행 수를 조회하는 함수
     const countQuery = 'SELECT COUNT(*) AS total FROM images';
 
     connection.query(countQuery, (err, countResult) => {
@@ -229,7 +228,7 @@ BoardModel.getTop3Images = (callback) => {
             return callback(err, null);
         }
 
-        // 필요한 범위의 데이터를 가져오는 쿼리
+        // 상위 파일 3개중에서 필요한 파일을 조회
         const sql = 'SELECT filename FROM images ORDER BY id DESC LIMIT 3';
         
         connection.query(sql, (err, results) => {
@@ -245,7 +244,7 @@ BoardModel.getTop3Images = (callback) => {
 
 // 게시글 이미지 board_ID값 변경
 BoardModel.updateImageBoardId = (imageFileName, postId, callback) => {
-    // SQL 쿼리를 사용하여 해당 이미지 파일명과 게시글 아이디에 맞는 레코드의 board_ID를 업데이트합니다.
+    // SQL 쿼리를 사용하여 해당 이미지 파일명과 게시글 아이디에 맞는 레코드의 board_ID를 업데이트.
     const sql = 'UPDATE images SET board_ID_images = ? WHERE filename = ? ORDER BY uploaded_at DESC LIMIT 1';
     const values = [postId, imageFileName];
 
@@ -268,20 +267,19 @@ BoardModel.updatePost = (boardID, updatedPost, callback) => {
 
     const { title, text, name, password, selectboard } = updatedPost;
 
-    // Ensure that the 'text' property has a valid value
+    // text에 벨류값이 유효한 값인지 확인
     if (text === null || text === undefined) {
         return callback(new Error("Invalid 'text' value"), null);
     }
 
-    // Fetch the original post data to compare the password
+    // 원본 게시물 비밀번호와 수정 비밀번호가 동일한지 확인
     BoardModel.getPostByID(boardID, (err, originalPost) => {
         if (err) {
             console.error("Error fetching original post data:", err);
             return callback(err, null);
         }
 
-        // If the provided password matches the original post's password,
-        // proceed with the update; otherwise, return an error
+        // 일치하면 업데이트 불일치시 에러메세제지 반환
         if (password === originalPost.password) {
             connection.query(sql, [title, text, name, password, selectboard, boardID], (err, result) => {
                 if (err) {
@@ -364,7 +362,7 @@ ReplyModel.saveReply = (boardID, nickname, reply, callback) => {
     });
 };
 
-// 해당 게시글의 모든 댓글 가져오기view
+// 해당 게시글의 모든 댓글 가져오기 view
 ReplyModel.getRepliesByBoardID = (boardID, callback) => {
     const sql = `SELECT * FROM reply WHERE board_ID = ?`;
     const values = [boardID];
@@ -391,7 +389,7 @@ Board.updateViewCount = (boardID, callback) => {
 
     const updateViewCountQuery = 'UPDATE board SET views = views + 1 WHERE board_ID = ?';
 
-    // 수정: 쿼리 실행 전에 잠금 상태 설정
+    // 수정-쿼리 실행 전에 잠금 상태 설정
     lockedBoards.add(boardID);
 
     connection.query(updateViewCountQuery, [boardID], (err, result) => {
@@ -432,7 +430,6 @@ Board.updateViewCount = (boardID, callback) => {
 };
 
 Board.findById = (boardID, callback) => {
-    // console.log("Fetching board by ID:", boardID);
 
     const selectBoardQuery = 'SELECT * FROM board WHERE board_ID = ?';
 
@@ -449,7 +446,6 @@ Board.findById = (boardID, callback) => {
                     callback(new Error('Board not found'), null);
                 }
             } else {
-                // console.log("Board fetched:", board);
                 if (typeof callback === 'function') {
                     callback(null, board);
                 }
@@ -497,7 +493,7 @@ Image.findById = (id, callback) => {
     if (err) {
         return callback(err, null);
     }
-  
+
     if (results.length === 0) {
         return callback('이미지를 찾을 수 없습니다.', null);
     }

@@ -8,7 +8,7 @@ $(document).ready(function() {
                 'z-index': '2',
                 'cursor': 'pointer'
             });
-      }, 100); // 0.1초 (100ms) 지연 실행
+      }, 100);
     }, function() {
         var $searchicon = $(this).find('.searchicon');
 
@@ -25,14 +25,14 @@ $(document).ready(function() {
 
     $('.searchicon, .searchiconShow').click(function(){
         if ($(this).hasClass("searchiconShow")) {
-            // 이미 "searchiconShow" 클래스가 있는 경우 처리
             $('.searchiconShow').addClass("searchicon");
             $(this).removeClass("searchiconShow");
             $('.searchicon').css('filter', 'drop-shadow(0.2rem 0.2rem 0.2rem #0a0a0a)');
             $('.circle_click').addClass('circle').css({"width": "65px","transition": "0.5s"});
             $('.circle_click').removeClass('circle_click');
         };
-            // "searchiconShow" 클래스가 없는 경우 처리
+
+        // "searchiconShow" 클래스가 없는 경우 처리
         var inputValue = document.querySelector(".search_input").value;
         $('.circle').addClass('circle_click');
         $('.circle_click').removeClass('circle').css({"width": "300px", "transition": "0.5s"});
@@ -45,7 +45,7 @@ $(document).ready(function() {
             $('.searchiconShow').css('filter', 'none');
             console.log("검색어를 입력하세요");
         } else {
-            // 입력값이 있는 경우의 동작을 여기에 구현
+            // 입력값이 있는 경우
             $('.searchiconShow').attr('type', 'submit');// 버튼 타입을 "submit"으로 변경
             const searchTerm = $(".search_input").val(); // 검색어 가져오기
             searchPosts(searchTerm); // 검색을 실행하도록 추가
@@ -56,14 +56,14 @@ $(document).ready(function() {
     });
 
     $('.m_search').click(function(){
-            // "searchiconShow" 클래스가 없는 경우 처리
+            // "searchiconShow" 클래스가 없는 경우
             var inputValue = document.querySelector(".m_search_input").value;
 
             if (inputValue === "") {
                 $('.m_search').attr('type', 'button'); // 버튼 타입을 "button"으로 변경
                 console.log("검색어를 입력하세요");
             } else {
-                // 입력값이 있는 경우의 동작을 여기에 구현
+                // 입력값이 있는 경우 동작
                 // $('.m_search').attr('type', 'submit');// 버튼 타입을 "submit"으로 변경
                 const searchTerm = $(".m_search_input").val(); // 검색어 가져오기
                 window.location.href = `/answer?searchTerm=${searchTerm}`;
@@ -91,11 +91,11 @@ $(document).ready(function() {
 
     // 검색 함수를 정의합니다.
 function searchPosts(searchTerm) {
-    // AJAX를 사용하여 서버에 검색 요청을 보냅니다.
+
     $.ajax({
-        url: '/search', // 검색 요청을 처리하는 서버 엔드포인트 URL로 수정해야 합니다.
-        method: 'POST', // GET 또는 POST 방식을 선택할 수 있습니다.
-        data: { searchTerm: searchTerm }, // 검색어를 서버로 보냅니다.
+        url: '/search',
+        method: 'POST',
+        data: { searchTerm: searchTerm }, // 검색어를 서버로 보냄.
         success: function (data) {
             // 검색 결과를 처리합니다.
             console.log('검색 결과:', data);
@@ -109,12 +109,12 @@ function searchPosts(searchTerm) {
 
 function displaySearchResults(results) {
     const resultList = document.querySelector('.answerbox');
-    resultList.innerHTML = ''; // 이전 결과를 지웁니다.
+    resultList.innerHTML = ''; // 이전 결과 삭제.
 
     const questionElement = document.querySelector('.question');
     const qNumberElement = document.querySelector('.q_number');
 
-    // 검색 결과를 반복하여 리스트에 추가합니다.
+    // 검색 결과를 반복하여 리스트에 추가.
     if (results.searchResults && Array.isArray(results.searchResults)) {
         results.searchResults.forEach(function (result) {
             const listItem = document.createElement('li');
@@ -137,8 +137,8 @@ function displaySearchResults(results) {
 }
 
 $(document).on('click', '.searchResult', function () {
-    const boardID = $(this).data('boardid'); // 클릭한 결과의 board_ID 값을 가져옵니다.
-    window.location.href = `/boardview?boardID=${boardID}`; // 해당 게시글의 페이지로 이동합니다.
+    const boardID = $(this).data('boardid'); // 클릭한 결과의 board_ID 값을 가져옴.
+    window.location.href = `/boardview?boardID=${boardID}`; // 해당 게시글의 페이지로 이동.
 });
 
 // plus btn
@@ -178,13 +178,13 @@ function createParticle(x, y, type) {
     const animation = particle.animate(
     [
         {
-        // Set the origin position of the particle
-        // We offset the particle with half its size to center it around the mouse
+        // 원점 위치 설정.
+        // 마우스 중심에 맞추기 위해 입자 크기의 절반으로 오프셋.
         transform: `translate(${x - size / 2}px, ${y - size / 2}px)`,
         opacity: 1,
         },
         {
-        // We define the final coordinates as the second keyframe
+        // 최종 좌표를 두 번째 키프레임으로 정의.
         transform: `translate(${destinationX}px, ${destinationY}px)`,
         opacity: 0,
         },

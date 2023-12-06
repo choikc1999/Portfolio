@@ -76,7 +76,6 @@ $(document).ready(function() {
 
                 pointer.css("left", newLeft);
 
-                // const halfWidth = dragBar.width() * 0.5;
                 const thirtyPercent = dragBar.width() * 0.4;
                 const fiftyPercent = dragBar.width() * 0.8;
 
@@ -94,8 +93,7 @@ $(document).ready(function() {
                             }, 100);
                         },100);
                     }, 100);
-                    // $(".SHOWBOX .item2, .SHOWBOX .item3").css({"opacity":"0", "display":"none", "transition":"1s"});
-                    // $(".SHOWBOX .item1").css({"opacity":"1", "display":"block", "transition":"1s"});
+                
                 } else if (newLeft > thirtyPercent && newLeft <= fiftyPercent) {
                     $(".SHOWBOX .item1").css("opacity","0");
                     $(".SHOWBOX .item3").css("opacity","0");
@@ -109,8 +107,7 @@ $(document).ready(function() {
                             }, 100);
                         },100);
                     }, 100);
-                    // $(".SHOWBOX .item1, .SHOWBOX .item3").css({"opacity":"0", "display":"none", "transition":"1s"});
-                    // $(".SHOWBOX .item2").css({"opacity":"1", "display":"block", "transition":"1s"});
+
                 } else {
                     $(".SHOWBOX .item2").css("opacity","0");
                     $(".SHOWBOX .item1").css("opacity","0");
@@ -124,8 +121,7 @@ $(document).ready(function() {
                             }, 100);
                         },100);
                     }, 100);
-                    // $(".SHOWBOX .item1, .SHOWBOX .item2").css({"opacity":"0", "display":"none", "transition":"1s"});
-                    // $(".SHOWBOX .item3").css({"opacity":"1", "display":"block", "transition":"1s"});
+
                 }
             }
         });

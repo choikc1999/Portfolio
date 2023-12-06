@@ -10,17 +10,17 @@ $(document).ready(function() {
 
             // 댓글 작성 버튼 클릭 이벤트 처리
             $(".write_btn").click(function () {
-                submitReply(response.name); // 사용자 이름을 넘겨줍니다.
+                submitReply(response.name); // 사용자이름을 받아와서 기입.
                 $(".reply_textarea").val("");
             });
 
             const urlParams = new URLSearchParams(window.location.search);
             const boardID = urlParams.get("boardID");
 
-            // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시합니다.
+            // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시.
             if (boardID) {
                 loadBoardInfo(boardID);
-                loadRepliesFromDatabase(boardID); // 이 부분을 추가하여 댓글을 미리 가져옵니다.
+                loadRepliesFromDatabase(boardID); // 댓글을 미리 가져옴.
             }
         },
         error: function (error) {
@@ -72,7 +72,7 @@ $(document).ready(function() {
     });
 
     function displayBoardInfo(post) {
-        // 게시글 정보를 화면에 표시하는 작업을 수행합니다.
+        // 게시글 정보를 화면에 표시하는 작업.
         $(".title").text(post.title);
         $(".name").text(post.name);
         const date = new Date(post.modify_date);
@@ -83,27 +83,13 @@ $(document).ready(function() {
         $(".view_count span").text(post.views); // 조회수 출력
     }
 
-    // 게시물 이미지렌더링 임시
-    // function displayImagesInfo(post) {
-    //     const text = $(".text");
-    //     const imgTag = document.createElement('img');
-    //     imgTag.src = `../userimages/${response.originalFilename}`;
-    //     imgTag.alt = '이미지';
-    //     imgTag.style.width = '100%';
-    //     imgTag.style.height = 'auto';
-
-    //     text.append(imgTag);
-    // }
-
-
-
     const urlParams = new URLSearchParams(window.location.search);
     const boardID = urlParams.get("boardID");
 
-    // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시합니다.
+    // boardID가 유효하면 해당 게시글 정보를 불러와 화면에 표시.
     if (boardID) {
         loadBoardInfo(boardID);
-        loadRepliesFromDatabase(boardID); // 이 부분을 추가하여 댓글을 미리 가져옵니다.
+        loadRepliesFromDatabase(boardID); 
     }
 
     // 댓글 저장 및 로딩
@@ -193,7 +179,6 @@ $(document).ready(function() {
         // 중복 호출 방지 상태로 변경
         isUpdatingViewCount = true;
 
-        // 서버에 해당 게시글 정보를 요청하는 AJAX 요청을 보냅니다.
         $.ajax({
             type: "GET",
             url: `/board/${boardID}`,
@@ -222,7 +207,7 @@ $(document).ready(function() {
         function loadImageInfo(boardID) {
             $.ajax({
                 type: "GET",
-                url: `/getBoardImage/${boardID}`, // 엔드포인트 변경
+                url: `/getBoardImage/${boardID}`,
                 success: function (response) {
                     console.log("Server Response:", response);
                     if (response !== null && response.filename !== undefined) {

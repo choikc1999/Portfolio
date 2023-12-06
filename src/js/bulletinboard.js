@@ -128,7 +128,7 @@ $(document).ready(function() {
     function getPosts() {
         $.ajax({
             type: "GET",
-            url: "/get-posts", // 서버의 해당 경로로 요청 보내기
+            url: "/get-posts", 
             success: (response) => {
                 displayPosts(response); // 받아온 데이터로 게시글 목록 표시
             },
@@ -257,7 +257,7 @@ $(document).ready(function() {
         const pageNumber = parseInt($(this).text());
         if (!isNaN(pageNumber)) {
             currentPage = pageNumber;
-            getPostsByPage(currentPage, selectedBoard); // 수정된 부분: selectedBoard 값을 전달
+            getPostsByPage(currentPage, selectedBoard);
         }
     });
     

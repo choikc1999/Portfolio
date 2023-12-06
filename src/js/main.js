@@ -2,7 +2,7 @@ $(document).ready(function() {
     // 서버에서 사용자 정보를 가져와서 이름 표시
     $.ajax({
         method: 'GET',
-        url: '/get-user-info', // 사용자 정보를 가져오는 경로
+        url: '/get-user-info', 
         success: function (response) {
             // 사용자 정보에서 이름 가져와서 표시
             document.getElementById("userName").textContent = response.name;
@@ -14,7 +14,7 @@ $(document).ready(function() {
 
     $.ajax({
         method: 'GET',
-        url: '/get-user-info', // 사용자 정보를 가져오는 경로
+        url: '/get-user-info',
         success: function (response) {
             // 사용자 정보에서 이름 가져와서 표시
             document.getElementById("m_userName").textContent = response.name;
@@ -123,16 +123,16 @@ $(document).ready(function() {
     var $slides = $('.slide'); // 각 슬라이드
     var $slidesContainer = $('.slides'); // 슬라이더 컨테이너
     
-    // 원본 슬라이드를 복제하여 슬라이드를 더 추가 (원하는 개수만큼)
+    // 원본 슬라이드를 복제하여 슬라이드를 추가 
     for (var i = 0; i < 100; i++) {
         $slides.clone().appendTo('.slides');
     }
     
-    var $allSlides = $('.slide'); // 모든 슬라이드 (원본 및 복제된)
+    var $allSlides = $('.slide'); // 모든 슬라이드 (원본 + 복제)
     var slideCount = $allSlides.length; // 슬라이드 개수
     
-    $slidesContainer.css('width', '100%'); // 슬라이더 컨테이너의 너비를 100%로 설정
-    $slidesContainer.css('overflow', 'hidden'); // 너비를 벗어나는 내용 감춤
+    $slidesContainer.css('width', '100%');
+    $slidesContainer.css('overflow', 'hidden');
     
     $allSlides.css('margin-right', '10px'); // 모든 슬라이드의 여백 설정
     $allSlides.css('width', '100vw'); // 모든 슬라이드의 너비를 창의 너비만큼으로 설정
@@ -147,7 +147,7 @@ $(document).ready(function() {
         var position = -1 * currentIndex * slideWidth;
         $slidesContainer.css({
             'transform': 'translateX(' + position + 'px)',
-            'transition': 'transform 0.5s ease-in-out' // 부드러운 애니메이션 적용
+            'transition': 'transform 0.5s ease-in-out'
         });
     }
     
@@ -249,7 +249,7 @@ $(document).ready(function() {
         var position = -1 * currentIndex * slideWidth;
         $slidesContainer.css({
             'transform': 'translateX(' + position + 'px)',
-            'transition': 'transform 0.5s ease-in-out' // 부드러운 애니메이션 적용
+            'transition': 'transform 0.5s ease-in-out' 
         });
     }
 

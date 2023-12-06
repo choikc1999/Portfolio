@@ -82,7 +82,7 @@ $("#password").on("focusout", function(){
             e.preventDefault();
         }
     });
-    }); // 유효성 검사 종료
+}); // 유효성 검사 종료
 
 // 전화번호에 하이폰 자동입력
 $("#phoneNumber").on("input", function(){
@@ -201,7 +201,7 @@ $(".checkbox_text").click(function(e){
 $("#registrationForm").submit(function(e){
     e.preventDefault(); // event.preventDefault = a태그나 submit태그 클릭시 창이 리프레시되는 현상을 막기 위해 사용
 
-    const id = $("#id").val(); // 여기서 val()은 인풋의 입력값
+    const id = $("#id").val();
     const password = $("#password").val();
     const name = $("#name").val();
     const email = $("#email").val();
@@ -223,7 +223,7 @@ $("#registrationForm").submit(function(e){
     }
     
     // 아이디 중복확인 유효성 검사
-    $.ajax({ // ajax는 원래 모듈로 사용해야하는데 jquery에 포함되어있어서 바로 사용가능.
+    $.ajax({
         url: "/user/check_duplicate_id",
         method: "POST",
         data: { id: id },
@@ -242,8 +242,8 @@ $("#registrationForm").submit(function(e){
                     phoneNumber: phoneNumber,
                 };
                 $.ajax({
-                    url: "user", // 회원가입 요청을 보낼 URL
-                    type: "POST", // POST 메서드 사용
+                    url: "user", 
+                    type: "POST",
                     data: userData, // 사용자 데이터 전송
                     success: function (response) {
                         if (response.message) {
@@ -320,14 +320,3 @@ $(document).ready(function(){
         $(".lb_h5").css("color","#ff7e00");
     });
 });
-
-// $(document).ready(function(){
-//     function handleClick(e) {
-//         alert("J's Blog을 방문해 주셔서 감사합니다. 본 웹사이트는 제 포트폴리오를 소개하는 공간입니다. 입력하신 개인정보는 절대로 상업적으로 이용되지 않으며, 모든 비밀번호는 철저히 암호화되어 안전하게 보관됩니다. 그러니 안심하시고 가입해주세요!");
-
-//         // 클릭 이벤트 해제
-//         $("body").off("click", handleClick);
-//     }
-
-//     $("body").click(handleClick);
-// });

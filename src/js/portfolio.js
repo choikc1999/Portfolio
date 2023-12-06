@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 
     var slideIndex = 0;
-    var slideInterval = setInterval(slide, 2000); // 슬라이드 간격을 조정하세요
+    var slideInterval = setInterval(slide, 2000); // 슬라이드 간격 조정
     var $pictureLeft = $('.picture_left');
     var $pictureRight = $('.picture_right');
 
@@ -84,7 +84,7 @@ $(document).ready(function() {
 $(document).on('click', '.iteminner1', function(){
     $(".ViewDetails").css({
         'opacity': '0',
-        'top': '100%' // 시작 위치를 페이지 아래로 설정
+        'top': '100%' // 시작 위치를 페이지 아래로 설정 
     }).animate({
         'opacity': '1',
         'top': '30.0rem'

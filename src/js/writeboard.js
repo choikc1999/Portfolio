@@ -98,7 +98,6 @@ $(document).ready(function() {
         const selectedOption = document.querySelector(".dropdown_content .selected");
         const selectedBoard = selectedOption ? selectedOption.textContent : null; // 선택한 게시판 가져오기
         const text = areaTextarea.textContent;
-        // const text = areaTextarea.value;
     
         $.ajax({
             method: 'GET',
@@ -147,7 +146,6 @@ $(document).ready(function() {
             text: text
         };
 
-        // AJAX를 사용하여 서버에 데이터 전송
         $.ajax({
             method: "POST",
             url: "/create-post",
@@ -180,7 +178,6 @@ $(document).ready(function() {
                                         });
                                         console.log("Matching Image:", matchingImage);
                                         if (matchingImage) {
-                                            // const postId = response.postId;
                                             const imageFileName = matchingImage;
                                             console.log("3차");
                                             $.ajax({
@@ -282,8 +279,6 @@ $(document).ready(function() {
                             const imgTag = document.createElement('img');
                             imgTag.src = `../userimages/${response.originalFilename}`;
                             imgTag.alt = '이미지';
-                            // imgTag.style.width = '100%';
-                            // imgTag.style.height = 'auto';
                             const imageFileName = response.originalFilename;
                             imgTag.classList.add(imageFileName);
             

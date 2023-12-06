@@ -94,16 +94,16 @@ $(document).ready(function() {
     
         const title = $(".title_input").val();
         const content = $(".area").val();
-        const name = $(".name_input").val(); // 추가: 작성자 이름 값
-        const password = $(".password_input").val(); // 추가: 비밀번호 값
-        const selectboard = $(".dropdown_content li").text(); // 추가: 선택한 게시판 값
+        const name = $(".name_input").val(); // 작성자 이름
+        const password = $(".password_input").val();
+        const selectboard = $(".dropdown_content li").text(); // 게시판 종류
 
         const modifiedPost = {
             title: title,
             text: content,
-            name: name, // 추가: 작성자 이름
-            password: password, // 추가: 비밀번호
-            selectboard: selectboard, // 추가: 선택한 게시판
+            name: name, // 작성자 이름
+            password: password, 
+            selectboard: selectboard, // 선택된 게시판
             boardID: boardID // 수정 대상 게시글의 고유 ID
         };
     

@@ -238,7 +238,7 @@ $(document).ready(function() {
         }
     });
 
-    // 추가: 이메일 입력란을 벗어날 때 도메인 자동완성 메뉴 숨기기
+    // 이메일 입력란을 벗어날 때 도메인 자동완성 메뉴 숨기기
     $(document).on("click", function (e) {
         if (!$(e.target).closest("#emailDropdown").length && !$(e.target).is("#newEmail")) {
             hideEmailDropdown();
@@ -290,14 +290,14 @@ $(document).ready(function() {
 
     $("#deleteAccountBtn").click(function () {
         if (confirm("정말로 회원 탈퇴하시겠습니까?")) {
-            // 서버에 회원 탈퇴 요청 전송
+        
             $.ajax({
                 url: "/delete-account",
                 method: "POST",
                 success: function (response) {
                     if (response.success) {
                         alert("회원 탈퇴가 성공적으로 처리되었습니다.");
-                        window.location.href = '/login'; // 로그인 페이지로 리다이렉션
+                        window.location.href = '/login'; 
                     } else {
                         alert("회원 탈퇴에 실패하였습니다. 다시 시도해주세요.");
                     }
