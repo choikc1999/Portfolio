@@ -51,7 +51,7 @@
 
 .git_hub_img {
     background: url(../images/git_hub.png) no-repeat 0 0 / 100% auto;
-    width: 14.7rem;
+    max-width: 14.7rem;
     height: 13.2rem;
     position: relative;
     left: 50%;
@@ -81,7 +81,7 @@
 }
 
 .SHOWBOX {
-    width: 80.0rem;
+    max-width: 80.0rem;
     height: 50.0rem;
     border-radius: 3.5rem;
     margin-bottom: 5.0rem;
@@ -125,7 +125,7 @@
 
 .SHOWBOX .item1 .img {
     background: url(../images/career1.png) no-repeat 0 0 / 100% auto;
-    width: 22.9rem;
+    max-width: 22.9rem;
     height: 26.6rem;
     position: relative;
     left: 50%;
@@ -157,11 +157,27 @@
 
 .SHOWBOX .item3 .img {
     background: url(../images/career3.png) no-repeat 0 0 / 100% auto;
-    width: 50.0rem;
+    max-width: 50.0rem;
     height: 16.2rem;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
     top: 6.0rem;
     /* border-radius: 0 3.2rem 3.2rem 0; */
+}
+
+@media (max-width: 1350px) {
+    .wrap .past {
+        left: 0;
+    }
+    
+    .wrap .today {
+        right: 0;
+    }
+}
+
+@media (max-width: 730px) {
+    .SHOWBOX .item2 .img {
+        background: url(../images/career2.png) no-repeat 0 -8.0rem / 100% auto;
+    }
 }

@@ -416,3 +416,8 @@ nodemon ./web.js localhost 8081 //노드몬 실행하는방법.
 * information 완료
 * introduce 완료
 * portfolio 완료
+* career 완료
+* bulletinboard 완료
+* writeboard 완료
+* ModifyWriteBoard 완료 // 디자인 미완성으로 인한 작업진행 X
+* boardview 완료

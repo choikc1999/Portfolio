@@ -69,6 +69,9 @@ html {
     height: 2.5rem;
     line-height: 2.5rem;
 }
+.write_setup .hiden {
+    display: none;
+}
 
 .WriteForm form .pwd_label .password_input {
     width: 30%;
@@ -224,6 +227,25 @@ html {
 
 /* 미디어 쿼리 */
 
+@media (max-width: 1300px) {
+    
+    .WriteForm form .picture_label {
+        margin-left: 0;
+    }
+    
+    .WriteForm form .picture_label .picture_input {
+        margin-top: 1.5rem;
+    }
+
+    .WriteForm form .picture_label span {
+        text-align: center;
+    }
+
+    .write_setup .hiden {
+        display: block;
+    }
+}    
+
 @media (max-width: 1024px) {
     .WriteForm form .title_label span {
         width: 10%;
@@ -241,10 +263,6 @@ html {
         width: 10%;
     }
 }
-
-/* @media (max-width: 960px) {
-    
-} */
 
 @media (max-width: 580px) {
     .WriteForm form .name_label span {
@@ -269,6 +287,31 @@ html {
         width: 85%;
         float: right;
         margin-bottom: 1.0rem;
+    }
+
+    .write_setup .hiden {
+        display: none;
+    }
+
+    .WriteForm form .picture_label {
+        width: 100%;
+    }
+    
+    .WriteForm form .picture_label .picture_input {
+        margin-top: 0rem;
+        width: 80%;
+        float: right;
+    }
+
+    .WriteForm form .picture_label span {
+        /* display: inline-block; */
+        width: 20%;
+        float: left;
+        margin-top: 1.0rem;
+    }
+
+    .WriteForm form .select_board {
+        margin-top: 1.0rem;
     }
 }
 
