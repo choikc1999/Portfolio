@@ -46,7 +46,7 @@ html {
 }
 
 .view .select_view {
-    width: 15%;
+    width: 20%;
     height: 3.0rem;
     line-height: 2.5rem;
     display: inline-block;
@@ -66,6 +66,12 @@ html {
     padding: 3.0rem;
     font-size: 1.8rem;
     text-align: center;
+}
+
+.view .view_text .text {
+    display: inline-block;
+    width: 100%;
+    overflow: auto;
 }
 
 .view .information_box {
@@ -200,5 +206,38 @@ html {
     
     .view .information_box .reply_box .reply {
         width: 75%;
+    }
+}
+
+@media (max-width: 590px) {
+    .view .name_view {
+        width: 49%;
+    }
+    
+    .view .date_view {
+        width: 49%;
+        float: right;
+    }
+    
+    .view .select_view {
+        margin-top: 1.0rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 395px) {
+    .view .name_view {
+        width: 100%;
+    }
+    
+    .view .date_view {
+        width: 100%;
+        margin-top: 1.0rem;
+        float: unset;
+    }
+    
+    .view .select_view {
+        display: none;
     }
 }

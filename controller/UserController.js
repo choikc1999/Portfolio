@@ -41,6 +41,7 @@ exports.check_duplicate_id = (req, res) => {
 exports.post_user = (req, res) => {
     const userData = req.body;
 
+    console.log('Received data:', userData);
     // 유효성 검사 (정규식)
     const idRegex = /^[a-z0-9]{6,10}$/;
     const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@!#\$%\^&\*])[a-zA-Z\d@!#\$%\^&\*]{10,20}$/;
@@ -49,29 +50,37 @@ exports.post_user = (req, res) => {
     const phoneNumberRegex = /^\d{3}-\d{3,4}-\d{4}$/;
 
     if (!userData.id.match(idRegex)) {
+        console.error("아이디에러");
         return res.status(400).json({ error: "아이디는 6자에서 10자의 영문 소문자와 숫자만 가능합니다." });
     }
 
     if (!userData.password.match(passwordRegex)) {
+        console.error("비번에러");
         return res.status(400).json({ error: "비밀번호는 10자에서 20자의 영문 대소문자, 숫자, 특수문자 조합이어야 합니다." });
     }
 
     if (!userData.name.match(nameRegex)) {
+        console.error("이름에러");
         return res.status(400).json({ error: "이름은 2자에서 6자의 한글 또는 영문(대,소문자)만 가능합니다." });
     }
 
     if (!userData.email.match(emailRegex)) {
+        console.error("이메일에러");
         return res.status(400).json({ error: "이메일 형식이 올바르지 않습니다." });
     }
 
     if (!userData.phoneNumber.match(phoneNumberRegex)) {
+        console.error("전화번호에러");
         return res.status(400).json({ error: "전화번호는 숫자만 입력 가능합니다." });
     }
 
-    if (!userData.checkbox) {
+    userData.checkbox = userData.checkbox === 'true'; // 데이터의 checkbox 값을 불리언으로 변환
+
+    if (userData.checkbox !== true) {
+        console.error("약관에러: checkbox가 true가 아니거나 정의되지 않았습니다.");
         return res.status(400).json({ error: "Privacy Terms(개인정보 이용약관)을 읽어보신 후 동의하셔야 가입가능합니다." });
     }
-
+    
     bcrypt.hash(userData.password, 10, (err, hashedPassword) => {
         if (err) {
             console.error('Error hashing password', err);

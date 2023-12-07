@@ -207,6 +207,7 @@ $("#registrationForm").submit(function(e){
     const email = $("#email").val();
     const phoneNumber = $("#phoneNumber").val();
     const emailDomain = getEmailDomain(email);
+    const checkbox = $("#checkbox").prop('checked');
 
     // 유효성 검사 (정규식)
     const idRegex = /^[a-z0-9]{6,10}$/; //아이디
@@ -240,6 +241,7 @@ $("#registrationForm").submit(function(e){
                     name: name,
                     email: email,
                     phoneNumber: phoneNumber,
+                    checkbox: checkbox,
                 };
                 $.ajax({
                     url: "user", 
