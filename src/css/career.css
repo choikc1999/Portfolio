@@ -28,7 +28,7 @@
     top: 50%;
     border-radius: 50%;
     background: #ffcc00;
-    cursor: pointer;
+    /* cursor: grabbing; */
 }
 
 .wrap p {

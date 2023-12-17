@@ -136,3 +136,15 @@ $(document).ready(function() {
         window.open("https://github.com/choikc1999/Portfolio", "_blank");
     });    
 });
+
+const mouseHand = document.getElementById('pointer');
+
+document.addEventListener('mousedown', () => {
+    // mouseHand.style.transform = 'translateX(-50%) translateY(-50%) scale(1.2)';
+    mouseHand.style.cursor = 'grabbing'; // 클릭 시 커서 스타일 변경
+});
+
+document.addEventListener('mouseup', () => {
+    // mouseHand.style.transform = 'translateX(-50%) translateY(0) scale(1)';
+    mouseHand.style.cursor = 'grab'; // 클릭 해제 시 원래 커서 스타일로 변경
+});
